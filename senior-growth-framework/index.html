@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engineering Growth Radar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --text:          #0F172A;
+      --text-2:        #334155;
+      --muted:         #64748B;
+      --muted-light:   #94A3B8;
+      --white:         #FFFFFF;
+      --bg:            #F8FAFC;
+      --bg-card:       #FFFFFF;
+      --border:        #E2E8F0;
+      --border-mid:    #CBD5E1;
+
+      /* Hero */
+      --hero-start:    #3730A3;
+      --hero-end:      #0F172A;
+
+      /* Accent */
+      --accent:        #6366F1;
+      --accent-dark:   #4338CA;
+      --accent-light:  #EEF2FF;
+
+      /* Profile colours — vibrant modern palette */
+      --c-current:     #6366F1;
+      --c-future:      #06B6D4;
+      --c-tech:        #7C3AED;
+      --c-mult:        #DB2777;
+      --c-staff:       #059669;
+      --c-product:     #D97706;
+      --c-platform:    #DC2626;
+
+      --font: "Inter", system-ui, -apple-system, sans-serif;
+      --radius-sm: 6px;
+      --radius:    10px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05);
+      --shadow:    0 4px 12px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: var(--font);
+      font-weight: 400;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+
+    /* ─── PAGE ───────────────────────────────────────────────── */
+    .page { max-width: 1360px; margin: 0 auto; padding-bottom: 80px; }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      background: linear-gradient(140deg, var(--hero-start) 0%, var(--hero-end) 100%);
+      color: var(--white);
+      overflow: hidden;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+
+    /* Dot-grid texture */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    /* Radial glow accent */
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, rgba(139,92,246,0.35) 0%, rgba(99,102,241,0.18) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    /* Hero body */
+    .hero-body { padding: 52px 52px 56px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 24px;
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #A5B4FC;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      margin-bottom: 20px;
+      max-width: 640px;
+    }
+
+    .hero-title .light {
+      font-weight: 300;
+      display: block;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .hero-title .bold {
+      font-weight: 700;
+      display: block;
+    }
+
+    .hero-intro {
+      max-width: 560px;
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    /* Scale legend pills */
+    .scale-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .scale-pip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.07);
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.01em;
+    }
+
+    .scale-pip strong {
+      font-weight: 700;
+      color: var(--white);
+      font-size: 0.85rem;
+    }
+
+    /* ─── CONTENT WRAPPER ────────────────────────────────────── */
+    .content { padding: 0 32px; }
+
+    /* ─── MAIN GRID ──────────────────────────────────────────── */
+    .main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+      margin-top: 32px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    /* ─── CHART PANEL ────────────────────────────────────────── */
+    .chart-panel {
+      padding: 32px;
+      border-right: 1px solid var(--border);
+    }
+
+    .panel-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .chart-frame {
+      position: relative;
+      width: 100%;
+      min-height: 520px;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+    }
+
+    #radarCanvas { display: block; width: 100%; height: 100%; }
+
+    /* ─── TOOLTIP ────────────────────────────────────────────── */
+    .radar-tooltip {
+      position: absolute;
+      z-index: 10;
+      min-width: 260px;
+      max-width: 320px;
+      background: var(--text);
+      color: var(--white);
+      padding: 18px 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .radar-tooltip.visible { opacity: 1; transform: translateY(0); }
+
+    .tt-eyebrow {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 6px;
+    }
+
+    .tt-profile {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .tt-score-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .tt-score-big {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .tt-score-denom {
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .tt-badge {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 3px 9px;
+      border-radius: 100px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.8);
+    }
+
+    .tt-desc {
+      font-size: 0.84rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.68);
+    }
+
+    /* ─── CHART ACTIONS ──────────────────────────────────────── */
+    .chart-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      appearance: none;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-mid);
+      background: var(--bg-card);
+      color: var(--text-2);
+      transition: background 0.12s, border-color 0.12s, box-shadow 0.12s;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn:hover {
+      background: var(--bg);
+      border-color: var(--accent);
+      color: var(--accent-dark);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(99,102,241,0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent-dark);
+      color: var(--white);
+      box-shadow: 0 4px 12px rgba(99,102,241,0.4);
+    }
+
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .status-msg {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--muted);
+      min-height: 18px;
+    }
+
+    /* ─── CONTROLS ───────────────────────────────────────────── */
+    .controls-panel {
+      padding: 32px;
+      overflow-y: auto;
+      max-height: 740px;
+      background: var(--bg);
+    }
+
+    .profile-list { display: flex; flex-direction: column; gap: 8px; }
+
+    .profile-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+      transition: border-color 0.12s, box-shadow 0.12s;
+    }
+
+    .profile-card.active {
+      border-color: color-mix(in srgb, var(--card-color, var(--accent)) 40%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-color, var(--accent)) 10%, transparent);
+    }
+
+    .profile-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+    }
+
+    .profile-card-header label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .profile-card-header input[type="checkbox"] {
+      width: 15px; height: 15px;
+      accent-color: var(--card-color, var(--accent));
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .profile-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .profile-card.disabled .profile-name { color: var(--muted-light); font-weight: 400; }
+
+    .color-swatch {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--card-color, var(--border-mid));
+      flex-shrink: 0;
+    }
+
+    .profile-hint {
+      padding: 0 14px 12px 40px;
+      font-size: 0.78rem;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .profile-card.disabled .profile-hint { color: var(--border-mid); }
+
+    /* Sliders */
+    .slider-group {
+      padding: 12px 14px 14px;
+      border-top: 1px solid var(--border);
+      background: color-mix(in srgb, var(--card-color, var(--accent)) 3%, var(--bg-card));
+      border-radius: 0 0 calc(var(--radius) - 1.5px) calc(var(--radius) - 1.5px);
+    }
+
+    .slider-row {
+      display: grid;
+      grid-template-columns: 1fr 32px;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .slider-row:last-child { margin-bottom: 0; }
+
+    .slider-label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 3px;
+      accent-color: var(--card-color, var(--accent));
+      cursor: pointer;
+      display: block;
+      border-radius: 100px;
+    }
+
+    .score-out {
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--card-color, var(--accent));
+    }
+
+    /* ─── LEVEL EXPLORER ─────────────────────────────────────── */
+    .level-explorer {
+      margin-top: 24px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .explorer-nav {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding: 0 28px;
+      overflow-x: auto;
+      gap: 0;
+      background: var(--bg);
+    }
+
+    .explorer-nav-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 14px 20px 14px 0;
+      border-right: 1px solid var(--border);
+      margin-right: 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .dim-tab {
+      appearance: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      background: none;
+      padding: 14px 14px 12px;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+      margin-bottom: -1px;
+      transition: color 0.12s, border-color 0.12s;
+    }
+
+    .dim-tab:hover { color: var(--text); }
+
+    .dim-tab.active {
+      color: var(--accent);
+      font-weight: 700;
+      border-bottom-color: var(--accent);
+    }
+
+    .dim-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+    /* 5-column level cards */
+    .level-cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    .level-card {
+      padding: 24px;
+      border-right: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+
+    .level-card:last-child { border-right: none; }
+
+    .level-card.active-score {
+      background: color-mix(in srgb, var(--hl-color, var(--accent)) 5%, var(--bg-card));
+    }
+
+    .level-card-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      background: var(--border);
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .level-card.active-score .level-card-num {
+      background: var(--hl-color, var(--accent));
+      color: var(--white);
+    }
+
+    .level-card-label {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-light);
+      margin-bottom: 10px;
+    }
+
+    .level-card.active-score .level-card-label {
+      color: var(--hl-color, var(--accent));
+    }
+
+    .level-card-desc {
+      font-size: 0.84rem;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .level-card.active-score .level-card-desc {
+      color: var(--text-2);
+    }
+
+    /* ─── INFO GRID ──────────────────────────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 24px;
+      gap: 16px;
+    }
+
+    .info-section {
+      padding: 28px 32px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* Archetype rows */
+    .archetype-rows { display: flex; flex-direction: column; }
+
+    .archetype-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .archetype-row:last-child { border-bottom: none; }
+
+    .archetype-accent {
+      width: 4px;
+      min-height: 36px;
+      border-radius: 100px;
+      background: var(--row-color, var(--border-mid));
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .archetype-body { flex: 1; }
+
+    .archetype-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .archetype-desc {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Dimension definition list */
+    .dim-defs { display: flex; flex-direction: column; }
+
+    .dim-def-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.84rem;
+      line-height: 1.5;
+    }
+    .dim-def-row:last-child { border-bottom: none; }
+
+    .dim-def-label {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .dim-def-text {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    /* ─── DRAG HINT ──────────────────────────────────────────── */
+    .drag-hint {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-light);
+      font-size: 0.78rem;
+      color: var(--accent-dark);
+      font-weight: 500;
+    }
+
+    .drag-hint::before {
+      content: "↔";
+      font-size: 1rem;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .content { padding: 0 16px; }
+      .hero-body { padding: 36px 24px 44px; }
+      .main-grid { grid-template-columns: 1fr; }
+      .chart-panel { border-right: none; border-bottom: 1px solid var(--border); }
+      .controls-panel { max-height: none; }
+      .level-cards { grid-template-columns: 1fr 1fr; }
+      .level-card:nth-child(2) { border-right: none; }
+      .level-card:nth-child(3) { border-right: 1px solid var(--border); }
+      .level-card:nth-child(4) { border-right: none; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-body { padding: 28px 20px 36px; }
+      .hero-title { font-size: 2rem; }
+      .scale-legend { flex-direction: column; }
+      .content { padding: 0 12px; }
+      .level-cards { grid-template-columns: 1fr; }
+      .level-card { border-right: none; border-bottom: 1px solid var(--border); }
+      .dim-def-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ─── HERO ────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-body">
+      <div class="hero-badge">Senior Engineer · Growth Tool</div>
+      <h1 class="hero-title">
+        <span class="light">Understand where you are.</span>
+        <span class="bold">See where you're going.</span>
+      </h1>
+      <p class="hero-intro">
+        Map your strengths across eight growth dimensions, compare against reference
+        engineering archetypes, and use the level guide to calibrate your scores.
+        Drag any editable profile point directly on the radar to adjust it.
+      </p>
+      <div class="scale-legend" aria-label="Scoring scale">
+        <div class="scale-pip"><strong>1</strong> Solid senior baseline</div>
+        <div class="scale-pip"><strong>2</strong> Developing beyond baseline</div>
+        <div class="scale-pip"><strong>3</strong> Consistent strength</div>
+        <div class="scale-pip"><strong>4</strong> Elevated impact</div>
+        <div class="scale-pip"><strong>5</strong> Staff+ impact</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- ─── MAIN GRID ──────────────────────────────────────── -->
+    <section class="main-grid" aria-label="Growth radar tool">
+
+      <!-- Chart -->
+      <section class="chart-panel" aria-labelledby="chart-lbl">
+        <div class="panel-eyebrow" id="chart-lbl">Growth Shape Comparison</div>
+        <div class="chart-frame">
+          <canvas id="radarCanvas" aria-describedby="chart-desc"></canvas>
+          <div id="radarTooltip" class="radar-tooltip" role="tooltip" aria-hidden="true"></div>
+        </div>
+        <p id="chart-desc" class="visually-hidden">
+          Radar chart comparing selected growth profiles across eight engineering dimensions, scored 1–5.
+        </p>
+        <div class="chart-actions">
+          <button class="btn btn-primary" id="exportBtn">Export PNG</button>
+          <button class="btn" id="copyBtn">Copy Summary</button>
+          <button class="btn" id="resetBtn">Reset Defaults</button>
+        </div>
+        <div class="drag-hint">Drag the blue or teal profile points on the radar to update scores</div>
+        <p id="statusMsg" class="status-msg" aria-live="polite"></p>
+      </section>
+
+      <!-- Controls -->
+      <aside class="controls-panel" aria-labelledby="controls-lbl">
+        <div class="panel-eyebrow" id="controls-lbl">Profiles</div>
+        <div id="profileList" class="profile-list"></div>
+      </aside>
+
+    </section>
+
+    <!-- ─── LEVEL EXPLORER ─────────────────────────────────── -->
+    <section class="level-explorer" aria-labelledby="explorer-lbl">
+      <nav class="explorer-nav" aria-label="Select dimension">
+        <span class="explorer-nav-label" id="explorer-lbl">Level Reference</span>
+        <div id="dimTabs" role="tablist" style="display:flex; overflow-x:auto;"></div>
+      </nav>
+      <div id="levelCards" class="level-cards" role="tabpanel"></div>
+    </section>
+
+    <!-- ─── INFO GRID ──────────────────────────────────────── -->
+    <div class="info-grid">
+      <section class="info-section" aria-labelledby="arch-lbl">
+        <div class="info-eyebrow" id="arch-lbl">Reference Archetypes</div>
+        <div class="archetype-rows" id="archetypeRows"></div>
+      </section>
+      <section class="info-section" aria-labelledby="dims-lbl">
+        <div class="info-eyebrow" id="dims-lbl">Radar Dimensions</div>
+        <div class="dim-defs" id="dimDefs"></div>
+      </section>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /page -->
+
+<script>
+(() => {
+  "use strict";
+
+  /* ── DIMENSION DATA ───────────────────────────────────────── */
+  const DIMS = [
+    {
+      label: "Technical Depth",
+      short: "Technical Depth",
+      desc: "Strength in solving technically hard problems and exercising sound engineering judgment.",
+      levels: [
+        "Solves technically complex problems within your own domain. Understands tradeoffs for common architectural patterns. Rarely needs guidance on technical decisions in your area.",
+        "Tackles hard problems across a broader surface. Begins to shape technical decisions beyond your immediate team. Recognises when to bring in specialist knowledge vs. own the problem.",
+        "Deep mastery in at least one area; technical judgment actively sought by peers and cross-team engineers. Able to prototype and evaluate new approaches independently.",
+        "Defines technical standards and patterns that other teams adopt. Identifies technical risk at a system level. Leads resolution of the most complex, highest-stakes technical problems.",
+        "Shapes the organisation's technical direction. Introduces new technical capability. Technical authority recognised across the entire engineering function."
+      ]
+    },
+    {
+      label: "Delivery Excellence",
+      short: "Delivery",
+      desc: "Reliability in shipping valuable work with quality, clarity, and follow-through.",
+      levels: [
+        "Ships reliable work within sprint or milestone boundaries. Communicates blockers early. Work rarely needs significant rework after handoff.",
+        "Navigates ambiguity and delivers across multiple dependencies. Helps the team maintain momentum when things get complex or uncertain.",
+        "Designs delivery approaches that reduce risk and improve predictability. Identifies and addresses team-level bottlenecks before they become problems.",
+        "Shapes how the team — or multiple teams — deliver. Introduces process improvements that others adopt. Leads delivery through genuinely novel or high-risk situations.",
+        "Defines delivery practices at an organisational level. Sets the standard for how engineering ships across the function."
+      ]
+    },
+    {
+      label: "Ownership",
+      short: "Ownership",
+      desc: "Willingness to drive outcomes, handle ambiguity, and take end-to-end responsibility.",
+      levels: [
+        "Takes full responsibility for the outcomes of your own work. Drives to completion without close supervision. Handles ambiguity within your own scope comfortably.",
+        "Expands ownership beyond assigned tasks. Picks up problems the team needs solved. Treats team outcomes as your outcomes.",
+        "Owns problems at a team or domain level — not just individual tickets. Accountable for quality, reliability, and health of your area, including when it's uncomfortable.",
+        "Drives resolution of cross-team or organisational issues. Takes on systemic problems as yours to fix, even without formal authority.",
+        "Creates the conditions for an ownership culture across engineering. Defines what end-to-end accountability looks like at organisational scale."
+      ]
+    },
+    {
+      label: "Systems Thinking",
+      short: "Systems",
+      desc: "Ability to connect components, constraints, and trade-offs across a broader system.",
+      levels: [
+        "Understands how your work connects to adjacent systems and teams. Considers second-order effects of technical decisions. Avoids local optimisations that create wider problems.",
+        "Proactively maps dependencies and constraints across a broader surface. Shapes decisions with the larger system in mind rather than the nearest unit of work.",
+        "Models and communicates complex system interactions clearly. Spots architectural patterns and risks that peers miss. Informs cross-team and cross-platform decisions.",
+        "Architects solutions at a platform or organisational scale. Guides long-term system evolution. Helps others develop systems thinking through mentoring and design reviews.",
+        "Defines architectural direction for the engineering organisation. Creates frameworks others use to reason about large-scale system problems."
+      ]
+    },
+    {
+      label: "Mentoring & Multiplication",
+      short: "Mentoring",
+      desc: "Growth created through coaching, feedback, enablement, and raising others' effectiveness.",
+      levels: [
+        "Actively supports less experienced teammates. Provides useful, specific feedback. Makes time for technical questions and collaborative working.",
+        "Helps teammates grow in more structured ways. Identifies development opportunities for others. Your involvement makes teammates measurably more capable over time.",
+        "Raises the capability of your whole team through coaching, documentation, and knowledge sharing. The team doesn't become less capable when you're unavailable.",
+        "Multiplies effectiveness across teams. Builds enabling artefacts — standards, runbooks, frameworks — that keep working long after you've moved on.",
+        "Develops other senior engineers. Creates organisational capability, not just individual growth. Your impact on others' careers is visible at scale."
+      ]
+    },
+    {
+      label: "Influence",
+      short: "Influence",
+      desc: "Ability to align people, shape decisions, and move work forward without relying on formal authority.",
+      levels: [
+        "Communicates technical positions clearly and earns buy-in within your team. Navigates disagreement constructively. Your opinions are heard and considered.",
+        "Shapes decisions beyond your immediate team through sound reasoning and trusted relationships. Builds credibility with stakeholders outside engineering.",
+        "Consistently moves important decisions forward across functions. Aligns people with competing priorities. Recognised as a voice worth including in cross-functional conversations.",
+        "Shapes organisational direction through influence rather than authority. Builds coalitions. Brings large or complex stakeholder groups to productive outcomes.",
+        "Trusted to represent the engineering perspective at the highest levels. Creates alignment across the organisation on topics that matter to the business."
+      ]
+    },
+    {
+      label: "Business Context",
+      short: "Business",
+      desc: "Understanding of customer, commercial, and operational context behind engineering choices.",
+      levels: [
+        "Understands how your work connects to customer outcomes and business metrics. Can articulate why a piece of work matters beyond its technical definition.",
+        "Proactively deepens knowledge of the product, customers, and commercial context. Business understanding regularly improves the quality of your technical decisions.",
+        "Makes better engineering decisions than peers because of your business understanding. Bridges engineering and business language naturally. Spots misaligned priorities early.",
+        "Shapes engineering priorities using business insight. Translates commercial and regulatory context into engineering strategy for your domain.",
+        "Provides strategic input on business direction from an engineering perspective. Trusted business partner to product, commercial, and risk leadership."
+      ]
+    },
+    {
+      label: "Strategy & Product Thinking",
+      short: "Strategy",
+      desc: "Skill in connecting engineering work to longer-term direction, product outcomes, and prioritisation.",
+      levels: [
+        "Understands the roadmap beyond the current sprint. Connects daily work to product goals. Can contribute meaningfully in planning conversations.",
+        "Proactively contributes to product direction. Asks good questions about priorities, constraints, and alternatives. Shapes near-term roadmap choices.",
+        "Brings an engineering perspective to product strategy discussions. Identifies opportunities and constraints shaping medium-term direction. Recognised as a strategic contributor by product partners.",
+        "Co-owns product strategy for your domain. Proposes and defends long-term technical investment with clear product rationale.",
+        "Shapes multi-year product and engineering strategy. Recognised as a strategic thinker beyond engineering — trusted in business-level investment decisions."
+      ]
+    }
+  ];
+
+  const LEVEL_LABELS = [
+    "Solid baseline",
+    "Developing",
+    "Consistent strength",
+    "Elevated impact",
+    "Staff+ impact"
+  ];
+
+  /* ── PROFILES ────────────────────────────────────────────── */
+  const PROFILES = [
+    { id: "current",    name: "Current Self-Assessment", color: "#6366F1", editable: true,  defaults: [3,3,3,3,3,3,3,3], hint: "Your honest view of where your strengths land today.", on: true },
+    { id: "future",     name: "Desired Future Shape",    color: "#06B6D4", editable: true,  defaults: [4,4,4,4,4,4,4,4], hint: "The shape you want to grow toward over the next 12 months.", on: true },
+    { id: "tech",       name: "Technical Specialist",    color: "#7C3AED", editable: false, defaults: [5,4,3,4,2,2,1,1], hint: "Deep technical mastery; solves the hardest problems with authority.", on: false },
+    { id: "multiplier", name: "Team Multiplier",         color: "#DB2777", editable: false, defaults: [3,4,4,3,5,5,3,2], hint: "Amplifies people and delivery; a force-multiplier for the team.", on: false },
+    { id: "staff",      name: "Emerging Staff Shape",    color: "#059669", editable: false, defaults: [4,4,5,5,4,4,4,4], hint: "Broad, leveraged profile associated with Staff+ growth.", on: false },
+    { id: "product",    name: "Product Engineer",        color: "#D97706", editable: false, defaults: [3,4,5,3,2,4,5,5], hint: "Combines strong delivery with deep product and business insight.", on: false },
+    { id: "platform",   name: "Platform Architect",      color: "#DC2626", editable: false, defaults: [5,3,4,5,3,3,3,4], hint: "Architecture, system leverage, and platform-level thinking.", on: false }
+  ];
+
+  /* ── STATE ───────────────────────────────────────────────── */
+  const S = {
+    profiles: {},
+    points:   [],
+    activeDim: 0,
+    hovered:  null,
+    drag:     null   // { profileId, dimIdx } while dragging
+  };
+
+  let radarGeo = { cx: 0, cy: 0, r: 0 };
+  let statusTimer = null;
+
+  /* ── DOM REFS ────────────────────────────────────────────── */
+  const canvas    = document.getElementById("radarCanvas");
+  const ctx       = canvas.getContext("2d");
+  const tooltip   = document.getElementById("radarTooltip");
+  const profList  = document.getElementById("profileList");
+  const dimTabs   = document.getElementById("dimTabs");
+  const levelCards = document.getElementById("levelCards");
+  const statusMsg = document.getElementById("statusMsg");
+
+  /* ── INIT ────────────────────────────────────────────────── */
+  function init() {
+    PROFILES.forEach(p => {
+      S.profiles[p.id] = { visible: p.on, values: [...p.defaults] };
+    });
+    buildControls();
+    buildDimTabs();
+    buildArchetypes();
+    buildDimDefs();
+    renderLevelCards(0);
+    resizeCanvas();
+
+    document.getElementById("exportBtn").addEventListener("click", exportPNG);
+    document.getElementById("copyBtn").addEventListener("click", copySummary);
+    document.getElementById("resetBtn").addEventListener("click", reset);
+
+    canvas.addEventListener("mousedown", onMouseDown);
+    canvas.addEventListener("mousemove", onMouseMove);
+    canvas.addEventListener("mouseleave", () => { if (!S.drag) hideTooltip(); });
+    window.addEventListener("mouseup", onMouseUp);
+
+    // Touch drag support
+    canvas.addEventListener("touchstart", e => {
+      const t = e.touches[0];
+      onMouseDown({ button: 0, clientX: t.clientX, clientY: t.clientY, preventDefault: () => e.preventDefault() });
+    }, { passive: false });
+    canvas.addEventListener("touchmove", e => {
+      if (!S.drag) return;
+      e.preventDefault();
+      const t = e.touches[0];
+      applyDrag(t.clientX, t.clientY);
+    }, { passive: false });
+    canvas.addEventListener("touchend", onMouseUp);
+
+    window.addEventListener("resize", resizeCanvas);
+  }
+
+  /* ── CONTROLS ────────────────────────────────────────────── */
+  function buildControls() {
+    profList.innerHTML = "";
+    PROFILES.forEach(p => {
+      const card = document.createElement("div");
+      card.className = `profile-card ${S.profiles[p.id].visible ? "active" : "disabled"}`;
+      card.style.setProperty("--card-color", p.color);
+      card.dataset.id = p.id;
+
+      const hdr = document.createElement("div");
+      hdr.className = "profile-card-header";
+
+      const lbl = document.createElement("label");
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.checked = S.profiles[p.id].visible;
+      cb.setAttribute("aria-label", `Show ${p.name}`);
+      cb.addEventListener("change", () => {
+        S.profiles[p.id].visible = cb.checked;
+        card.classList.toggle("active", cb.checked);
+        card.classList.toggle("disabled", !cb.checked);
+        drawRadar();
+      });
+
+      const swatch = document.createElement("span");
+      swatch.className = "color-swatch";
+
+      const nameEl = document.createElement("span");
+      nameEl.className = "profile-name";
+      nameEl.textContent = p.name;
+
+      lbl.append(cb, swatch, nameEl);
+      hdr.appendChild(lbl);
+      card.appendChild(hdr);
+
+      const hint = document.createElement("div");
+      hint.className = "profile-hint";
+      hint.textContent = p.hint;
+      if (p.editable) hint.textContent += " Drag points on the radar to adjust.";
+      card.appendChild(hint);
+
+      if (p.editable) {
+        const sg = document.createElement("div");
+        sg.className = "slider-group";
+        DIMS.forEach((dim, di) => {
+          const row = document.createElement("div");
+          row.className = "slider-row";
+          const inner = document.createElement("div");
+          const lbl2 = document.createElement("label");
+          lbl2.className = "slider-label";
+          lbl2.textContent = dim.label;
+          lbl2.htmlFor = `${p.id}-s${di}`;
+          const slider = document.createElement("input");
+          slider.type = "range"; slider.min = 1; slider.max = 5; slider.step = 1;
+          slider.value = S.profiles[p.id].values[di];
+          slider.id = `${p.id}-s${di}`;
+          slider.addEventListener("input", () => {
+            S.profiles[p.id].values[di] = Number(slider.value);
+            out.textContent = slider.value;
+            drawRadar();
+          });
+          const out = document.createElement("output");
+          out.className = "score-out";
+          out.id = `${p.id}-s${di}-out`;
+          out.textContent = slider.value;
+          inner.append(lbl2, slider);
+          row.append(inner, out);
+          sg.appendChild(row);
+        });
+        card.appendChild(sg);
+      }
+      profList.appendChild(card);
+    });
+  }
+
+  /* ── DIM TABS ────────────────────────────────────────────── */
+  function buildDimTabs() {
+    dimTabs.innerHTML = "";
+    DIMS.forEach((dim, i) => {
+      const btn = document.createElement("button");
+      btn.className = `dim-tab ${i === 0 ? "active" : ""}`;
+      btn.textContent = dim.short;
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-selected", String(i === 0));
+      btn.addEventListener("click", () => switchDim(i));
+      dimTabs.appendChild(btn);
+    });
+  }
+
+  function switchDim(i) {
+    S.activeDim = i;
+    document.querySelectorAll(".dim-tab").forEach((t, ti) => {
+      t.classList.toggle("active", ti === i);
+      t.setAttribute("aria-selected", String(ti === i));
+    });
+    renderLevelCards(i);
+  }
+
+  /* ── LEVEL CARDS ─────────────────────────────────────────── */
+  function renderLevelCards(dimIdx, hlScore) {
+    const dim = DIMS[dimIdx];
+    levelCards.innerHTML = "";
+
+    const scoreColors = {};
+    PROFILES.forEach(p => {
+      if (S.profiles[p.id].visible) {
+        scoreColors[S.profiles[p.id].values[dimIdx]] = p.color;
+      }
+    });
+
+    dim.levels.forEach((desc, lvl) => {
+      const score = lvl + 1;
+      const card = document.createElement("div");
+      card.className = "level-card";
+
+      const isActive = scoreColors[score] !== undefined;
+      if (isActive) {
+        card.classList.add("active-score");
+        card.style.setProperty("--hl-color", scoreColors[score]);
+      }
+
+      const numEl = document.createElement("div");
+      numEl.className = "level-card-num";
+      numEl.textContent = score;
+
+      const labelEl = document.createElement("span");
+      labelEl.className = "level-card-label";
+      labelEl.textContent = LEVEL_LABELS[lvl];
+
+      const descEl = document.createElement("p");
+      descEl.className = "level-card-desc";
+      descEl.textContent = desc;
+
+      card.append(numEl, labelEl, descEl);
+      levelCards.appendChild(card);
+    });
+  }
+
+  /* ── ARCHETYPES ──────────────────────────────────────────── */
+  function buildArchetypes() {
+    const container = document.getElementById("archetypeRows");
+    PROFILES.filter(p => !p.editable).forEach(p => {
+      const row = document.createElement("div");
+      row.className = "archetype-row";
+      row.style.setProperty("--row-color", p.color);
+
+      const accent = document.createElement("div");
+      accent.className = "archetype-accent";
+
+      const body = document.createElement("div");
+      body.className = "archetype-body";
+
+      const name = document.createElement("div");
+      name.className = "archetype-name";
+      name.textContent = p.name;
+
+      const desc = document.createElement("div");
+      desc.className = "archetype-desc";
+      desc.textContent = p.hint;
+
+      body.append(name, desc);
+      row.append(accent, body);
+      container.appendChild(row);
+    });
+  }
+
+  /* ── DIM DEFS ────────────────────────────────────────────── */
+  function buildDimDefs() {
+    const container = document.getElementById("dimDefs");
+    DIMS.forEach(dim => {
+      const row = document.createElement("div");
+      row.className = "dim-def-row";
+      const lbl = document.createElement("span");
+      lbl.className = "dim-def-label";
+      lbl.textContent = dim.label;
+      const txt = document.createElement("span");
+      txt.className = "dim-def-text";
+      txt.textContent = dim.desc;
+      row.append(lbl, txt);
+      container.appendChild(row);
+    });
+  }
+
+  /* ── CANVAS ──────────────────────────────────────────────── */
+  function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    const frame = canvas.parentElement;
+    const w = frame.clientWidth, h = frame.clientHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    canvas.style.width = `${w}px`;
+    canvas.style.height = `${h}px`;
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.scale(dpr, dpr);
+    hideTooltip();
+    drawRadar();
+  }
+
+  /* ── GEOMETRY ────────────────────────────────────────────── */
+  function pt(cx, cy, r, i, v) {
+    const a = -Math.PI/2 + i * (2*Math.PI/DIMS.length);
+    const sr = (v/5) * r;
+    return { x: cx + Math.cos(a)*sr, y: cy + Math.sin(a)*sr };
+  }
+
+  /* ── DRAW ────────────────────────────────────────────────── */
+  function drawRadar() {
+    const W = canvas.clientWidth, H = canvas.clientHeight;
+    ctx.clearRect(0, 0, W, H);
+    S.points = [];
+
+    const sidePad = Math.min(136, W * 0.17);
+    const r = Math.min(W - sidePad*2, H - 64 - 72) / 2;
+    const cx = W/2, cy = H/2 + 6;
+    radarGeo = { cx, cy, r };
+
+    drawRings(cx, cy, r);
+    drawAxes(cx, cy, r);
+    drawLabels(cx, cy, r);
+    PROFILES.forEach(p => {
+      if (S.profiles[p.id].visible) drawProfile(p, cx, cy, r);
+    });
+    drawLegend(W);
+  }
+
+  function drawRings(cx, cy, r) {
+    for (let lv = 5; lv >= 1; lv--) {
+      ctx.beginPath();
+      DIMS.forEach((_, i) => {
+        const p = pt(cx, cy, r, i, lv);
+        i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+      });
+      ctx.closePath();
+      ctx.fillStyle = lv % 2 === 0 ? "rgba(99,102,241,0.04)" : "rgba(255,255,255,0.90)";
+      ctx.strokeStyle = "rgba(99,102,241,0.10)";
+      ctx.lineWidth = 1;
+      ctx.fill(); ctx.stroke();
+    }
+    // Level numbers
+    ctx.fillStyle = "#94A3B8";
+    ctx.font = "500 11px 'Inter', system-ui, sans-serif";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    for (let lv = 1; lv <= 5; lv++) {
+      ctx.fillText(String(lv), cx, cy - (r*lv/5) - 9);
+    }
+    ctx.beginPath(); ctx.arc(cx, cy, 2.5, 0, Math.PI*2);
+    ctx.fillStyle = "#CBD5E1"; ctx.fill();
+  }
+
+  function drawAxes(cx, cy, r) {
+    DIMS.forEach((_, i) => {
+      const p = pt(cx, cy, r, i, 5);
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.x, p.y);
+      ctx.strokeStyle = "rgba(99,102,241,0.12)"; ctx.lineWidth = 1; ctx.stroke();
+    });
+  }
+
+  function wrap(text, max) {
+    const words = text.split(" "); const lines = []; let cur = "";
+    words.forEach(w => {
+      const next = cur ? `${cur} ${w}` : w;
+      if (next.length > max && cur) { lines.push(cur); cur = w; } else cur = next;
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+
+  function drawLabels(cx, cy, r) {
+    ctx.fillStyle = "#0F172A";
+    ctx.font = "600 11px 'Inter', system-ui, sans-serif";
+    ctx.textBaseline = "middle";
+    DIMS.forEach((dim, i) => {
+      const op = pt(cx, cy, r + 24, i, 5);
+      const lines = wrap(dim.label, 16);
+      ctx.textAlign = Math.abs(op.x - cx) < 8 ? "center" : op.x < cx ? "right" : "left";
+      lines.forEach((line, li) => {
+        ctx.fillText(line, op.x, op.y + (li - (lines.length-1)/2) * 14);
+      });
+    });
+  }
+
+  function drawProfile(p, cx, cy, r) {
+    const vals = S.profiles[p.id].values;
+    ctx.beginPath();
+    vals.forEach((v, i) => {
+      const pp = pt(cx, cy, r, i, v);
+      i === 0 ? ctx.moveTo(pp.x, pp.y) : ctx.lineTo(pp.x, pp.y);
+    });
+    ctx.closePath();
+    ctx.fillStyle = hexA(p.color, 0.10);
+    ctx.strokeStyle = p.color;
+    ctx.lineWidth = p.editable ? 2.5 : 1.5;
+    ctx.setLineDash(p.editable ? [] : [4, 3]);
+    ctx.fill(); ctx.stroke();
+    ctx.setLineDash([]);
+
+    vals.forEach((v, i) => {
+      const pp = pt(cx, cy, r, i, v);
+      const dotR = p.editable ? 5 : 4;
+
+      // Outer drag-hint ring for editable points
+      if (p.editable) {
+        ctx.beginPath(); ctx.arc(pp.x, pp.y, dotR + 5, 0, Math.PI*2);
+        ctx.strokeStyle = hexA(p.color, 0.22); ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      ctx.beginPath(); ctx.arc(pp.x, pp.y, dotR, 0, Math.PI*2);
+      ctx.fillStyle = p.color;
+      ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 2;
+      ctx.fill(); ctx.stroke();
+
+      S.points.push({
+        id: p.id, name: p.name, color: p.color,
+        dimIdx: i, dimLabel: DIMS[i].label,
+        score: v, x: pp.x, y: pp.y, hit: 14
+      });
+    });
+  }
+
+  function drawLegend(W) {
+    const active = PROFILES.filter(p => S.profiles[p.id].visible);
+    if (!active.length) {
+      ctx.fillStyle = "#94A3B8";
+      ctx.font = "400 12px 'Inter', system-ui, sans-serif";
+      ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      ctx.fillText("Select a profile to display.", 20, 22);
+      return;
+    }
+    ctx.font = "500 11px 'Inter', system-ui, sans-serif";
+    ctx.textBaseline = "middle";
+    let x = 20, y = 22;
+    active.forEach(p => {
+      const tw = ctx.measureText(p.name).width;
+      const bw = tw + 28;
+      if (x + bw > W - 20) { x = 20; y += 20; }
+      ctx.beginPath(); ctx.arc(x+5, y, 4, 0, Math.PI*2);
+      ctx.fillStyle = p.color; ctx.fill();
+      ctx.fillStyle = "#334155"; ctx.textAlign = "left";
+      ctx.fillText(p.name, x+14, y);
+      x += bw + 12;
+    });
+  }
+
+  /* ── DRAG ────────────────────────────────────────────────── */
+  function onMouseDown(e) {
+    if (e.button !== 0) return;
+    const rect = canvas.getBoundingClientRect();
+    const px = e.clientX - rect.left, py = e.clientY - rect.top;
+
+    const editableIds = new Set(PROFILES.filter(p => p.editable).map(p => p.id));
+    const hit = S.points.reduce((best, p) => {
+      if (!editableIds.has(p.id)) return best;
+      const d = Math.hypot(p.x - px, p.y - py);
+      return d <= p.hit && d < (best?.dist ?? Infinity) ? { ...p, dist: d } : best;
+    }, null);
+
+    if (!hit) return;
+    e.preventDefault();
+    S.drag = { profileId: hit.id, dimIdx: hit.dimIdx };
+    canvas.style.cursor = "grabbing";
+    hideTooltip();
+  }
+
+  function onMouseUp() {
+    if (!S.drag) return;
+    S.drag = null;
+    canvas.style.cursor = "default";
+  }
+
+  function applyDrag(clientX, clientY) {
+    if (!S.drag) return;
+    const { profileId, dimIdx } = S.drag;
+    const rect = canvas.getBoundingClientRect();
+    const px = clientX - rect.left, py = clientY - rect.top;
+    const { cx, cy, r } = radarGeo;
+    const angle = -Math.PI/2 + dimIdx * (2 * Math.PI / DIMS.length);
+    const dx = px - cx, dy = py - cy;
+    const dot = dx * Math.cos(angle) + dy * Math.sin(angle);
+    const score = Math.max(1, Math.min(5, Math.round(dot / r * 5)));
+
+    S.profiles[profileId].values[dimIdx] = score;
+
+    const sliderEl = document.getElementById(`${profileId}-s${dimIdx}`);
+    const outputEl = document.getElementById(`${profileId}-s${dimIdx}-out`);
+    if (sliderEl) sliderEl.value = score;
+    if (outputEl) outputEl.textContent = score;
+
+    drawRadar();
+  }
+
+  /* ── TOOLTIP ─────────────────────────────────────────────── */
+  function onMouseMove(e) {
+    if (S.drag) {
+      applyDrag(e.clientX, e.clientY);
+      return;
+    }
+
+    const rect = canvas.getBoundingClientRect();
+    const px = e.clientX - rect.left, py = e.clientY - rect.top;
+    const editableIds = new Set(PROFILES.filter(p => p.editable).map(p => p.id));
+    const hit = S.points.reduce((best, p) => {
+      const d = Math.hypot(p.x - px, p.y - py);
+      return d <= p.hit && d < (best?.dist ?? Infinity) ? { ...p, dist: d } : best;
+    }, null);
+
+    if (!hit) { canvas.style.cursor = "default"; hideTooltip(); return; }
+
+    canvas.style.cursor = editableIds.has(hit.id) ? "grab" : "pointer";
+    S.hovered = hit;
+
+    const dim = DIMS[hit.dimIdx];
+    tooltip.innerHTML = `
+      <div class="tt-eyebrow">${dim.label}</div>
+      <div class="tt-profile" style="color:${hit.color}">${hit.name}</div>
+      <div class="tt-score-row">
+        <span class="tt-score-big" style="color:${hit.color}">${hit.score}</span>
+        <span class="tt-score-denom">/ 5</span>
+      </div>
+      <div class="tt-badge">${LEVEL_LABELS[hit.score - 1]}</div>
+      <p class="tt-desc">${dim.levels[hit.score - 1]}</p>
+    `;
+
+    const fr = canvas.parentElement.getBoundingClientRect();
+    const ttW = tooltip.offsetWidth || 280, ttH = tooltip.offsetHeight || 160;
+    let l = px + 18, t = py - ttH - 12;
+    if (l + ttW > fr.width - 8) l = px - ttW - 18;
+    if (t < 8) t = py + 18;
+    l = Math.max(8, l); t = Math.max(8, Math.min(t, fr.height - ttH - 8));
+    tooltip.style.left = `${l}px`; tooltip.style.top = `${t}px`;
+    tooltip.classList.add("visible");
+    tooltip.setAttribute("aria-hidden", "false");
+
+    if (hit.dimIdx !== S.activeDim) {
+      S.activeDim = hit.dimIdx;
+      document.querySelectorAll(".dim-tab").forEach((tab, ti) => {
+        tab.classList.toggle("active", ti === hit.dimIdx);
+        tab.setAttribute("aria-selected", String(ti === hit.dimIdx));
+      });
+    }
+    renderLevelCards(hit.dimIdx, hit.score);
+  }
+
+  function hideTooltip() {
+    S.hovered = null;
+    tooltip.classList.remove("visible");
+    tooltip.setAttribute("aria-hidden", "true");
+    renderLevelCards(S.activeDim);
+  }
+
+  /* ── EXPORT ──────────────────────────────────────────────── */
+  function exportPNG() {
+    const dpr = window.devicePixelRatio || 1;
+    const rW = canvas.clientWidth, rH = canvas.clientHeight;
+    const vis = PROFILES.filter(p => S.profiles[p.id].visible);
+    const summH = vis.length ? 56 + DIMS.length * 22 + 16 : 0;
+    const totalH = 56 + rH + summH;
+
+    const ec = document.createElement("canvas");
+    ec.width = Math.round(rW * dpr); ec.height = Math.round(totalH * dpr);
+    const ectx = ec.getContext("2d");
+    ectx.scale(dpr, dpr);
+
+    // Header — indigo gradient
+    const grad = ectx.createLinearGradient(0, 0, rW, 0);
+    grad.addColorStop(0, "#3730A3");
+    grad.addColorStop(1, "#1E1B4B");
+    ectx.fillStyle = grad;
+    ectx.fillRect(0, 0, rW, 56);
+    ectx.fillStyle = "#ffffff";
+    ectx.font = "600 13px 'Inter', system-ui, sans-serif";
+    ectx.textAlign = "left"; ectx.textBaseline = "middle";
+    ectx.fillText("Engineering Growth Radar", 20, 28);
+
+    // White body
+    ectx.fillStyle = "#ffffff";
+    ectx.fillRect(0, 56, rW, totalH - 56);
+
+    // Radar
+    ectx.drawImage(canvas, 0, 56, rW, rH);
+
+    // Score summary
+    if (vis.length) {
+      let sy = 56 + rH + 24;
+      const colW = rW / Math.max(vis.length, 1);
+      vis.forEach((p, pi) => {
+        const cx2 = pi * colW + 20;
+        ectx.fillStyle = p.color;
+        ectx.font = "700 10px 'Inter', system-ui, sans-serif";
+        ectx.textAlign = "left";
+        ectx.fillText(p.name.toUpperCase(), cx2, sy);
+        S.profiles[p.id].values.forEach((v, di) => {
+          const ry = sy + 18 + di * 20;
+          ectx.fillStyle = "#64748B";
+          ectx.font = "400 10px 'Inter', system-ui, sans-serif";
+          ectx.fillText(`${DIMS[di].short}: `, cx2, ry);
+          const tw = ectx.measureText(`${DIMS[di].short}: `).width;
+          ectx.fillStyle = p.color;
+          ectx.font = "600 10px 'Inter', system-ui, sans-serif";
+          ectx.fillText(`${v}/5 — ${LEVEL_LABELS[v-1]}`, cx2 + tw, ry);
+        });
+      });
+    }
+
+    const a = document.createElement("a");
+    a.href = ec.toDataURL("image/png");
+    a.download = "engineering-growth-radar.png";
+    a.click();
+    announce("Radar exported as PNG.");
+  }
+
+  /* ── COPY ────────────────────────────────────────────────── */
+  async function copySummary() {
+    const cur = S.profiles.current.values;
+    const fut = S.profiles.future.values;
+    const lines = [
+      "Engineering Growth Radar", "",
+      "CURRENT SELF-ASSESSMENT",
+      ...DIMS.map((d,i) => `  ${d.label}: ${cur[i]}/5 — ${LEVEL_LABELS[cur[i]-1]}`),
+      "", "DESIRED FUTURE SHAPE",
+      ...DIMS.map((d,i) => `  ${d.label}: ${fut[i]}/5 — ${LEVEL_LABELS[fut[i]-1]}`),
+      "", "GROWTH GAPS",
+      ...DIMS.map((d,i) => ({ dim: d.label, gap: fut[i]-cur[i], c: cur[i], f: fut[i] }))
+        .filter(x => x.gap > 0).sort((a,b) => b.gap-a.gap)
+        .map(x => `  ${x.dim}: ${x.c} → ${x.f} (+${x.gap})`)
+    ];
+    try {
+      await navigator.clipboard.writeText(lines.join("\n"));
+      announce("Summary copied to clipboard.");
+    } catch { announce("Clipboard blocked — use Export PNG instead."); }
+  }
+
+  /* ── RESET ───────────────────────────────────────────────── */
+  function reset() {
+    PROFILES.forEach(p => {
+      S.profiles[p.id].visible = p.on;
+      S.profiles[p.id].values = [...p.defaults];
+    });
+    buildControls();
+    renderLevelCards(S.activeDim);
+    drawRadar();
+    announce("Defaults restored.");
+  }
+
+  /* ── UTILS ───────────────────────────────────────────────── */
+  function hexA(hex, a) {
+    const n = parseInt(hex.replace("#",""),16);
+    return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`;
+  }
+
+  function announce(msg) {
+    statusMsg.textContent = msg;
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(() => statusMsg.textContent = "", 3000);
+  }
+
+  init();
+})();
+</script>
+</body>
+</html>

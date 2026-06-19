@@ -713,6 +713,728 @@
       padding: 0; margin: -1px; overflow: hidden;
       clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
+
+    /* ─── EXERCISE SECTION ───────────────────────────────────── */
+    .exercise-section {
+      margin-top: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .exercise-header {
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--accent-light) 0%, var(--bg-card) 60%);
+    }
+
+    .exercise-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--accent-light);
+      border: 1px solid rgba(99,102,241,0.2);
+      color: var(--accent-dark);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .exercise-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .exercise-intro {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 680px;
+      margin: 0;
+    }
+
+    .exercise-meta {
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      background: var(--bg);
+    }
+
+    .meta-field { display: flex; flex-direction: column; gap: 5px; }
+
+    .meta-field label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-field input {
+      font: inherit;
+      font-size: 0.88rem;
+      padding: 8px 12px;
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      color: var(--text);
+      width: 210px;
+      transition: border-color 0.12s, box-shadow 0.12s;
+    }
+
+    .meta-field input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+    }
+
+    /* ─── ACCORDION ──────────────────────────────────────────── */
+    .ex-accordion { border-bottom: 1px solid var(--border); }
+    .ex-accordion:last-of-type { border-bottom: none; }
+
+    .ex-accordion > summary {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 32px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      background: var(--bg-card);
+      transition: background 0.1s;
+    }
+
+    .ex-accordion > summary::-webkit-details-marker { display: none; }
+    .ex-accordion > summary::marker { display: none; }
+    .ex-accordion > summary:hover { background: var(--bg); }
+
+    .ex-chevron {
+      width: 16px; height: 16px;
+      flex-shrink: 0;
+      color: var(--muted-light);
+      transition: transform 0.18s;
+    }
+
+    .ex-accordion[open] > summary .ex-chevron { transform: rotate(90deg); }
+
+    .ex-part-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      border-radius: 999px;
+      padding: 3px 10px;
+      flex-shrink: 0;
+    }
+
+    .ex-acc-title { font-size: 0.94rem; font-weight: 600; color: var(--text); flex: 1; }
+    .ex-acc-sub { font-size: 0.8rem; color: var(--muted-light); }
+
+    .ex-accordion-body {
+      padding: 4px 32px 28px;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .ex-part-intro {
+      padding: 16px 0 6px;
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 680px;
+    }
+
+    /* ─── DIM ACCORDION ──────────────────────────────────────── */
+    .dim-accordion {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-top: 10px;
+      background: var(--bg-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dim-accordion > summary {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      transition: background 0.1s;
+    }
+
+    .dim-accordion > summary::-webkit-details-marker { display: none; }
+    .dim-accordion > summary::marker { display: none; }
+    .dim-accordion > summary:hover { background: var(--bg); }
+    .dim-accordion[open] > summary { border-bottom: 1px solid var(--border); }
+    .dim-accordion[open] > summary .ex-chevron { transform: rotate(90deg); }
+
+    .dim-idx {
+      width: 24px; height: 24px;
+      border-radius: 999px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--border);
+      font-size: 0.73rem;
+      font-weight: 700;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .dim-accordion[open] .dim-idx { background: var(--accent); color: #fff; }
+
+    .dim-acc-title { font-size: 0.9rem; font-weight: 600; color: var(--text); flex: 1; }
+
+    .dim-score-tag {
+      font-size: 0.73rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--border-mid);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .dim-score-tag.scored {
+      background: rgba(99,102,241,0.08);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .dim-accordion-body { padding: 16px 18px 18px; }
+
+    /* ─── SCORE PILLS ────────────────────────────────────────── */
+    .score-pills-wrap { margin-bottom: 18px; }
+
+    .score-pills-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 9px;
+    }
+
+    .score-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+
+    .ex-score-pill {
+      appearance: none;
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-mid);
+      background: var(--bg-card);
+      color: var(--muted);
+      transition: all 0.12s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      min-width: 80px;
+    }
+
+    .ex-score-pill .pill-n { font-size: 1.05rem; line-height: 1; font-weight: 700; }
+    .ex-score-pill .pill-l { font-size: 0.58rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted-light); }
+
+    .ex-score-pill:hover { border-color: var(--accent); background: var(--accent-light); color: var(--accent); }
+    .ex-score-pill:hover .pill-l { color: var(--accent); }
+
+    .ex-score-pill.selected {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+    }
+
+    .ex-score-pill.selected .pill-l { color: rgba(255,255,255,0.7); }
+
+    .score-desc-box {
+      margin-top: 10px;
+      padding: 12px 14px;
+      background: rgba(99,102,241,0.04);
+      border-left: 3px solid var(--border-mid);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: var(--text-2);
+      display: none;
+    }
+
+    .score-desc-box.visible { display: block; }
+    .score-desc-box.scored { border-left-color: var(--accent); }
+
+    /* ─── REFLECTION FIELDS ──────────────────────────────────── */
+    .reflection-prompts { display: flex; flex-direction: column; gap: 14px; }
+
+    .refl-field { display: flex; flex-direction: column; gap: 6px; }
+
+    .refl-field label {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--text-2);
+      line-height: 1.5;
+    }
+
+    .refl-field textarea {
+      font: inherit;
+      font-size: 0.87rem;
+      line-height: 1.6;
+      padding: 10px 12px;
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      color: var(--text);
+      resize: vertical;
+      min-height: 78px;
+      width: 100%;
+      transition: border-color 0.12s, box-shadow 0.12s;
+    }
+
+    .refl-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+    }
+
+    .refl-field textarea::placeholder { color: var(--muted-light); }
+
+    /* ─── ARCHETYPE CARDS ────────────────────────────────────── */
+    .arch-select-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 18px 0 10px;
+    }
+
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .arch-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      cursor: pointer;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.14s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .arch-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--arch-color, var(--border-mid));
+    }
+
+    .arch-card:hover { border-color: var(--arch-color, var(--accent)); transform: translateY(-1px); box-shadow: var(--shadow); }
+
+    .arch-card.selected {
+      border-color: var(--arch-color, var(--accent));
+      background: color-mix(in srgb, var(--arch-color, var(--accent)) 6%, var(--bg-card));
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--arch-color, var(--accent)) 20%, transparent);
+    }
+
+    .arch-card input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+
+    .arch-card-name { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+    .arch-card-desc { font-size: 0.79rem; color: var(--muted); line-height: 1.5; }
+
+    /* ─── FOCUS AREAS ────────────────────────────────────────── */
+    .focus-block {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      margin-top: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .focus-block-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .focus-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 3px 10px;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+    }
+
+    .focus-block-title { font-size: 0.9rem; font-weight: 600; color: var(--text); flex: 1; }
+    .focus-optional { font-size: 0.75rem; color: var(--muted-light); }
+
+    .focus-block-body { padding: 16px; display: flex; flex-direction: column; gap: 13px; }
+
+    .dim-select-field { display: flex; flex-direction: column; gap: 6px; }
+
+    .dim-select-field label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dim-select-field select {
+      font: inherit;
+      font-size: 0.87rem;
+      padding: 8px 12px;
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      color: var(--text);
+      max-width: 310px;
+      cursor: pointer;
+    }
+
+    .dim-select-field select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+    }
+
+    /* ─── OKR BLOCKS ─────────────────────────────────────────── */
+    .okr-block {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      margin-top: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .okr-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .okr-num-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 3px 10px;
+      background: rgba(6,182,212,0.1);
+      color: #0891b2;
+    }
+
+    .okr-title { font-size: 0.9rem; font-weight: 600; color: var(--text); flex: 1; }
+    .okr-optional { font-size: 0.75rem; color: var(--muted-light); }
+
+    .okr-body { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+
+    .okr-field { display: flex; flex-direction: column; gap: 6px; }
+
+    .okr-field label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .okr-field input[type="text"],
+    .okr-field textarea {
+      font: inherit;
+      font-size: 0.87rem;
+      padding: 9px 12px;
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      color: var(--text);
+      width: 100%;
+      line-height: 1.5;
+      transition: border-color 0.12s, box-shadow 0.12s;
+    }
+
+    .okr-field textarea { resize: vertical; min-height: 70px; }
+
+    .okr-field input:focus,
+    .okr-field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+    }
+
+    .okr-field input::placeholder,
+    .okr-field textarea::placeholder { color: var(--muted-light); }
+
+    .okr-kr-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .okr-kr-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .okr-kr-row { display: flex; gap: 8px; align-items: center; }
+
+    .kr-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 8px 10px;
+      background: rgba(6,182,212,0.08);
+      border: 1px solid rgba(6,182,212,0.25);
+      border-radius: var(--radius-sm);
+      color: #0891b2;
+      white-space: nowrap;
+    }
+
+    .okr-kr-row input {
+      font: inherit;
+      font-size: 0.87rem;
+      padding: 8px 12px;
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      color: var(--text);
+      flex: 1;
+      transition: border-color 0.12s, box-shadow 0.12s;
+    }
+
+    .okr-kr-row input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+    }
+
+    .okr-kr-row input::placeholder { color: var(--muted-light); }
+
+    .okr-row-2 { display: flex; gap: 14px; flex-wrap: wrap; }
+    .okr-row-2 .okr-field { flex: 1; min-width: 120px; }
+
+    /* ─── GENERATE BAR ───────────────────────────────────────── */
+    .generate-bar {
+      padding: 20px 32px;
+      border-top: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(99,102,241,0.04), rgba(6,182,212,0.04));
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .generate-bar p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .btn-generate {
+      appearance: none;
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 11px 24px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(99,102,241,0.35);
+      transition: transform 0.15s, box-shadow 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-generate:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(99,102,241,0.4); }
+    .btn-generate:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(99,102,241,0.35); }
+
+    @media (max-width: 640px) {
+      .exercise-header,
+      .exercise-meta,
+      .ex-accordion > summary,
+      .ex-accordion-body { padding-left: 16px; padding-right: 16px; }
+      .arch-grid { grid-template-columns: 1fr; }
+      .okr-row-2 { flex-direction: column; }
+    }
+
+    /* ─── STICKY RADAR BAR (desktop ≥ 900px) ────────────────── */
+    .sticky-radar-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 300;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+      transform: translateY(-110%);
+      transition: transform 0.26s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(8px);
+    }
+
+    .sticky-radar-bar.visible { transform: translateY(0); }
+
+    .sticky-bar-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 10px 20px;
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .sticky-bar-label {
+      display: none; /* reserved for future use */
+    }
+
+    .sticky-canvas-wrap {
+      width: 170px;
+      height: 152px;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    #stickyCanvas { display: block; width: 100%; height: 100%; }
+
+    .sticky-scores-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px 12px;
+      align-content: center;
+    }
+
+    .sticky-score-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.76rem;
+      line-height: 1;
+    }
+
+    .sticky-dim-name {
+      color: var(--muted);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sticky-dim-val {
+      font-weight: 700;
+      color: var(--muted-light);
+      min-width: 18px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .sticky-dim-val.scored { color: var(--accent); }
+
+    @media (max-width: 899px) {
+      .sticky-radar-bar { display: none; }
+    }
+
+    /* ─── SCORE STRIP (mobile < 900px) ──────────────────────── */
+    .score-strip {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 16px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      backdrop-filter: blur(6px);
+    }
+
+    .score-strip::-webkit-scrollbar { display: none; }
+
+    .strip-pills {
+      display: flex;
+      gap: 6px;
+      min-width: max-content;
+    }
+
+    .strip-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 6px 10px;
+      border: 1px solid var(--border-mid);
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      min-width: 62px;
+      transition: all 0.12s;
+    }
+
+    .strip-pill.scored {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .strip-dim {
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .strip-score {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--muted-light);
+      line-height: 1;
+    }
+
+    .strip-pill.scored .strip-dim  { color: var(--accent-dark); }
+    .strip-pill.scored .strip-score { color: var(--accent); }
+
+    @media (max-width: 899px) {
+      .score-strip { display: flex; }
+    }
   </style>
 </head>
 <body>
@@ -777,7 +1499,7 @@
     <section class="level-explorer" aria-labelledby="explorer-lbl">
       <nav class="explorer-nav" aria-label="Select dimension">
         <span class="explorer-nav-label" id="explorer-lbl">Level Reference</span>
-        <div id="dimTabs" role="tablist" style="display:flex; overflow-x:auto;"></div>
+        <div id="dimTabs" role="tablist" style="display:flex; overflow-x:auto; overflow-y:hidden;"></div>
       </nav>
       <div id="levelCards" class="level-cards" role="tabpanel"></div>
     </section>
@@ -793,6 +1515,108 @@
         <div class="dim-defs" id="dimDefs"></div>
       </section>
     </div>
+
+    <!-- ─── EXERCISE SECTION ─────────────────────────────────── -->
+    <section class="exercise-section" id="exerciseSection">
+
+      <div class="exercise-header">
+        <div class="exercise-eyebrow">Growth Reflection Exercise</div>
+        <h2 class="exercise-title">Senior Engineer Growth Reflection</h2>
+        <p class="exercise-intro">Complete all four parts below. Your scores update the radar automatically. When you're done, generate a markdown summary to bring to your manager 1:1.</p>
+      </div>
+
+      <div class="exercise-meta">
+        <div class="meta-field">
+          <label for="meta-name">Your name</label>
+          <input type="text" id="meta-name" placeholder="e.g. Alex Smith" />
+        </div>
+        <div class="meta-field">
+          <label for="meta-manager">Engineering manager</label>
+          <input type="text" id="meta-manager" placeholder="e.g. Your manager" />
+        </div>
+        <div class="meta-field">
+          <label for="meta-date">Date</label>
+          <input type="text" id="meta-date" placeholder="e.g. June 2026" />
+        </div>
+      </div>
+
+      <details class="ex-accordion" id="part1" open>
+        <summary>
+          <svg class="ex-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="ex-part-tag">Part 1</span>
+          <span class="ex-acc-title">Your Growth Radar Baseline</span>
+          <span class="ex-acc-sub">Rate yourself on all 8 dimensions</span>
+        </summary>
+        <div class="ex-accordion-body">
+          <p class="ex-part-intro">Use the 1–5 scale. Expand each dimension, pick your score — it updates the radar — then answer the two reflection prompts. Concrete examples beat long paragraphs.</p>
+          <div id="part1Dims"></div>
+        </div>
+      </details>
+
+      <details class="ex-accordion" id="part2">
+        <summary>
+          <svg class="ex-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="ex-part-tag">Part 2</span>
+          <span class="ex-acc-title">Archetype Exploration</span>
+          <span class="ex-acc-sub">Identify the shape that interests you most</span>
+        </summary>
+        <div class="ex-accordion-body">
+          <p class="ex-part-intro">These archetypes aren't job titles or paths you must choose between — they're prompts to help you think about the kind of growth that interests you.</p>
+          <div class="arch-select-label">Select the archetype that resonates most</div>
+          <div class="arch-grid" id="archetypeGrid"></div>
+          <div class="reflection-prompts">
+            <div class="refl-field">
+              <label>1. Which archetype resonated most with you when you read it, and what specifically stood out?</label>
+              <textarea id="arch-q1" placeholder="Your notes…" rows="3"></textarea>
+            </div>
+            <div class="refl-field">
+              <label>2. Which archetype feels furthest from how you currently work or think? What does that tell you?</label>
+              <textarea id="arch-q2" placeholder="Your notes…" rows="3"></textarea>
+            </div>
+            <div class="refl-field">
+              <label>3. Is there an archetype you're drawn to but feel uncertain about — whether it suits you, or whether it's the right direction right now?</label>
+              <textarea id="arch-q3" placeholder="Your notes…" rows="3"></textarea>
+            </div>
+            <div class="refl-field">
+              <label>4. Your archetype interest doesn't have to match your current radar shape. If there's a shape you'd like to grow toward, which one and why?</label>
+              <textarea id="arch-q4" placeholder="Your notes…" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="ex-accordion" id="part3">
+        <summary>
+          <svg class="ex-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="ex-part-tag">Part 3</span>
+          <span class="ex-acc-title">Growth Focus Areas</span>
+          <span class="ex-acc-sub">Pick 2–3 dimensions to focus on over the next 6–12 months</span>
+        </summary>
+        <div class="ex-accordion-body">
+          <p class="ex-part-intro">These don't have to be your lowest scores. Choose areas that are most energising, most aligned to where you want to go, or most relevant to the work ahead.</p>
+          <div id="part3Areas"></div>
+        </div>
+      </details>
+
+      <details class="ex-accordion" id="part4">
+        <summary>
+          <svg class="ex-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="ex-part-tag">Part 4</span>
+          <span class="ex-acc-title">OKRs</span>
+          <span class="ex-acc-sub">Turn your focus areas into measurable objectives</span>
+        </summary>
+        <div class="ex-accordion-body">
+          <p class="ex-part-intro">One or two well-crafted OKRs are more useful than three vague ones. Key Results should describe <em>outcomes</em>, not tasks.</p>
+          <div id="part4OKRs"></div>
+        </div>
+      </details>
+
+      <div class="generate-bar">
+        <p>Ready to discuss? Generate a markdown summary to share with your manager or save alongside your notes.</p>
+        <button type="button" class="btn-generate" id="generateMdBtn">Generate Markdown</button>
+      </div>
+
+    </section>
 
   </div><!-- /content -->
 </div><!-- /page -->
@@ -1535,6 +2359,498 @@
   }
 
   init();
+
+  /* ════════════════════════════════════════════════════════════
+     GROWTH REFLECTION EXERCISE — Parts 1–4
+  ════════════════════════════════════════════════════════════ */
+
+  const LEVEL_LABELS_EX = ["Solid baseline","Developing","Consistent strength","Elevated impact","Staff+ impact"];
+
+  const DIM_PROMPTS = [
+    ["What's a recent example where your technical depth made a meaningful difference to an outcome?","Where in your technical knowledge are you most confident, and what sits at the edge of that confidence?"],
+    ["What's an example where you helped a complex piece of work get across the line — what made the difference?","Where do you find delivery hardest — ambiguity, dependencies, scope, something else?"],
+    ["Where have you stepped up to own something that wasn't strictly your responsibility? What happened?","Are there areas where you'd like to take on more ownership but feel uncertain how to start?"],
+    ["Describe a time you identified a problem or risk that wasn't visible at the task level — how did you see it?","What system interactions in your current work do you feel you understand least well?"],
+    ["Who on your team has grown noticeably in the past year, and what role did you play in that?","How do you currently create leverage for others — and where might there be more opportunity?"],
+    ["Where have you changed the direction of a decision, design, or plan through how you communicated your perspective?","Which relationships — inside or outside engineering — would you most like to develop?"],
+    ["Describe a decision you made differently because of something you understood about the customer or business.","What would you most like to understand better about how the business operates, its customers, or its market?"],
+    ["When did you last contribute to a direction or priority decision rather than just executing one?","Where do you want more visibility into how product and engineering strategy gets made?"]
+  ];
+
+  const ARCHETYPES_EX = [
+    { id: "tech",       name: "Technical Specialist",  color: "#7C3AED", hint: "High on Technical Depth and Systems Thinking. Deep expertise; solves the hardest technical problems with authority." },
+    { id: "multiplier", name: "Team Multiplier",        color: "#DB2777", hint: "High on Mentoring & Multiplication and Influence. Focused on raising the effectiveness of the people and delivery around them." },
+    { id: "product",    name: "Product Engineer",       color: "#D97706", hint: "High on Business Context, Strategy & Product Thinking, and Delivery. Combines delivery with deep product and commercial insight." },
+    { id: "platform",   name: "Platform Architect",     color: "#DC2626", hint: "High on Technical Depth, Systems Thinking, and Strategy. Architecture, leverage, and platform-level thinking." },
+    { id: "staff",      name: "Emerging Staff Shape",   color: "#059669", hint: "Broadly strong across Ownership, Systems Thinking, and Influence. A well-rounded profile associated with Staff+ growth." }
+  ];
+
+  const FOCUS_PROMPTS_EX = [
+    { id: "why",   label: "Why this area matters to me right now",                ph: "e.g. I'm hitting the edges of what I can solve alone and want to develop cross-team influence…" },
+    { id: "looks", label: "What growth in this area would look like in practice",  ph: "e.g. Leading a cross-team design review, owning a production incident end-to-end…" },
+    { id: "build", label: "What I already know or do well here that I can build on", ph: "e.g. I'm confident writing RFCs; I need to get better at driving alignment on them…" }
+  ];
+
+  const EX = {
+    dimScores:       Array(8).fill(null),
+    dimNotes:        Array(8).fill(null).map(() => ["",""]),
+    archetypeChoice: null,
+    archQ:           ["","","",""],
+    focusAreas:      [0,1,2].map(() => ({ dim:"", why:"", looks:"", build:"" })),
+    okrs:            [0,1].map(() => ({ objective:"", krs:["","",""], quarter:"", year:"", tracking:"", support:"" }))
+  };
+
+  /* ── PART 1 ──────────────────────────────────────────────── */
+  function buildPart1() {
+    const container = document.getElementById("part1Dims");
+    if (!container) return;
+    container.innerHTML = "";
+    DIMS.forEach((dim, di) => {
+      const det = document.createElement("details");
+      det.className = "dim-accordion";
+
+      const sum = document.createElement("summary");
+      sum.innerHTML = `<svg class="ex-chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      const idx = document.createElement("span"); idx.className = "dim-idx"; idx.textContent = di + 1;
+      const title = document.createElement("span"); title.className = "dim-acc-title"; title.textContent = dim.label;
+      const badge = document.createElement("span");
+      badge.className = "dim-score-tag"; badge.id = `ex-badge-${di}`; badge.textContent = "Not scored";
+      sum.append(idx, title, badge);
+      det.appendChild(sum);
+
+      const body = document.createElement("div");
+      body.className = "dim-accordion-body";
+
+      // Score pills
+      const pillWrap = document.createElement("div"); pillWrap.className = "score-pills-wrap";
+      const pillLabel = document.createElement("div"); pillLabel.className = "score-pills-label"; pillLabel.textContent = "Your score";
+      const pills = document.createElement("div"); pills.className = "score-pills";
+      for (let sc = 1; sc <= 5; sc++) {
+        const pill = document.createElement("button");
+        pill.type = "button"; pill.className = "ex-score-pill";
+        pill.dataset.di = di; pill.dataset.sc = sc;
+        pill.innerHTML = `<span class="pill-n">${sc}</span><span class="pill-l">${LEVEL_LABELS_EX[sc-1]}</span>`;
+        pill.addEventListener("click", () => selectDimScore(di, sc));
+        pills.appendChild(pill);
+      }
+      const descBox = document.createElement("div");
+      descBox.className = "score-desc-box"; descBox.id = `ex-desc-${di}`;
+      pillWrap.append(pillLabel, pills, descBox);
+      body.appendChild(pillWrap);
+
+      // Reflection prompts
+      const reflWrap = document.createElement("div"); reflWrap.className = "reflection-prompts";
+      DIM_PROMPTS[di].forEach((prompt, qi) => {
+        const field = document.createElement("div"); field.className = "refl-field";
+        const lbl = document.createElement("label"); lbl.textContent = prompt;
+        const ta = document.createElement("textarea");
+        ta.placeholder = "Your notes…"; ta.rows = 3;
+        ta.addEventListener("input", () => { EX.dimNotes[di][qi] = ta.value; });
+        field.append(lbl, ta); reflWrap.appendChild(field);
+      });
+      body.appendChild(reflWrap);
+      det.appendChild(body);
+      container.appendChild(det);
+    });
+  }
+
+  function selectDimScore(di, sc) {
+    EX.dimScores[di] = sc;
+    document.querySelectorAll(`.ex-score-pill[data-di="${di}"]`).forEach(p => {
+      p.classList.toggle("selected", Number(p.dataset.sc) === sc);
+    });
+    const badge = document.getElementById(`ex-badge-${di}`);
+    if (badge) { badge.textContent = `${sc}/5 — ${LEVEL_LABELS_EX[sc-1]}`; badge.classList.add("scored"); }
+    const descBox = document.getElementById(`ex-desc-${di}`);
+    if (descBox) { descBox.textContent = DIMS[di].levels[sc-1]; descBox.classList.add("visible","scored"); }
+    // Sync radar — slider IDs are "current-s0" .. "current-s7"
+    S.profiles["current"].values[di] = sc;
+    const slider = document.getElementById(`current-s${di}`);
+    const output = document.getElementById(`current-s${di}-out`);
+    if (slider) slider.value = sc;
+    if (output) output.textContent = sc;
+    drawRadar();
+    updateScoreStrip(di, sc);
+    syncStickyBar();
+  }
+
+  /* ── PART 2 ──────────────────────────────────────────────── */
+  function buildPart2() {
+    const grid = document.getElementById("archetypeGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    ARCHETYPES_EX.forEach(arch => {
+      const card = document.createElement("div");
+      card.className = "arch-card"; card.dataset.id = arch.id;
+      card.style.setProperty("--arch-color", arch.color);
+      card.innerHTML = `<input type="radio" name="ex-archetype" value="${arch.id}" />
+        <div class="arch-card-name">${arch.name}</div>
+        <div class="arch-card-desc">${arch.hint}</div>`;
+      card.addEventListener("click", () => selectArchetype(arch.id));
+      grid.appendChild(card);
+    });
+    ["arch-q1","arch-q2","arch-q3","arch-q4"].forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener("input", () => { EX.archQ[i] = el.value; });
+    });
+  }
+
+  function selectArchetype(id) {
+    EX.archetypeChoice = id;
+    document.querySelectorAll(".arch-card").forEach(c => {
+      c.classList.toggle("selected", c.dataset.id === id);
+      c.querySelector("input").checked = c.dataset.id === id;
+    });
+    // Toggle archetype overlay on radar
+    PROFILES.filter(p => !p.editable).forEach(p => {
+      S.profiles[p.id].visible = p.id === id;
+    });
+    buildControls();
+    // Re-attach slider listener after buildControls() rebuilds the DOM
+    document.getElementById("profileList")?.addEventListener("input", () => {
+      requestAnimationFrame(syncStickyBar);
+    });
+    drawRadar();
+    syncStickyBar();
+  }
+
+  /* ── PART 3 ──────────────────────────────────────────────── */
+  function buildPart3() {
+    const container = document.getElementById("part3Areas");
+    if (!container) return;
+    container.innerHTML = "";
+    ["Focus Area 1","Focus Area 2","Focus Area 3 (optional)"].forEach((title, fi) => {
+      const block = document.createElement("div"); block.className = "focus-block";
+      const hdr = document.createElement("div"); hdr.className = "focus-block-header";
+      hdr.innerHTML = `<span class="focus-tag">Focus ${fi+1}</span><span class="focus-block-title">${title}</span>${fi===2?'<span class="focus-optional">Optional</span>':''}`;
+      block.appendChild(hdr);
+      const body = document.createElement("div"); body.className = "focus-block-body";
+      const dimF = document.createElement("div"); dimF.className = "dim-select-field";
+      dimF.innerHTML = `<label for="focus-dim-${fi}">Dimension</label>`;
+      const sel = document.createElement("select"); sel.id = `focus-dim-${fi}`;
+      sel.innerHTML = `<option value="">— Select a dimension —</option>` +
+        DIMS.map(d => `<option value="${d.label}">${d.label}</option>`).join("");
+      sel.addEventListener("change", () => { EX.focusAreas[fi].dim = sel.value; });
+      dimF.appendChild(sel); body.appendChild(dimF);
+      FOCUS_PROMPTS_EX.forEach(fp => {
+        const f = document.createElement("div"); f.className = "refl-field";
+        const lbl = document.createElement("label"); lbl.textContent = fp.label;
+        const ta = document.createElement("textarea");
+        ta.placeholder = fp.ph; ta.rows = 3;
+        ta.addEventListener("input", () => { EX.focusAreas[fi][fp.id] = ta.value; });
+        f.append(lbl, ta); body.appendChild(f);
+      });
+      block.appendChild(body); container.appendChild(block);
+    });
+  }
+
+  /* ── PART 4 ──────────────────────────────────────────────── */
+  function buildPart4() {
+    const container = document.getElementById("part4OKRs");
+    if (!container) return;
+    container.innerHTML = "";
+    [0,1].forEach(oi => {
+      const block = document.createElement("div"); block.className = "okr-block";
+      const hdr = document.createElement("div"); hdr.className = "okr-header";
+      hdr.innerHTML = `<span class="okr-num-tag">OKR ${oi+1}</span><span class="okr-title">Objective ${oi+1}</span>${oi===1?'<span class="okr-optional">Optional</span>':''}`;
+      block.appendChild(hdr);
+      const body = document.createElement("div"); body.className = "okr-body";
+
+      const objF = document.createElement("div"); objF.className = "okr-field";
+      objF.innerHTML = `<label>Objective</label>`;
+      const objTa = document.createElement("textarea");
+      objTa.placeholder = "What do I want to achieve, and why does it matter?"; objTa.rows = 2;
+      objTa.addEventListener("input", () => { EX.okrs[oi].objective = objTa.value; });
+      objF.appendChild(objTa); body.appendChild(objF);
+
+      const krG = document.createElement("div"); krG.className = "okr-kr-group";
+      krG.innerHTML = `<div class="okr-kr-label">Key Results</div>`;
+      ["KR1","KR2","KR3 (optional)"].forEach((tag, ki) => {
+        const row = document.createElement("div"); row.className = "okr-kr-row";
+        const tagEl = document.createElement("span"); tagEl.className = "kr-tag"; tagEl.textContent = tag;
+        const inp = document.createElement("input"); inp.type = "text";
+        inp.placeholder = ki < 2 ? "Describe an outcome, not a task…" : "Optional third key result…";
+        inp.addEventListener("input", () => { EX.okrs[oi].krs[ki] = inp.value; });
+        row.append(tagEl, inp); krG.appendChild(row);
+      });
+      body.appendChild(krG);
+
+      const tlRow = document.createElement("div"); tlRow.className = "okr-row-2";
+      [["quarter","Quarter","Q1 / Q2 / Q3 / Q4"],["year","Year","e.g. 2026"]].forEach(([key,lbl,ph]) => {
+        const f = document.createElement("div"); f.className = "okr-field";
+        f.innerHTML = `<label>${lbl}</label>`;
+        const inp = document.createElement("input"); inp.type = "text"; inp.placeholder = ph;
+        inp.addEventListener("input", () => { EX.okrs[oi][key] = inp.value; });
+        f.appendChild(inp); tlRow.appendChild(f);
+      });
+      body.appendChild(tlRow);
+
+      [["tracking","How we'll know this is on track","e.g. We review KR progress in fortnightly 1:1s"],
+       ["support","Support I need","e.g. Introductions to X team, budget for Y course…"]
+      ].forEach(([key,lbl,ph]) => {
+        const f = document.createElement("div"); f.className = "okr-field";
+        f.innerHTML = `<label>${lbl}</label>`;
+        const ta = document.createElement("textarea"); ta.placeholder = ph; ta.rows = 2;
+        ta.addEventListener("input", () => { EX.okrs[oi][key] = ta.value; });
+        f.appendChild(ta); body.appendChild(f);
+      });
+
+      block.appendChild(body); container.appendChild(block);
+    });
+  }
+
+  /* ── MARKDOWN EXPORT ─────────────────────────────────────── */
+  function generateMarkdown() {
+    const name    = document.getElementById("meta-name")?.value.trim()    || "—";
+    const manager = document.getElementById("meta-manager")?.value.trim() || "—";
+    const date    = document.getElementById("meta-date")?.value.trim()    || "—";
+    const lines = [];
+    lines.push("# Senior Engineer Growth Reflection","");
+    lines.push(`**Engineer:** ${name}  `,`**Manager:** ${manager}  `,`**Date:** ${date}`,"","---","");
+
+    lines.push("## Part 1: Growth Radar Baseline","");
+    lines.push("| Dimension | Score | Level |","|-----------|-------|-------|");
+    DIMS.forEach((dim, di) => {
+      const sc = EX.dimScores[di];
+      lines.push(`| ${dim.label} | ${sc !== null ? `${sc}/5` : "—"} | ${sc !== null ? LEVEL_LABELS_EX[sc-1] : "—"} |`);
+    });
+    lines.push("");
+    DIMS.forEach((dim, di) => {
+      const sc = EX.dimScores[di];
+      lines.push(`### ${di+1}. ${dim.label}`);
+      if (sc !== null) lines.push(`**Score:** ${sc}/5 — ${LEVEL_LABELS_EX[sc-1]}`);
+      lines.push("");
+      DIM_PROMPTS[di].forEach((prompt, qi) => {
+        if (EX.dimNotes[di][qi]) { lines.push(`**${prompt}**`,"",EX.dimNotes[di][qi],""); }
+      });
+      lines.push("---","");
+    });
+
+    lines.push("## Part 2: Archetype Exploration","");
+    const chosen = ARCHETYPES_EX.find(a => a.id === EX.archetypeChoice);
+    lines.push(`**Archetype direction:** ${chosen ? chosen.name : "—"}`, "");
+    ["Which archetype resonated most, and what specifically stood out?",
+     "Which feels furthest from how you currently work? What does that tell you?",
+     "An archetype you're drawn to but uncertain about?",
+     "If there's a shape you'd like to grow toward, which one and why?"
+    ].forEach((q, i) => {
+      if (EX.archQ[i]) { lines.push(`**${q}**`,"",EX.archQ[i],""); }
+    });
+    lines.push("---","");
+
+    lines.push("## Part 3: Growth Focus Areas","");
+    EX.focusAreas.forEach((fa, fi) => {
+      if (!fa.dim && !fa.why && !fa.looks && !fa.build) return;
+      lines.push(`### Focus Area ${fi+1}: ${fa.dim || "—"}`, "");
+      if (fa.why)   { lines.push("**Why this area matters to me right now**","",fa.why,""); }
+      if (fa.looks) { lines.push("**What growth here would look like in practice**","",fa.looks,""); }
+      if (fa.build) { lines.push("**What I already do well that I can build on**","",fa.build,""); }
+    });
+    lines.push("---","");
+
+    lines.push("## Part 4: OKRs","");
+    EX.okrs.forEach((okr, oi) => {
+      if (!okr.objective && !okr.krs.some(k => k)) return;
+      lines.push(`### OKR ${oi+1}`, "");
+      if (okr.objective) { lines.push(`**Objective:** ${okr.objective}`, ""); }
+      okr.krs.filter(k => k.trim()).forEach((kr, ki) => { lines.push(`**KR${ki+1}:** ${kr}`); });
+      if (okr.krs.some(k => k.trim())) lines.push("");
+      const q = [okr.quarter, okr.year].filter(Boolean).join(" / ");
+      if (q)            { lines.push(`**Timeline:** ${q}`, ""); }
+      if (okr.tracking) { lines.push(`**How we'll know this is on track:** ${okr.tracking}`, ""); }
+      if (okr.support)  { lines.push(`**Support needed:** ${okr.support}`, ""); }
+    });
+
+    const blob = new Blob([lines.join("\n")], { type: "text/markdown;charset=utf-8" });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement("a");
+    a.href = url;
+    a.download = `growth-reflection-${(name.replace(/\s+/g,"-").toLowerCase()) || "engineer"}.md`;
+    a.click();
+    URL.revokeObjectURL(url);
+    announce("Reflection exported as Markdown.");
+  }
+
+  buildPart1();
+  buildPart2();
+  buildPart3();
+  buildPart4();
+  document.getElementById("generateMdBtn").addEventListener("click", generateMarkdown);
+
+  /* ── STICKY RADAR BAR + MOBILE SCORE STRIP ───────────────── */
+
+  let _stickyCanvas = null;
+  let _stickyCtx    = null;
+  let _stickyActive = false;
+
+  function buildStickyUI() {
+    _buildStickyBar();
+    _buildScoreStrip();
+    _setupStickyObserver();
+    // Keep sticky bar in sync when sliders or drag update the radar
+    document.getElementById("profileList")?.addEventListener("input", () => {
+      requestAnimationFrame(syncStickyBar);
+    });
+    window.addEventListener("resize", () => {
+      if (_stickyActive) requestAnimationFrame(() => { drawStickyRadar(); });
+    });
+  }
+
+  function _buildStickyBar() {
+    const bar = document.createElement("div");
+    bar.id = "stickyRadarBar";
+    bar.className = "sticky-radar-bar";
+    bar.innerHTML = `
+      <div class="sticky-bar-inner">
+        <div class="sticky-canvas-wrap" id="stickyCanvasWrap">
+          <canvas id="stickyCanvas"></canvas>
+        </div>
+        <div class="sticky-scores-grid" id="stickyScoresGrid"></div>
+      </div>`;
+    document.body.prepend(bar);
+    _stickyCanvas = document.getElementById("stickyCanvas");
+    _stickyCtx    = _stickyCanvas.getContext("2d");
+  }
+
+  function _buildScoreStrip() {
+    const strip = document.createElement("div");
+    strip.id = "scoreStrip";
+    strip.className = "score-strip";
+    const pills = document.createElement("div");
+    pills.className = "strip-pills";
+    DIMS.forEach((dim, di) => {
+      const pill = document.createElement("div");
+      pill.className = "strip-pill";
+      pill.id = `strip-pill-${di}`;
+      pill.innerHTML = `<span class="strip-dim">${dim.short}</span><span class="strip-score" id="strip-score-${di}">—</span>`;
+      pills.appendChild(pill);
+    });
+    strip.appendChild(pills);
+    // Insert after exercise-meta, before first accordion
+    const meta = document.querySelector(".exercise-meta");
+    if (meta) meta.insertAdjacentElement("afterend", strip);
+  }
+
+  function _setupStickyObserver() {
+    const mainGrid = document.querySelector(".main-grid");
+    if (!mainGrid || !window.IntersectionObserver) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        _stickyActive = !entry.isIntersecting;
+        const bar = document.getElementById("stickyRadarBar");
+        if (!bar) return;
+        bar.classList.toggle("visible", _stickyActive);
+        if (_stickyActive) requestAnimationFrame(() => { drawStickyRadar(); updateStickyScores(); });
+      });
+    }, { threshold: 0 });
+    observer.observe(mainGrid);
+  }
+
+  function syncStickyBar() {
+    if (!_stickyActive) return;
+    drawStickyRadar();
+    updateStickyScores();
+  }
+
+  function _sPt(cx, cy, r, i, v) {
+    const a = -Math.PI / 2 + i * (2 * Math.PI / DIMS.length);
+    return { x: cx + Math.cos(a) * (v / 5) * r, y: cy + Math.sin(a) * (v / 5) * r };
+  }
+
+  function drawStickyRadar() {
+    if (!_stickyCanvas || !_stickyCtx) return;
+    const wrap = document.getElementById("stickyCanvasWrap");
+    if (!wrap) return;
+    const dpr = window.devicePixelRatio || 1;
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    if (!w || !h) return;
+
+    _stickyCanvas.width  = Math.round(w * dpr);
+    _stickyCanvas.height = Math.round(h * dpr);
+    _stickyCanvas.style.width  = w + "px";
+    _stickyCanvas.style.height = h + "px";
+    _stickyCtx.setTransform(1, 0, 0, 1, 0, 0);
+    _stickyCtx.scale(dpr, dpr);
+    _stickyCtx.clearRect(0, 0, w, h);
+
+    const pad = 10;
+    const r   = Math.min(w - pad * 2, h - pad * 2) / 2;
+    const cx  = w / 2, cy = h / 2;
+
+    // Rings
+    for (let lv = 5; lv >= 1; lv--) {
+      _stickyCtx.beginPath();
+      DIMS.forEach((_, i) => {
+        const p = _sPt(cx, cy, r, i, lv);
+        i === 0 ? _stickyCtx.moveTo(p.x, p.y) : _stickyCtx.lineTo(p.x, p.y);
+      });
+      _stickyCtx.closePath();
+      _stickyCtx.fillStyle   = lv % 2 === 0 ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.8)";
+      _stickyCtx.strokeStyle = "rgba(0,0,0,0.08)";
+      _stickyCtx.lineWidth   = 0.75;
+      _stickyCtx.fill(); _stickyCtx.stroke();
+    }
+
+    // Axes
+    DIMS.forEach((_, i) => {
+      const p = _sPt(cx, cy, r, i, 5);
+      _stickyCtx.beginPath();
+      _stickyCtx.moveTo(cx, cy); _stickyCtx.lineTo(p.x, p.y);
+      _stickyCtx.strokeStyle = "rgba(0,0,0,0.08)";
+      _stickyCtx.lineWidth   = 0.75;
+      _stickyCtx.stroke();
+    });
+
+    // Profile shapes
+    PROFILES.forEach(p => {
+      if (!S.profiles[p.id].visible) return;
+      const vals = S.profiles[p.id].values;
+      _stickyCtx.beginPath();
+      vals.forEach((v, i) => {
+        const pp = _sPt(cx, cy, r, i, v);
+        i === 0 ? _stickyCtx.moveTo(pp.x, pp.y) : _stickyCtx.lineTo(pp.x, pp.y);
+      });
+      _stickyCtx.closePath();
+      _stickyCtx.fillStyle   = hexA(p.color, 0.12);
+      _stickyCtx.strokeStyle = p.color;
+      _stickyCtx.lineWidth   = p.editable ? 1.5 : 1;
+      _stickyCtx.fill(); _stickyCtx.stroke();
+      vals.forEach((v, i) => {
+        const pp = _sPt(cx, cy, r, i, v);
+        _stickyCtx.beginPath();
+        _stickyCtx.arc(pp.x, pp.y, p.editable ? 3 : 2, 0, Math.PI * 2);
+        _stickyCtx.fillStyle   = p.color;
+        _stickyCtx.strokeStyle = "#fff";
+        _stickyCtx.lineWidth   = 1;
+        _stickyCtx.fill(); _stickyCtx.stroke();
+      });
+    });
+  }
+
+  function updateStickyScores() {
+    const grid = document.getElementById("stickyScoresGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    DIMS.forEach((dim, di) => {
+      const sc  = EX.dimScores[di];
+      const row = document.createElement("div");
+      row.className = "sticky-score-row";
+      row.innerHTML = `
+        <span class="sticky-dim-name">${dim.short}</span>
+        <span class="sticky-dim-val${sc !== null ? " scored" : ""}">${sc !== null ? sc : "—"}</span>`;
+      grid.appendChild(row);
+    });
+  }
+
+  function updateScoreStrip(di, sc) {
+    const pill  = document.getElementById(`strip-pill-${di}`);
+    const score = document.getElementById(`strip-score-${di}`);
+    if (pill)  pill.classList.toggle("scored", sc !== null);
+    if (score) score.textContent = sc !== null ? sc : "—";
+  }
+
+  buildStickyUI();
+
 })();
 </script>
 </body>

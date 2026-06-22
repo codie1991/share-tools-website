@@ -696,6 +696,23 @@
       clip: rect(0,0,0,0); white-space: nowrap; border: 0;
     }
 
+    .btn-clear-storage {
+      appearance: none;
+      font: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #fca5a5;
+      background: var(--bg-card);
+      color: #dc2626;
+      transition: background 0.12s, border-color 0.12s, box-shadow 0.12s;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-clear-storage:hover { background: #fef2f2; border-color: #dc2626; }
+    .btn-clear-storage:focus-visible { outline: 2px solid #dc2626; outline-offset: 2px; }
+
     /* ─── STICKY RADAR BAR (desktop ≥ 900px) ────────────────── */
     .sticky-radar-bar {
       position: fixed;
@@ -1699,6 +1716,7 @@
 
       <div class="generate-bar">
         <p>Ready to discuss? Generate a markdown summary to bring to your manager 1:1.</p>
+        <button type="button" class="btn-clear-storage" id="clearStorageBtn">Clear Stored Data</button>
         <button type="button" class="btn-generate" id="generateMdBtn">Generate Markdown</button>
       </div>
 
@@ -2654,6 +2672,119 @@
     okrs:           [0,1].map(() => ({ objective:"", krs:["","",""], quarter:"", year:"", tracking:"", support:"" }))
   };
 
+  /* ── LOCAL STORAGE ──────────────────────────────────────────── */
+  const STORAGE_KEY = "lhv-growth-framework-v1";
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        profiles: S.profiles,
+        meta: {
+          name:    document.getElementById("meta-name")?.value    || "",
+          manager: document.getElementById("meta-manager")?.value || "",
+          date:    document.getElementById("meta-date")?.value    || ""
+        },
+        ex: EX
+      }));
+    } catch (_) {}
+  }
+
+  function clearStorage() {
+    if (!confirm("Clear all saved data? This will erase your scores, notes, and reflections and cannot be undone.")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+
+  function restoreExerciseUI() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+
+      // Meta fields
+      const nameEl = document.getElementById("meta-name");
+      const mgrEl  = document.getElementById("meta-manager");
+      const dateEl = document.getElementById("meta-date");
+      if (nameEl) nameEl.value = saved.meta?.name    || "";
+      if (mgrEl)  mgrEl.value  = saved.meta?.manager || "";
+      if (dateEl) dateEl.value = saved.meta?.date    || "";
+
+      // Part 1 — scores + notes
+      EX.dimScores.forEach((sc, di) => {
+        if (sc === null) return;
+        document.querySelectorAll(`.ex-score-pill[data-di="${di}"]`).forEach(p => {
+          p.classList.toggle("selected", Number(p.dataset.sc) === sc);
+        });
+        const badge = document.getElementById(`ex-badge-${di}`);
+        if (badge) { badge.textContent = `${sc}/4 — ${LEVEL_LABELS_EX[sc-1]}`; badge.classList.add("scored"); }
+        const descBox = document.getElementById(`ex-desc-${di}`);
+        if (descBox) { descBox.textContent = DIMS[di].levels[sc-1]; descBox.classList.add("visible","scored"); }
+        S.profiles["current"].values[di] = sc;
+        const slider = document.getElementById(`current-s${di}`);
+        const output = document.getElementById(`current-s${di}-out`);
+        if (slider) slider.value = sc;
+        if (output) output.textContent = sc;
+        updateScoreStrip(di, sc);
+      });
+      document.querySelectorAll("#part1Dims .dim-accordion").forEach((det, di) => {
+        det.querySelectorAll("textarea").forEach((ta, qi) => { ta.value = EX.dimNotes[di]?.[qi] || ""; });
+      });
+
+      // Part 2 — text areas + consistency toggles
+      const p2Fields = [
+        ["p2-capability",    () => EX.p2_capability],
+        ["p2-feedback-agree",  () => EX.p2_feedback[0]],
+        ["p2-feedback-resist", () => EX.p2_feedback[1]],
+        ["p2-feedback-truth",  () => EX.p2_feedback[2]],
+        ["p2-comfort",       () => EX.p2_comfort]
+      ];
+      p2Fields.forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el) el.value = val() || "";
+      });
+      EX.p2_consistency.forEach((val, bi) => {
+        if (val === null) return;
+        const btn = document.querySelector(`.toggle-pill[data-bi="${bi}"][data-val="${val}"]`);
+        if (btn) btn.classList.add("active");
+        btn?.closest(".consistency-row")?.classList.add(`has-value-${val}`);
+      });
+
+      // Part 3 — focus areas
+      const p3Keys = ["why","looks","build","habit"];
+      document.querySelectorAll("#part3Areas .focus-block").forEach((block, fi) => {
+        const fa = EX.focusAreas[fi]; if (!fa) return;
+        const sel = document.getElementById(`focus-dim-${fi}`);
+        if (sel) sel.value = fa.dim || "";
+        block.querySelectorAll("textarea").forEach((ta, ki) => { ta.value = fa[p3Keys[ki]] || ""; });
+      });
+
+      // Part 4 — commitments
+      const p4Keys = ["behaviour","practice","howToKnow","derail"];
+      document.querySelectorAll("#part4Commitments .commitment-block").forEach((block, ci) => {
+        const c = EX.commitments[ci]; if (!c) return;
+        block.querySelectorAll("textarea").forEach((ta, ki) => { ta.value = c[p4Keys[ki]] || ""; });
+      });
+
+      // Part 5 — OKRs
+      document.querySelectorAll("#part5OKRs .okr-block").forEach((block, oi) => {
+        const okr = EX.okrs[oi]; if (!okr) return;
+        const tas = block.querySelectorAll("textarea");
+        if (tas[0]) tas[0].value = okr.objective || "";
+        if (tas[1]) tas[1].value = okr.tracking  || "";
+        if (tas[2]) tas[2].value = okr.support   || "";
+        block.querySelectorAll(".okr-kr-row input").forEach((inp, ki) => { inp.value = okr.krs[ki] || ""; });
+        const tl = block.querySelectorAll(".okr-row-2 input");
+        if (tl[0]) tl[0].value = okr.quarter || "";
+        if (tl[1]) tl[1].value = okr.year    || "";
+      });
+
+      // Rebuild radar with restored profile values
+      buildControls();
+      drawRadar();
+      syncStickyBar();
+    } catch(_) {}
+  }
+
   /* ── PART 1 ──────────────────────────────────────────────── */
   function buildPart1() {
     const container = document.getElementById("part1Dims");
@@ -3009,13 +3140,36 @@
     if (score) score.textContent = sc !== null ? sc : "—";
   }
 
+  // Restore stored profiles into S before building exercise UI
+  (() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const stored = JSON.parse(raw);
+      if (stored?.profiles) {
+        PROFILES.forEach(p => {
+          if (stored.profiles[p.id]) S.profiles[p.id] = { ...stored.profiles[p.id] };
+        });
+      }
+      if (stored?.ex) Object.assign(EX, stored.ex);
+    } catch(_) {}
+  })();
+
   buildPart1();
   buildPart2();
   buildPart3();
   buildPart4();
   buildPart5();
   _buildScoreStrip();
+  restoreExerciseUI();
+
   document.getElementById("generateMdBtn").addEventListener("click", generateMarkdown);
+  document.getElementById("clearStorageBtn").addEventListener("click", clearStorage);
+
+  let _saveTimer;
+  document.addEventListener("input",  () => { clearTimeout(_saveTimer); _saveTimer = setTimeout(saveState, 400); });
+  document.addEventListener("change", () => { clearTimeout(_saveTimer); _saveTimer = setTimeout(saveState, 400); });
+  document.addEventListener("click",  () => { clearTimeout(_saveTimer); _saveTimer = setTimeout(saveState, 400); });
 
 })();
 </script>

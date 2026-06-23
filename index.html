@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>share.codie.co.nz — Engineering Tools</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text:        #0F172A;
+      --text-2:      #334155;
+      --muted:       #64748B;
+      --bg:          #F8FAFC;
+      --bg-card:     #FFFFFF;
+      --border:      #E2E8F0;
+      --font:        "Inter", system-ui, -apple-system, sans-serif;
+      --radius:      12px;
+      --radius-lg:   20px;
+      --shadow:      0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-lg:   0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%);
+      padding: 80px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 25% 50%, rgba(99,102,241,0.15) 0%, transparent 55%),
+        radial-gradient(circle at 75% 50%, rgba(16,185,129,0.12) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #94A3B8;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 99px;
+      padding: 4px 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #FFFFFF;
+      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      color: #94A3B8;
+      font-weight: 300;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: #94A3B8;
+      line-height: 1.65;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ── GRID ─────────────────────────────────────────────────── */
+    .tools {
+      max-width: 980px;
+      margin: -48px auto 80px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+      gap: 24px;
+    }
+
+    /* ── CARD ─────────────────────────────────────────────────── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+
+    /* preview pane */
+    .card-preview {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .card-preview-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    /* radar SVG snapshot — height-constrained so square viewBox stays circular */
+    .card-preview svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 130%;
+      width: auto;
+    }
+
+    .card-preview-label {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 99px;
+      padding: 3px 10px;
+    }
+
+    .card-preview-cta {
+      position: absolute;
+      bottom: 14px;
+      right: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 99px;
+      padding: 5px 14px;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .card:hover .card-preview-cta {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* body */
+    .card-body {
+      padding: 24px 24px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 99px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 13px;
+      color: #94A3B8;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 520px) {
+      .tools { grid-template-columns: 1fr; }
+      .hero { padding: 60px 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HERO ─────────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">share.codie.co.nz</div>
+      <h1 class="hero-title">
+        <span>Tools for</span> Engineering Teams
+      </h1>
+      <p class="hero-sub">
+        A growing collection of interactive tools for career growth,
+        team calibration, and engineering craft.
+      </p>
+    </div>
+  </header>
+
+  <!-- ── TOOL CARDS ─────────────────────────────────────────────── -->
+  <main class="tools">
+
+    <!-- Junior & Intermediate Growth Radar -->
+    <a class="card" href="/growth-framework/">
+
+      <div class="card-preview">
+        <div class="card-preview-bg" style="background: linear-gradient(135deg, #065f46 0%, #0F172A 100%);">
+          <!-- decorative radar snapshot — square viewBox so rings stay circular -->
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <radialGradient id="glow-g" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#10b981" stop-opacity="0.25"/>
+                <stop offset="100%" stop-color="#10b981" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="200" cy="200" r="150" fill="url(#glow-g)"/>
+
+            <!-- rings -->
+            <g opacity="0.18" stroke="#10b981" fill="none">
+              <circle cx="200" cy="200" r="35"/>
+              <circle cx="200" cy="200" r="70"/>
+              <circle cx="200" cy="200" r="105"/>
+              <circle cx="200" cy="200" r="140"/>
+            </g>
+
+            <!-- spokes: 8 axes at 45° intervals from top -->
+            <g opacity="0.2" stroke="#10b981" stroke-width="1">
+              <line x1="200" y1="200" x2="200"  y2="60"/>
+              <line x1="200" y1="200" x2="299"  y2="101"/>
+              <line x1="200" y1="200" x2="340"  y2="200"/>
+              <line x1="200" y1="200" x2="299"  y2="299"/>
+              <line x1="200" y1="200" x2="200"  y2="340"/>
+              <line x1="200" y1="200" x2="101"  y2="299"/>
+              <line x1="200" y1="200" x2="60"   y2="200"/>
+              <line x1="200" y1="200" x2="101"  y2="101"/>
+            </g>
+
+            <!-- reference shape (dashed, at r=130) -->
+            <polygon
+              points="200,70 292,108 330,200 292,292 200,330 108,292 70,200 108,108"
+              fill="none" stroke="#6EE7B7" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.5"/>
+
+            <!-- user shape (varying radii ~70–95% of 140) -->
+            <polygon
+              points="200,102 276,131 316,200 272,268 200,305 131,271 90,200 128,125"
+              fill="rgba(16,185,129,0.18)" stroke="#10b981" stroke-width="2"/>
+
+            <g fill="#10b981">
+              <circle cx="200" cy="102" r="4.5"/>
+              <circle cx="276" cy="131" r="4.5"/>
+              <circle cx="316" cy="200" r="4.5"/>
+              <circle cx="272" cy="268" r="4.5"/>
+              <circle cx="200" cy="305" r="4.5"/>
+              <circle cx="131" cy="271" r="4.5"/>
+              <circle cx="90"  cy="200" r="4.5"/>
+              <circle cx="128" cy="125" r="4.5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-preview-label">Growth Tool</div>
+        <div class="card-preview-cta">Open tool →</div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-title">Junior &amp; Intermediate Growth Radar</div>
+        <p class="card-desc">
+          Map your strengths across eight growth dimensions and compare against
+          the Senior Engineer reference shape. Pinpoint the behaviours to build
+          next and track your progress over time.
+        </p>
+        <div class="card-tags">
+          <span class="tag" style="--tag-bg:#ecfdf5;--tag-text:#065f46;">Radar Chart</span>
+          <span class="tag" style="--tag-bg:#ecfdf5;--tag-text:#065f46;">Career Growth</span>
+          <span class="tag" style="--tag-bg:#ecfdf5;--tag-text:#065f46;">Junior → Senior</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Senior Engineer Growth Radar -->
+    <a class="card" href="/senior-growth-framework/">
+
+      <div class="card-preview">
+        <div class="card-preview-bg" style="background: linear-gradient(135deg, #3730A3 0%, #0F172A 100%);">
+          <!-- decorative radar snapshot — square viewBox so rings stay circular -->
+          <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <radialGradient id="glow-i" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="200" cy="200" r="150" fill="url(#glow-i)"/>
+
+            <!-- rings (5 levels for Senior) -->
+            <g opacity="0.18" stroke="#6366f1" fill="none">
+              <circle cx="200" cy="200" r="28"/>
+              <circle cx="200" cy="200" r="56"/>
+              <circle cx="200" cy="200" r="84"/>
+              <circle cx="200" cy="200" r="112"/>
+              <circle cx="200" cy="200" r="140"/>
+            </g>
+
+            <!-- spokes -->
+            <g opacity="0.2" stroke="#6366f1" stroke-width="1">
+              <line x1="200" y1="200" x2="200"  y2="60"/>
+              <line x1="200" y1="200" x2="299"  y2="101"/>
+              <line x1="200" y1="200" x2="340"  y2="200"/>
+              <line x1="200" y1="200" x2="299"  y2="299"/>
+              <line x1="200" y1="200" x2="200"  y2="340"/>
+              <line x1="200" y1="200" x2="101"  y2="299"/>
+              <line x1="200" y1="200" x2="60"   y2="200"/>
+              <line x1="200" y1="200" x2="101"  y2="101"/>
+            </g>
+
+            <!-- archetype A — Tech Lead (r=135) -->
+            <polygon
+              points="200,65 296,104 335,200 296,296 200,335 104,296 65,200 104,104"
+              fill="none" stroke="#A5B4FC" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.4"/>
+
+            <!-- archetype B — Staff (r=122) -->
+            <polygon
+              points="200,78 286,114 322,200 286,286 200,322 114,286 78,200 114,114"
+              fill="none" stroke="#C4B5FD" stroke-width="1" stroke-dasharray="3 5" opacity="0.3"/>
+
+            <!-- user profile (varying radii) -->
+            <polygon
+              points="200,88 278,128 312,200 274,276 200,315 126,272 92,200 126,122"
+              fill="rgba(99,102,241,0.18)" stroke="#6366f1" stroke-width="2"/>
+
+            <g fill="#6366f1">
+              <circle cx="200" cy="88"  r="4.5"/>
+              <circle cx="278" cy="128" r="4.5"/>
+              <circle cx="312" cy="200" r="4.5"/>
+              <circle cx="274" cy="276" r="4.5"/>
+              <circle cx="200" cy="315" r="4.5"/>
+              <circle cx="126" cy="272" r="4.5"/>
+              <circle cx="92"  cy="200" r="4.5"/>
+              <circle cx="126" cy="122" r="4.5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="card-preview-label">Growth Tool</div>
+        <div class="card-preview-cta">Open tool →</div>
+      </div>
+
+      <div class="card-body">
+        <div class="card-title">Senior Engineer Growth Radar</div>
+        <p class="card-desc">
+          Map your strengths against multiple engineering archetypes — Tech Lead,
+          Staff Engineer, and beyond. Use the level guide to calibrate your scores
+          and see where to focus for Staff+ impact.
+        </p>
+        <div class="card-tags">
+          <span class="tag" style="--tag-bg:#EEF2FF;--tag-text:#3730A3;">Radar Chart</span>
+          <span class="tag" style="--tag-bg:#EEF2FF;--tag-text:#3730A3;">Career Growth</span>
+          <span class="tag" style="--tag-bg:#EEF2FF;--tag-text:#3730A3;">Senior → Staff+</span>
+        </div>
+      </div>
+    </a>
+
+  </main>
+
+  <footer>
+    <p>share.codie.co.nz &mdash; tools added as they're built</p>
+  </footer>
+
+</body>
+</html>

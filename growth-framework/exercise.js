@@ -529,6 +529,7 @@ function generateMarkdown() {
   } catch(_) {}
 })();
 
+buildInfoPanel();
 buildPart1();
 buildPart2();
 buildPart3();

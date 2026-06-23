@@ -5,7 +5,7 @@
      S, radarGeo, drawRadar, buildControls, buildDimTabs,
      buildDimDefs, renderLevelCards, syncStickyBar, announce,
      buildStickyUI, updateScoreStrip
-   Calls buildInfoPanel() if defined by exercise.js.
+   exercise.js calls buildInfoPanel() after loading.
 ───────────────────────────────────────────────────────────── */
 "use strict";
 
@@ -38,7 +38,6 @@ function _init() {
   buildControls();
   buildDimTabs();
   buildDimDefs();
-  if (typeof buildInfoPanel === "function") buildInfoPanel();
   renderLevelCards(0);
   _resizeCanvas();
 

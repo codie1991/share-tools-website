@@ -53,6 +53,16 @@ var DIMS = [
     ]
   },
   {
+    label: "Mentoring & Multiplying Others", short: "Mentoring",
+    desc: "The extent to which your presence and work makes others on the team more effective.",
+    levels: [
+      "Helps teammates with questions when asked. Willing to share knowledge but doesn't take initiative to do so proactively.",
+      "Actively supports less experienced teammates. Shares knowledge proactively — explains reasoning, documents decisions, helps onboard new team members.",
+      "Your involvement measurably improves the work or capability of others. Code reviews you give create learning, not just correctness. You are a useful resource for teammates navigating unfamiliar problems.",
+      "Others grow noticeably from working with you. You create leverage — documentation, patterns, shared understanding — that benefits the team beyond your direct involvement."
+    ]
+  },
+  {
     label: "Collaboration & Communication", short: "Collab",
     desc: "How well you work with others, share information, communicate clearly, and contribute to a productive team environment.",
     levels: [
@@ -70,16 +80,6 @@ var DIMS = [
       "Actively seeks feedback on your own work. Takes initiative to fill knowledge gaps that are blocking you. Reflects on what went well and what didn't at the end of projects.",
       "Has a clear sense of where your knowledge gaps are and invests deliberately to close them. Applies new skills and feedback consistently, not just in the moment. Growth is visible to others over time.",
       "Brings new knowledge back to the team. Seeks feedback beyond your manager — from peers, other teams, and production failures. Your learning is self-directed and applied at scale."
-    ]
-  },
-  {
-    label: "Mentoring & Multiplying Others", short: "Mentoring",
-    desc: "The extent to which your presence and work makes others on the team more effective.",
-    levels: [
-      "Helps teammates with questions when asked. Willing to share knowledge but doesn't take initiative to do so proactively.",
-      "Actively supports less experienced teammates. Shares knowledge proactively — explains reasoning, documents decisions, helps onboard new team members.",
-      "Your involvement measurably improves the work or capability of others. Code reviews you give create learning, not just correctness. You are a useful resource for teammates navigating unfamiliar problems.",
-      "Others grow noticeably from working with you. You create leverage — documentation, patterns, shared understanding — that benefits the team beyond your direct involvement."
     ]
   },
   {
@@ -114,7 +114,7 @@ var PROFILES = [
   },
   {
     id: "seniorRef", name: "Senior Engineer Baseline", color: "#6366F1",
-    editable: false, defaults: [3,4,4,3,4,3,3,3],
+    editable: false, defaults: [3,4,4,3,3,4,3,3],
     hint: "The minimum solid-Senior profile on all eight dimensions. This is the shape you are working toward.", on: true
   }
 ];

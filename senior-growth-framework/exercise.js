@@ -17,10 +17,12 @@ var DIM_PROMPTS = [
    "How do you currently create leverage for others — and where might there be more opportunity?"],
   ["Where have you changed the direction of a decision, design, or plan through how you communicated your perspective?",
    "Which relationships — inside or outside engineering — would you most like to develop?"],
-  ["Describe a decision you made differently because of something you understood about the customer or business.",
-   "What would you most like to understand better about how the business operates, its customers, or its market?"],
+  ["What have you deliberately learned in the last 6–12 months that changed how you work, or how the team works?",
+   "Where has a setback or failure led to a lasting improvement you drove?"],
   ["When did you last contribute to a direction or priority decision rather than just executing one?",
-   "Where do you want more visibility into how product and engineering strategy gets made?"]
+   "Where do you want more visibility into how product and engineering strategy gets made?"],
+  ["Describe a decision you made differently because of something you understood about the customer or business.",
+   "What would you most like to understand better about how the business operates, its customers, or its market?"]
 ];
 
 var ARCHETYPES_EX = [
@@ -41,8 +43,8 @@ var FOCUS_PROMPTS_EX = [
 ];
 
 var EX = {
-  dimScores:       Array(8).fill(null),
-  dimNotes:        Array(8).fill(null).map(function() { return ["",""]; }),
+  dimScores:       Array(9).fill(null),
+  dimNotes:        Array(9).fill(null).map(function() { return ["",""]; }),
   archetypeChoice: null,
   archQ:           ["","","",""],
   focusAreas:      [0,1,2].map(function() { return { dim:"", why:"", looks:"", build:"" }; }),

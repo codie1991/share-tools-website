@@ -63,9 +63,8 @@
     .hero::before {
       content: "";
       position: absolute; inset: 0;
-      background:
-        radial-gradient(circle at 20% 40%, rgba(99,102,241,0.16) 0%, transparent 55%),
-        radial-gradient(circle at 80% 60%, rgba(16,185,129,0.12) 0%, transparent 55%);
+      /* single indigo glow — one accent per tool (Index-Tab Rule) */
+      background: radial-gradient(circle at 30% 40%, rgba(99,102,241,0.18) 0%, transparent 60%);
       pointer-events: none;
     }
     .hero-inner { position: relative; max-width: 720px; margin: 0 auto; }
@@ -234,6 +233,19 @@
     .band-group { margin-top: 6px; }
     .band-group + .band-group { margin-top: 14px; }
     .band-group.hidden { display: none; }
+
+    /* shown in "Everyone" mode in place of the per-band bullets: teaches the
+       additive model and invites the reader to pick a leadership level */
+    .band-hint {
+      margin-top: 10px; padding-left: 22px; position: relative;
+      font-size: 13px; line-height: 1.55; color: var(--muted); font-style: italic;
+    }
+    .band-hint::before {
+      content: ""; position: absolute; left: 4px; top: 7px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); opacity: 0.35;
+    }
+    .band-hint.hidden { display: none; }
     .band-name {
       font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em;
       text-transform: uppercase; color: var(--text-2);
@@ -351,9 +363,10 @@
       <div class="hero-eyebrow">LHV UK · Behaviour Principles</div>
       <h1 class="hero-title"><span>How we work,</span> whatever team you sit in</h1>
       <p class="hero-sub">
-        Six principles, each with paired behaviours that apply to everyone and layer
-        as you take on leadership. Browse the headlines, expand for the detail, and
-        use the resets when a behaviour slips under pressure.
+        Six principles for how we work — paired behaviours that apply to everyone and
+        layer as you take on leadership. They describe patterns to grow into, not a
+        checklist to pass or a list of failings. Open one for the detail, and use the
+        resets for when it slips under pressure.
       </p>
     </div>
   </header>
@@ -448,8 +461,10 @@
             g.classList.toggle("hidden", !show);
             if (show) anyShown = true;
           });
-          // hide the whole lead behaviour block when in "everyone" mode
-          lead.classList.toggle("hidden", !anyShown);
+          // in "Everyone" mode no band groups show, so surface the teaching
+          // hint instead of leaving an empty lead block
+          var hint = lead.querySelector(".band-hint");
+          if (hint) hint.classList.toggle("hidden", anyShown);
         });
       }
 
@@ -523,6 +538,9 @@
           group.appendChild(bulletList(pair.lead.bands[bk]));
           lead.appendChild(group);
         });
+        // teaching hint shown when no band is selected (Everyone mode)
+        lead.appendChild(el("div", "band-hint",
+          "Pick a leadership level above to see how this behaviour layers on as you lead."));
         frag.appendChild(lead);
 
         return frag;

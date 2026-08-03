@@ -19,10 +19,10 @@
       "accent-emerald": { "role": "primary", "displayName": "Emerald Signal", "canonical": "#10B981", "tonalRamp": ["#064E3B", "#065F46", "#047857", "#059669", "#10B981", "#34D399", "#6EE7B7", "#ECFDF5"] },
       "accent-emerald-deep": { "role": "primary", "displayName": "Emerald Deep", "canonical": "#059669", "tonalRamp": ["#064E3B", "#065F46", "#047857", "#059669", "#10B981", "#34D399", "#6EE7B7", "#A7F3D0"] },
       "accent-emerald-tint": { "role": "primary", "displayName": "Emerald Tint", "canonical": "#ECFDF5", "tonalRamp": ["#059669", "#10B981", "#34D399", "#6EE7B7", "#A7F3D0", "#D1FAE5", "#ECFDF5", "#F0FDF9"] },
-      "spectrum-sky": { "role": "tertiary", "displayName": "Sky", "canonical": "#0EA5E9", "tonalRamp": ["#0C4A6E", "#075985", "#0369A1", "#0284C7", "#0EA5E9", "#38BDF8", "#7DD3FC", "#E0F2FE"] },
-      "spectrum-teal": { "role": "tertiary", "displayName": "Teal", "canonical": "#14B8A6", "tonalRamp": ["#134E4A", "#115E59", "#0F766E", "#0D9488", "#14B8A6", "#2DD4BF", "#5EEAD4", "#CCFBF1"] },
-      "spectrum-amber": { "role": "tertiary", "displayName": "Amber", "canonical": "#F59E0B", "tonalRamp": ["#78350F", "#92400E", "#B45309", "#D97706", "#F59E0B", "#FBBF24", "#FCD34D", "#FEF3C7"] },
-      "spectrum-pink": { "role": "tertiary", "displayName": "Pink", "canonical": "#EC4899", "tonalRamp": ["#831843", "#9D174D", "#BE185D", "#DB2777", "#EC4899", "#F472B6", "#F9A8D4", "#FCE7F3"] }
+      "spectrum-sky": { "role": "tertiary", "displayName": "Sky", "canonical": "#0369A1", "tonalRamp": ["#0C4A6E", "#075985", "#0369A1", "#0284C7", "#0EA5E9", "#38BDF8", "#7DD3FC", "#E0F2FE"] },
+      "spectrum-teal": { "role": "tertiary", "displayName": "Teal", "canonical": "#0F766E", "tonalRamp": ["#134E4A", "#115E59", "#0F766E", "#0D9488", "#14B8A6", "#2DD4BF", "#5EEAD4", "#CCFBF1"] },
+      "spectrum-amber": { "role": "tertiary", "displayName": "Amber", "canonical": "#B45309", "tonalRamp": ["#78350F", "#92400E", "#B45309", "#D97706", "#F59E0B", "#FBBF24", "#FCD34D", "#FEF3C7"] },
+      "spectrum-pink": { "role": "tertiary", "displayName": "Pink", "canonical": "#BE185D", "tonalRamp": ["#831843", "#9D174D", "#BE185D", "#DB2777", "#EC4899", "#F472B6", "#F9A8D4", "#FCE7F3"] }
     },
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "Homepage hero title only; pairs a light (300) muted span with a bold span." },

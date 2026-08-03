@@ -17,10 +17,10 @@ colors:
   accent-emerald: "#10B981"
   accent-emerald-deep: "#059669"
   accent-emerald-tint: "#ECFDF5"
-  spectrum-sky: "#0EA5E9"
-  spectrum-teal: "#14B8A6"
-  spectrum-amber: "#F59E0B"
-  spectrum-pink: "#EC4899"
+  spectrum-sky: "#0369A1"
+  spectrum-teal: "#0F766E"
+  spectrum-amber: "#B45309"
+  spectrum-pink: "#BE185D"
 typography:
   display:
     fontFamily: "Inter, system-ui, -apple-system, sans-serif"
@@ -126,7 +126,7 @@ A near-monochrome slate foundation carries the whole system; saturated colour ap
 
 ### Secondary (categorical spectrum)
 Used only where a surface must label many distinct things at once (behaviour principles, profile archetypes). These are index colours, not decoration.
-- **Sky** (#0EA5E9), **Teal** (#14B8A6), **Amber** (#F59E0B), **Pink** (#EC4899), plus Indigo and Emerald above. The Senior profile palette extends this with Cyan (#06B6D4), Violet (#7C3AED), Magenta (#DB2777), Warm Amber (#D97706), and Red (#DC2626).
+- **Sky** (#0369A1), **Teal** (#0F766E), **Amber** (#B45309), **Pink** (#BE185D), plus deep Indigo (#4F46E5) and deep Emerald (#047857). These are the AA-safe index colours the Behaviour Principles tool uses on number chips, tags, and small accent text. The Senior radar's profile palette (Cyan #06B6D4, Violet #7C3AED, Magenta #DB2777, Warm Amber #D97706, Red #DC2626) predates this and is used only for chart strokes on light fills, not behind white text.
 
 ### Neutral
 - **Ink Slate** (#0F172A): Primary text, and the base of every dark hero cover.
@@ -143,6 +143,8 @@ Used only where a surface must label many distinct things at once (behaviour pri
 **The Index-Tab Rule.** Saturated colour is an organising signal, never atmosphere. One accent owns a tool; the spectrum only appears where distinct items must be told apart. If a colour isn't labelling or signalling state, it should be slate.
 
 **The Neutral-Identity Rule.** No external organisation's brand colours enter the system. Content can name any company; the palette stays slate-plus-accent.
+
+**The Legible-Index Rule.** Any accent or index colour used as text, or behind white text (number chips, filled tags, small accent labels), must clear 4.5:1 on white. This is why the categorical spectrum uses deep hues (sky-700, teal-700, amber-700, pink-700, indigo/emerald-600) rather than the bright 500-level tints — the bright versions read as decoration and fail contrast.
 
 ## Typography
 

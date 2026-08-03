@@ -16,17 +16,17 @@ const CAPABILITIES = [
 ];
 
 const BANDS = [
-  { key: "everyone", label: "Everyone",       blurb: "Core behaviours apply to all of us, at every level." },
-  { key: "others",   label: "Leads Others",   blurb: "You're responsible for the growth and performance of individuals." },
-  { key: "leaders",  label: "Leads Leaders",  blurb: "You're responsible for people who lead people." },
-  { key: "business", label: "Leads Business", blurb: "You set direction for a function or the organisation." },
+  { key: "everyone", label: "Everyone",       blurb: "Core behaviours apply to all of us, at every level. Pick a leadership level to see the behaviours that layer on top." },
+  { key: "others",   label: "Leads Others",   blurb: "You're responsible for the growth and performance of individuals. These behaviours are additive to the core." },
+  { key: "leaders",  label: "Leads Leaders",  blurb: "You're responsible for people who lead people. Cumulative: this includes everything in Leads Others." },
+  { key: "business", label: "Leads Business", blurb: "You set direction for a function or the organisation. Cumulative: this includes Leads Others and Leads Leaders." },
 ];
 
 const PRINCIPLES = [
   {
     n: 1,
     title: "We Say It Straight, Say It Early",
-    accent: "#6366F1",
+    accent: "#4F46E5",
     summary:
       "Clear, honest, timely communication, especially when it's uncomfortable. Banking is complex, and a late or hedged message increases risk for our customers, our colleagues, and the business.",
     pairs: [
@@ -109,7 +109,7 @@ const PRINCIPLES = [
   {
     n: 2,
     title: "We Are Curious, Then Commit",
-    accent: "#0EA5E9",
+    accent: "#0369A1",
     summary:
       "Understand deeply, then commit decisively. Rushing without understanding leads to poor outcomes. Endless exploration leads to inertia.",
     pairs: [
@@ -192,7 +192,7 @@ const PRINCIPLES = [
   {
     n: 3,
     title: "We Design With Many Minds",
-    accent: "#14B8A6",
+    accent: "#0F766E",
     summary:
       "Deliberately include different perspectives, across our own team, other functions, and the external parties whose processes shape our work. Better answers, and genuine buy-in, come from combining different experience and interests.",
     pairs: [
@@ -275,7 +275,7 @@ const PRINCIPLES = [
   {
     n: 4,
     title: "We Act Like Owners",
-    accent: "#F59E0B",
+    accent: "#B45309",
     summary:
       "Responsibility for outcomes, not just tasks. Raising a problem is the start of ownership, not the end of it.",
     pairs: [
@@ -359,7 +359,7 @@ const PRINCIPLES = [
   {
     n: 5,
     title: "We Go Deep, Create, Then Simplify",
-    accent: "#EC4899",
+    accent: "#BE185D",
     summary:
       "Get to root causes and generate real options before accepting constraints, then land on the simplest workable answer. Our constraints are real: regulation, partners, inherited process. They should shape the thinking, not shortcut it.",
     pairs: [
@@ -442,7 +442,7 @@ const PRINCIPLES = [
   {
     n: 6,
     title: "We Leave It Better Than We Found It",
-    accent: "#10B981",
+    accent: "#047857",
     summary:
       "Responsibility for improving LHV over time, through our work, our relationships, and our decisions. Sustainable success depends on stewardship.",
     pairs: [

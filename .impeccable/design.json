@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-03T00:00:00Z",
+  "title": "Design System: share.codie.co.nz — Engineering Tools",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Ink Slate", "canonical": "#0F172A", "tonalRamp": ["#020617", "#0F172A", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1"] },
+      "slate-body": { "role": "neutral", "displayName": "Slate Body", "canonical": "#334155", "tonalRamp": ["#0F172A", "#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0"] },
+      "slate-muted": { "role": "neutral", "displayName": "Muted Slate", "canonical": "#64748B", "tonalRamp": ["#1E293B", "#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9"] },
+      "slate-faint": { "role": "neutral", "displayName": "Faint Slate", "canonical": "#94A3B8", "tonalRamp": ["#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#F8FAFC"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#F8FAFC", "tonalRamp": ["#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#F8FAFC", "#FCFDFE", "#FFFFFF"] },
+      "card": { "role": "neutral", "displayName": "Card White", "canonical": "#FFFFFF", "tonalRamp": ["#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#F8FAFC", "#FCFDFE", "#FFFFFF", "#FFFFFF"] },
+      "panel": { "role": "neutral", "displayName": "Soft Panel", "canonical": "#F1F5F9", "tonalRamp": ["#475569", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#F8FAFC", "#FFFFFF"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "#E2E8F0", "tonalRamp": ["#475569", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#F8FAFC", "#FFFFFF"] },
+      "hairline-strong": { "role": "neutral", "displayName": "Hairline Strong", "canonical": "#CBD5E1", "tonalRamp": ["#334155", "#475569", "#64748B", "#94A3B8", "#CBD5E1", "#E2E8F0", "#F1F5F9", "#F8FAFC"] },
+      "accent-indigo": { "role": "primary", "displayName": "Indigo Signal", "canonical": "#6366F1", "tonalRamp": ["#312E81", "#3730A3", "#4338CA", "#4F46E5", "#6366F1", "#818CF8", "#A5B4FC", "#EEF2FF"] },
+      "accent-indigo-deep": { "role": "primary", "displayName": "Indigo Deep", "canonical": "#4338CA", "tonalRamp": ["#1E1B4B", "#312E81", "#3730A3", "#4338CA", "#4F46E5", "#6366F1", "#818CF8", "#A5B4FC"] },
+      "accent-indigo-tint": { "role": "primary", "displayName": "Indigo Tint", "canonical": "#EEF2FF", "tonalRamp": ["#4338CA", "#4F46E5", "#6366F1", "#818CF8", "#A5B4FC", "#C7D2FE", "#E0E7FF", "#EEF2FF"] },
+      "accent-emerald": { "role": "primary", "displayName": "Emerald Signal", "canonical": "#10B981", "tonalRamp": ["#064E3B", "#065F46", "#047857", "#059669", "#10B981", "#34D399", "#6EE7B7", "#ECFDF5"] },
+      "accent-emerald-deep": { "role": "primary", "displayName": "Emerald Deep", "canonical": "#059669", "tonalRamp": ["#064E3B", "#065F46", "#047857", "#059669", "#10B981", "#34D399", "#6EE7B7", "#A7F3D0"] },
+      "accent-emerald-tint": { "role": "primary", "displayName": "Emerald Tint", "canonical": "#ECFDF5", "tonalRamp": ["#059669", "#10B981", "#34D399", "#6EE7B7", "#A7F3D0", "#D1FAE5", "#ECFDF5", "#F0FDF9"] },
+      "spectrum-sky": { "role": "tertiary", "displayName": "Sky", "canonical": "#0369A1", "tonalRamp": ["#0C4A6E", "#075985", "#0369A1", "#0284C7", "#0EA5E9", "#38BDF8", "#7DD3FC", "#E0F2FE"] },
+      "spectrum-teal": { "role": "tertiary", "displayName": "Teal", "canonical": "#0F766E", "tonalRamp": ["#134E4A", "#115E59", "#0F766E", "#0D9488", "#14B8A6", "#2DD4BF", "#5EEAD4", "#CCFBF1"] },
+      "spectrum-amber": { "role": "tertiary", "displayName": "Amber", "canonical": "#B45309", "tonalRamp": ["#78350F", "#92400E", "#B45309", "#D97706", "#F59E0B", "#FBBF24", "#FCD34D", "#FEF3C7"] },
+      "spectrum-pink": { "role": "tertiary", "displayName": "Pink", "canonical": "#BE185D", "tonalRamp": ["#831843", "#9D174D", "#BE185D", "#DB2777", "#EC4899", "#F472B6", "#F9A8D4", "#FCE7F3"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Homepage hero title only; pairs a light (300) muted span with a bold span." },
+      "headline": { "displayName": "Headline", "purpose": "Large title on individual tool cover heroes." },
+      "title": { "displayName": "Title", "purpose": "Card titles, principle titles, section headers." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, intros, list items. Measure ~65-75ch." },
+      "label": { "displayName": "Label", "purpose": "Eyebrow badges, tags, table headers; uppercase and tracked." }
+    },
+    "shadows": [
+      { "name": "ambient-rest", "value": "0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04)", "purpose": "Default resting shadow on cards and standalone panels." },
+      { "name": "ambient-low", "value": "0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05)", "purpose": "Buttons and small controls at rest." },
+      { "name": "lifted", "value": "0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05)", "purpose": "Cards on hover and expanded/open states; paired with translateY(-3px)." },
+      { "name": "accent-cast-rest", "value": "0 2px 8px rgba(99,102,241,0.3)", "purpose": "Under primary buttons at rest, tinted from the tool accent." },
+      { "name": "accent-cast-hover", "value": "0 4px 12px rgba(99,102,241,0.4)", "purpose": "Under primary buttons on hover." }
+    ],
+    "motion": [
+      { "name": "state-fast", "value": "0.12s", "purpose": "Button background/border/shadow state changes." },
+      { "name": "state-standard", "value": "0.2s", "purpose": "Card hover lift (box-shadow + transform) and chevron rotation." },
+      { "name": "lift-transform", "value": "translateY(-3px)", "purpose": "The soft-lift: cards rise toward the reader on hover." }
+    ],
+    "breakpoints": [
+      { "name": "homepage-grid", "value": "520px" },
+      { "name": "tool-body", "value": "560px" },
+      { "name": "level-cards", "value": "1100px" }
+    ],
+    "containers": [
+      { "name": "tool-grid", "value": "980px" },
+      { "name": "tool-body", "value": "900px" },
+      { "name": "radar-app", "value": "1360px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Accent-filled primary action with a tinted cast shadow; deepens on hover.",
+      "html": "<button class=\"ds-btn-primary\">Generate report</button>",
+      "css": ".ds-btn-primary { font-family: Inter, system-ui, sans-serif; font-size: 0.84rem; font-weight: 600; letter-spacing: 0.01em; padding: 9px 20px; border-radius: 6px; border: 1px solid #6366F1; background: #6366F1; color: #FFFFFF; cursor: pointer; box-shadow: 0 2px 8px rgba(99,102,241,0.3); transition: background 0.12s, border-color 0.12s, box-shadow 0.12s; } .ds-btn-primary:hover { background: #4338CA; border-color: #4338CA; box-shadow: 0 4px 12px rgba(99,102,241,0.4); } .ds-btn-primary:focus-visible { outline: 2px solid #6366F1; outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Default control: white fill, hairline-strong border, accent takeover on hover.",
+      "html": "<button class=\"ds-btn-secondary\">Reset</button>",
+      "css": ".ds-btn-secondary { font-family: Inter, system-ui, sans-serif; font-size: 0.84rem; font-weight: 600; letter-spacing: 0.01em; padding: 9px 20px; border-radius: 6px; border: 1px solid #CBD5E1; background: #FFFFFF; color: #334155; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.05); transition: background 0.12s, border-color 0.12s, box-shadow 0.12s; } .ds-btn-secondary:hover { background: #F8FAFC; border-color: #6366F1; color: #4338CA; } .ds-btn-secondary:focus-visible { outline: 2px solid #6366F1; outline-offset: 2px; }"
+    },
+    {
+      "name": "Tool Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Whole-card link with a media preview above a padded body; lifts on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><div class=\"ds-card-media\"><span class=\"ds-card-label\">Growth Tool</span></div><div class=\"ds-card-body\"><div class=\"ds-card-title\">Senior Engineer Growth Radar</div><p class=\"ds-card-desc\">Map your strengths against multiple engineering archetypes and see where to focus next.</p><div class=\"ds-card-tags\"><span class=\"ds-tag\">Radar Chart</span><span class=\"ds-tag\">Career Growth</span></div></div></a>",
+      "css": ".ds-card { display: flex; flex-direction: column; overflow: hidden; text-decoration: none; color: inherit; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04); transition: box-shadow 0.2s, transform 0.2s; } .ds-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05); transform: translateY(-3px); } .ds-card-media { position: relative; height: 130px; background: linear-gradient(135deg, #3730A3 0%, #0F172A 100%); } .ds-card-label { position: absolute; top: 14px; left: 14px; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.85); background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15); border-radius: 999px; padding: 3px 10px; } .ds-card-body { padding: 24px; display: flex; flex-direction: column; gap: 10px; } .ds-card-title { font-family: Inter, system-ui, sans-serif; font-size: 18px; font-weight: 700; color: #0F172A; line-height: 1.25; } .ds-card-desc { font-family: Inter, system-ui, sans-serif; font-size: 14px; color: #334155; line-height: 1.65; } .ds-card-tags { display: flex; flex-wrap: wrap; gap: 6px; } .ds-tag { font-family: Inter, system-ui, sans-serif; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: #EEF2FF; color: #4338CA; }"
+    },
+    {
+      "name": "Tag Chip",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Pill label for categorising cards; accent tint with accent-deep text.",
+      "html": "<span class=\"ds-tag-chip\">Career Growth</span>",
+      "css": ".ds-tag-chip { display: inline-block; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: #EEF2FF; color: #4338CA; }"
+    },
+    {
+      "name": "Hero Eyebrow Badge",
+      "kind": "custom",
+      "refersTo": "badge",
+      "description": "Translucent pill on dark hero covers, with a leading accent dot. Lives on the hero only.",
+      "html": "<span class=\"ds-eyebrow\">LHV UK · Behaviour Principles</span>",
+      "css": ".ds-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: Inter, system-ui, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #94A3B8; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 4px 14px; }"
+    },
+    {
+      "name": "Principle Accordion Header",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Signature Field-Guide component: numbered accent chip + title/summary, with a left accent bar revealed on hover/open.",
+      "html": "<div class=\"ds-principle\"><div class=\"ds-principle-num\">1</div><div class=\"ds-principle-text\"><div class=\"ds-principle-title\">We Say It Straight, Say It Early</div><div class=\"ds-principle-summary\">Clear, honest, timely communication, especially when it's uncomfortable.</div></div></div>",
+      "css": ".ds-principle { position: relative; display: flex; align-items: flex-start; gap: 18px; padding: 24px 26px; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04); cursor: pointer; } .ds-principle::before { content: \"\"; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #6366F1; opacity: 0; transition: opacity 0.2s; } .ds-principle:hover::before { opacity: 1; } .ds-principle-num { flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-family: Inter, system-ui, sans-serif; font-size: 18px; font-weight: 700; color: #FFFFFF; background: #6366F1; } .ds-principle-title { font-family: Inter, system-ui, sans-serif; font-size: 20px; font-weight: 700; color: #0F172A; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 6px; } .ds-principle-summary { font-family: Inter, system-ui, sans-serif; font-size: 14px; color: #334155; line-height: 1.6; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Field Guide",
+    "overview": "A reference shelf for engineers that behaves like a good field guide: a calm, near-monochrome canvas where structure does the talking and colour is used to organise, not decorate. Someone arriving cold from a shared link is oriented in seconds — a dark, textured hero cover states what the tool is, then the page opens into an airy grid of white surfaces to scan and work through. The palette is disciplined slate neutrals with a single saturated accent per tool acting like a coloured index tab; where many things must be distinguished at once, a controlled spectrum is used as labels, never as mood. Interaction turns tactile and confident: surfaces rest on soft ambient depth and lift toward you on hover. The look is deliberately brand-neutral, so external content rides in as content, not as a visual world.",
+    "keyCharacteristics": [
+      "Slate-neutral canvas; one accent per tool used as an organising index colour",
+      "Dark, textured hero cover per page over a light, scannable body",
+      "White cards with hairline borders, soft ambient depth, and a hover-lift",
+      "Inter throughout, with a strong display-to-body scale and tight display tracking",
+      "Buildless static pages; consistency carried by shared tokens, not a framework"
+    ],
+    "rules": [
+      { "name": "The Index-Tab Rule", "body": "Saturated colour is an organising signal, never atmosphere. One accent owns a tool; the spectrum only appears where distinct items must be told apart. If a colour isn't labelling or signalling state, it should be slate.", "section": "colors" },
+      { "name": "The Neutral-Identity Rule", "body": "No external organisation's brand colours enter the system. Content can name any company; the palette stays slate-plus-accent.", "section": "colors" },
+      { "name": "The One-Family Rule", "body": "Inter carries display, body, and label. Do not introduce a second family — especially not monospace as a technical costume. Range comes from weight and size.", "section": "typography" },
+      { "name": "The Tight-Display Rule", "body": "Display and headline sizes track negative (-0.02em to -0.035em) and stay heavy (700). Small labels track wide (+0.1em) and uppercase. The tracking direction flips with size.", "section": "typography" },
+      { "name": "The Soft-Lift Rule", "body": "Interactive surfaces rest on Ambient depth and rise (bigger shadow + translateY(-3px)) on hover, over ~0.2s. The lift is the primary interaction feedback; keep it consistent across cards.", "section": "elevation" },
+      { "name": "The Honest-Shadow Rule", "body": "Every shadow has offset and blur. No zero-blur block shadows, no zero-offset coloured halos standing in for depth.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do commit each tool to one accent (Indigo or Emerald) and use it as an organising index colour — links, primary action, focus ring, selected state.",
+      "Do give every tool a dark Ink-Slate hero cover with the dotted texture and one soft accent glow, then open into a light, scannable body.",
+      "Do rest interactive surfaces on Ambient depth and lift them translateY(-3px) with the Lifted shadow on hover.",
+      "Do keep type in Inter, with heavy negative-tracked display (-0.02em to -0.035em) and small uppercase tracked labels (+0.1em).",
+      "Do pull the first content block up into the hero with a negative top margin for immediate depth.",
+      "Do keep the accent scarce — if a colour isn't labelling or signalling state, make it slate.",
+      "Do keep new tools self-contained and buildless, inheriting tokens rather than a framework."
+    ],
+    "donts": [
+      "Don't adopt any external organisation's brand colours or identity; content names companies, the palette stays neutral.",
+      "Don't introduce a second typeface, or use monospace as a technical costume.",
+      "Don't use gradient text, hard zero-blur block shadows, or a coloured side-border thicker than 1px as resting decoration (the accordion's open-state bar is the single sanctioned exception).",
+      "Don't let the categorical spectrum become mood — it exists to distinguish items, not to fill space.",
+      "Don't flatten the depth system: shadows must keep offset and soft blur, never a zero-offset coloured halo."
+    ]
+  }
+}

@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behaviour Principles — LHV UK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --text:      #0F172A;
+      --text-2:    #334155;
+      --muted:     #64748B;
+      --bg:        #F8FAFC;
+      --bg-card:   #FFFFFF;
+      --bg-soft:   #F1F5F9;
+      --border:    #E2E8F0;
+      --font:      "Inter", system-ui, -apple-system, sans-serif;
+      --radius:    12px;
+      --radius-lg: 20px;
+      --shadow:    0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+      /* Fixed high-contrast focus colour (7:1 on paper), independent of the
+         per-principle accent so focus rings never drop below 3:1. */
+      --focus:     #4338CA;
+    }
+
+    /* Visually-hidden but available to screen readers (live status region). */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    :focus-visible { outline: none; }
+    .back-link:focus-visible {
+      outline: 2px solid #A5B4FC; outline-offset: 3px; border-radius: 6px;
+    }
+    .band-tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .link-btn:focus-visible,
+    .copy-link:focus-visible {
+      outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #0F172A 100%);
+      padding: 64px 24px 96px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; inset: 0;
+      /* single indigo glow — one accent per tool (Index-Tab Rule) */
+      background: radial-gradient(circle at 30% 40%, rgba(99,102,241,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; max-width: 720px; margin: 0 auto; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500; color: #94A3B8;
+      text-decoration: none; margin-bottom: 24px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: #E2E8F0; }
+    .hero-eyebrow {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #94A3B8;
+      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 99px; padding: 4px 14px; margin-bottom: 22px;
+    }
+    .hero-title {
+      font-size: clamp(30px, 5vw, 48px); font-weight: 700; line-height: 1.15;
+      color: #fff; margin-bottom: 16px; letter-spacing: -0.02em;
+    }
+    .hero-title span { color: #94A3B8; font-weight: 300; }
+    .hero-sub {
+      font-size: 17px; color: #94A3B8; line-height: 1.65;
+      max-width: 540px; margin: 0 auto;
+    }
+
+    /* ── LAYOUT ───────────────────────────────────────────── */
+    /* z-index lifts the control panel and cards above the positioned hero,
+       so the panel floats over the dark cover instead of being clipped by it. */
+    .wrap { max-width: 900px; margin: -56px auto 40px; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* ── CONTROL BAR ──────────────────────────────────────── */
+    .controls {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      padding: 22px 24px;
+      margin-bottom: 28px;
+    }
+    .controls-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    }
+    .band-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+    .band-tab {
+      font-family: var(--font); font-size: 13.5px; font-weight: 500;
+      color: var(--text-2); background: var(--bg-soft);
+      border: 1px solid var(--border); border-radius: 99px;
+      padding: 8px 16px; cursor: pointer;
+      display: inline-flex; align-items: center; min-height: 44px;
+      transition: all 0.15s;
+    }
+    .band-tab:hover { border-color: #CBD5E1; }
+    .band-tab.active {
+      background: var(--text); color: #fff; border-color: var(--text);
+    }
+    .band-blurb {
+      font-size: 13.5px; color: var(--muted); line-height: 1.6;
+      margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .controls-actions {
+      display: flex; gap: 16px; margin-top: 16px; flex-wrap: wrap;
+    }
+    .link-btn {
+      font-family: var(--font); font-size: 13px; font-weight: 500;
+      color: var(--muted); background: none; border: none;
+      cursor: pointer; padding: 0; text-decoration: underline;
+      text-underline-offset: 3px; transition: color 0.15s;
+    }
+    .link-btn:hover { color: var(--text); }
+
+    /* ── PRINCIPLE CARD ───────────────────────────────────── */
+    .principle {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .principle.open { box-shadow: var(--shadow-lg); }
+
+    .p-head {
+      display: flex; align-items: flex-start; gap: 18px;
+      padding: 24px 26px; cursor: pointer; user-select: none;
+      position: relative;
+      /* real <button>: reset UA chrome, keep it a full-width left-aligned row */
+      width: 100%; text-align: left; font-family: inherit; color: inherit;
+      background: var(--bg-card); border: none; appearance: none; -webkit-appearance: none;
+    }
+    /* inset ring so the card's overflow:hidden doesn't clip it */
+    .p-head:focus-visible { outline: 2px solid var(--focus); outline-offset: -3px; }
+    .p-head::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px; background: var(--accent);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .principle.open .p-head::before,
+    .p-head:hover::before { opacity: 1; }
+
+    .p-num {
+      flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: #fff;
+      background: var(--accent);
+    }
+    .p-head-text { flex: 1; min-width: 0; }
+    .p-title {
+      font-size: 20px; font-weight: 700; line-height: 1.25;
+      letter-spacing: -0.01em; margin-bottom: 6px;
+    }
+    .p-summary { font-size: 14px; color: var(--text-2); line-height: 1.6; }
+    .p-chevron {
+      flex-shrink: 0; width: 22px; height: 22px; margin-top: 10px;
+      color: var(--muted); transition: transform 0.25s;
+    }
+    .principle.open .p-chevron { transform: rotate(180deg); }
+
+    .p-body { display: none; padding: 0 26px 26px; }
+    .principle.open .p-body { display: block; }
+
+    /* ── BEHAVIOUR PAIR ───────────────────────────────────── */
+    .pair {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 16px;
+    }
+    .behaviour { padding: 18px 20px; }
+    .behaviour + .behaviour { border-top: 1px solid var(--border); }
+    .behaviour.core { background: var(--bg-card); }
+    .behaviour.lead { background: var(--bg-soft); }
+
+    .b-tag {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 99px;
+      margin-bottom: 10px;
+    }
+    .b-tag.core { color: #fff; background: var(--accent); }
+    .b-tag.lead {
+      color: var(--accent); background: transparent;
+      border: 1px solid var(--accent);
+    }
+    .b-statement {
+      font-size: 15.5px; font-weight: 600; line-height: 1.45;
+      color: var(--text); margin-bottom: 4px;
+    }
+    .b-cap {
+      font-size: 12px; color: #475569; margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .b-cap strong { color: var(--text-2); font-weight: 600; }
+    .b-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .b-list li {
+      font-size: 14px; color: var(--text-2); line-height: 1.55;
+      padding-left: 22px; position: relative;
+    }
+    .b-list li::before {
+      content: ""; position: absolute; left: 4px; top: 8px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); opacity: 0.6;
+    }
+
+    /* leadership bands within a lead behaviour */
+    .band-group { margin-top: 6px; }
+    .band-group + .band-group { margin-top: 14px; }
+    .band-group.hidden { display: none; }
+
+    /* shown in "Everyone" mode in place of the per-band bullets: teaches the
+       additive model and invites the reader to pick a leadership level */
+    .band-hint {
+      margin-top: 10px; padding-left: 22px; position: relative;
+      font-size: 13px; line-height: 1.55; color: var(--muted); font-style: italic;
+    }
+    .band-hint::before {
+      content: ""; position: absolute; left: 4px; top: 7px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); opacity: 0.35;
+    }
+    .band-hint.hidden { display: none; }
+    .band-name {
+      font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--text-2);
+      margin-bottom: 9px; display: flex; align-items: center; gap: 8px;
+    }
+    .band-name::before {
+      content: ""; width: 5px; height: 14px; border-radius: 3px;
+      background: var(--accent); opacity: 0.5;
+    }
+
+    /* ── SLIPS + ASK ──────────────────────────────────────── */
+    .extra { margin-top: 20px; }
+    .extra-head {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.02em;
+      color: var(--text); margin-bottom: 4px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .extra-head .ico { flex-shrink: 0; }
+    .extra-note {
+      font-size: 13px; color: var(--muted); line-height: 1.6;
+      margin-bottom: 12px; font-style: italic;
+    }
+    .slips {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-top: 12px;
+    }
+    .slip-row { display: grid; grid-template-columns: 1fr 1fr; }
+    .slip-row + .slip-row { border-top: 1px solid var(--border); }
+    .slip-row.header {
+      background: var(--bg-soft);
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .slip-cell { padding: 12px 16px; font-size: 13.5px; line-height: 1.5; }
+    .slip-cell.drift { color: var(--text-2); border-right: 1px solid var(--border); }
+    .slip-cell.reset { color: var(--text); font-weight: 500; }
+    .slip-cell.reset::before {
+      content: "→ "; color: var(--accent); font-weight: 700;
+    }
+    .slip-row.header .slip-cell.reset::before { content: ""; }
+
+    .ask {
+      margin-top: 18px; padding: 18px 22px;
+      background: linear-gradient(135deg, var(--accent-soft) 0%, transparent 100%);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+    }
+    .ask-label {
+      font-size: 10.5px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    }
+    .ask-q {
+      font-size: 16px; font-weight: 600; line-height: 1.45;
+      color: var(--text); font-style: italic;
+    }
+
+    /* per-principle copy-link (visible only when the card is expanded) */
+    .p-actions { margin-top: 18px; display: flex; justify-content: flex-end; }
+    .copy-link {
+      font-family: var(--font); font-size: 12.5px; font-weight: 500;
+      color: var(--muted); background: none; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 8px; border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .copy-link:hover { color: var(--text); background: var(--bg-soft); }
+    .copy-link svg { flex-shrink: 0; }
+
+    /* ── CAPABILITY REFERENCE ─────────────────────────────── */
+    .caps {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow);
+      padding: 22px 24px; margin-top: 28px;
+    }
+    .caps-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .caps-sub { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+    .caps-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .cap-chip {
+      font-size: 12.5px; font-weight: 500; color: var(--text-2);
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 99px; padding: 6px 13px;
+    }
+
+    footer {
+      text-align: center; padding: 32px 24px; font-size: 13px;
+      color: var(--muted); border-top: 1px solid var(--border); margin-top: 20px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero { padding: 48px 20px 80px; }
+      .wrap { padding: 0 16px; }
+      .p-head { padding: 20px 18px; gap: 14px; }
+      .p-body { padding: 0 18px 20px; }
+      /* Stack each drift→reset as one tight pair; the row border separates pairs. */
+      .slip-row { grid-template-columns: 1fr; }
+      .slip-cell.drift { border-right: none; padding-bottom: 4px; }
+      .slip-cell.reset { padding-top: 4px; }
+      .slip-row.header { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <a class="back-link" href="/">← All tools</a>
+      <div class="hero-eyebrow">LHV UK · Behaviour Principles</div>
+      <h1 class="hero-title"><span>How we work,</span> whatever team you sit in</h1>
+      <p class="hero-sub">
+        Six principles for how we work — paired behaviours that apply to everyone and
+        layer as you take on leadership. They describe patterns to grow into, not a
+        checklist to pass or a list of failings. Open one for the detail, and use the
+        resets for when it slips under pressure.
+      </p>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- CONTROL BAR -->
+    <section class="controls">
+      <div class="controls-label">Show behaviours for</div>
+      <div class="band-tabs" id="bandTabs"></div>
+      <div class="band-blurb" id="bandBlurb"></div>
+      <div class="controls-actions">
+        <button class="link-btn" id="expandAll">Expand all</button>
+        <button class="link-btn" id="collapseAll">Collapse all</button>
+      </div>
+    </section>
+
+    <!-- PRINCIPLES -->
+    <main id="principles"></main>
+
+    <!-- CAPABILITY REFERENCE -->
+    <section class="caps">
+      <div class="caps-title">The eight capabilities</div>
+      <p class="caps-sub">
+        Every behaviour is anchored to one of these, reused across the framework so
+        development and feedback conversations share a consistent vocabulary.
+      </p>
+      <div class="caps-list" id="capsList"></div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>share.codie.co.nz — patterns of behaviour, not a promotion checklist</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script>
+    (function () {
+      var currentBand = "everyone";
+
+      // ── Leadership band tabs ───────────────────────────────
+      var tabsEl = document.getElementById("bandTabs");
+      var blurbEl = document.getElementById("bandBlurb");
+
+      // group semantics: these buttons toggle content shown across all cards
+      tabsEl.setAttribute("role", "group");
+      tabsEl.setAttribute("aria-label", "Show behaviours for leadership level");
+
+      // polite live region so band + copy changes are announced to screen readers
+      var liveEl = document.createElement("div");
+      liveEl.className = "sr-only";
+      liveEl.setAttribute("aria-live", "polite");
+      document.body.appendChild(liveEl);
+
+      BANDS.forEach(function (band) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "band-tab" + (band.key === currentBand ? " active" : "");
+        btn.textContent = band.label;
+        btn.dataset.band = band.key;
+        btn.setAttribute("aria-pressed", band.key === currentBand ? "true" : "false");
+        btn.addEventListener("click", function () { setBand(band.key); });
+        tabsEl.appendChild(btn);
+      });
+
+      function setBand(key) {
+        currentBand = key;
+        Array.prototype.forEach.call(tabsEl.children, function (b) {
+          var on = b.dataset.band === key;
+          b.classList.toggle("active", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
+        });
+        var band = BANDS.find(function (b) { return b.key === key; });
+        blurbEl.textContent = band.blurb;
+        applyBand();
+        liveEl.textContent = key === "everyone"
+          ? "Showing core behaviours for everyone."
+          : "Showing behaviours for " + band.label + ".";
+      }
+
+      // which band groups are visible for the selected level.
+      // Bands are cumulative: Leads Leaders also does Leads Others, etc.
+      var BAND_STACK = { everyone: [], others: ["others"], leaders: ["others", "leaders"], business: ["others", "leaders", "business"] };
+
+      function applyBand() {
+        var visible = BAND_STACK[currentBand];
+        document.querySelectorAll(".lead-wrap").forEach(function (lead) {
+          var anyShown = false;
+          lead.querySelectorAll(".band-group").forEach(function (g) {
+            var show = visible.indexOf(g.dataset.band) !== -1;
+            g.classList.toggle("hidden", !show);
+            if (show) anyShown = true;
+          });
+          // in "Everyone" mode no band groups show, so surface the teaching
+          // hint instead of leaving an empty lead block
+          var hint = lead.querySelector(".band-hint");
+          if (hint) hint.classList.toggle("hidden", anyShown);
+        });
+      }
+
+      // ── Build principles ───────────────────────────────────
+      var host = document.getElementById("principles");
+      var BAND_LABEL = { others: "Leads Others", leaders: "Leads Leaders", business: "Leads Business" };
+
+      function el(tag, cls, html) {
+        var n = document.createElement(tag);
+        if (cls) n.className = cls;
+        if (html != null) n.innerHTML = html;
+        return n;
+      }
+      function esc(s) {
+        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+
+      function fallbackCopy(text) {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.setAttribute("readonly", "");
+        ta.style.position = "absolute"; ta.style.left = "-9999px";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+
+      function copyPrincipleLink(id, btn) {
+        var url = location.origin + location.pathname + "#" + id;
+        var label = btn.querySelector(".copy-label");
+        function done() {
+          if (label) {
+            var prev = label.textContent;
+            label.textContent = "Copied";
+            setTimeout(function () { label.textContent = prev; }, 1600);
+          }
+          liveEl.textContent = "Link to this principle copied to clipboard.";
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
+        } else {
+          fallbackCopy(url); done();
+        }
+      }
+
+      function bulletList(items) {
+        var ul = el("ul", "b-list");
+        items.forEach(function (t) { ul.appendChild(el("li", null, esc(t))); });
+        return ul;
+      }
+
+      function behaviourBlock(pair) {
+        var frag = document.createDocumentFragment();
+
+        // Core
+        var core = el("div", "behaviour core");
+        core.appendChild(el("span", "b-tag core", "Core · all levels"));
+        core.appendChild(el("div", "b-statement", esc(pair.core.statement)));
+        core.appendChild(el("div", "b-cap", "Capability: <strong>" + esc(pair.core.capability) + "</strong>"));
+        core.appendChild(bulletList(pair.core.bullets));
+        frag.appendChild(core);
+
+        // Lead
+        var lead = el("div", "behaviour lead lead-wrap");
+        lead.appendChild(el("span", "b-tag lead", "Lead · additive"));
+        lead.appendChild(el("div", "b-statement", esc(pair.lead.statement)));
+        lead.appendChild(el("div", "b-cap", "Capability: <strong>" + esc(pair.lead.capability) + "</strong>"));
+        ["others", "leaders", "business"].forEach(function (bk) {
+          var group = el("div", "band-group");
+          group.dataset.band = bk;
+          group.appendChild(el("div", "band-name", esc(BAND_LABEL[bk])));
+          group.appendChild(bulletList(pair.lead.bands[bk]));
+          lead.appendChild(group);
+        });
+        // teaching hint shown when no band is selected (Everyone mode)
+        lead.appendChild(el("div", "band-hint",
+          "Pick a leadership level above to see how this behaviour layers on as you lead."));
+        frag.appendChild(lead);
+
+        return frag;
+      }
+
+      function slipsBlock(p) {
+        var wrap = el("div", "extra");
+        wrap.appendChild(el("div", "extra-head",
+          '<svg class="ico" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> When this slips'));
+        wrap.appendChild(el("p", "extra-note",
+          "Not a list of failings — these are the ways all of us drift under pressure, each paired with a practical reset."));
+        if (p.slipsNote) wrap.appendChild(el("p", "extra-note", esc(p.slipsNote)));
+
+        var table = el("div", "slips");
+        var header = el("div", "slip-row header");
+        header.appendChild(el("div", "slip-cell drift", "Drift"));
+        header.appendChild(el("div", "slip-cell reset", "Reset"));
+        table.appendChild(header);
+        p.slips.forEach(function (s) {
+          var row = el("div", "slip-row");
+          row.appendChild(el("div", "slip-cell drift", esc(s.drift)));
+          row.appendChild(el("div", "slip-cell reset", esc(s.reset)));
+          table.appendChild(row);
+        });
+        wrap.appendChild(table);
+
+        var ask = el("div", "ask");
+        ask.appendChild(el("div", "ask-label", "Ask yourself"));
+        ask.appendChild(el("div", "ask-q", "“" + esc(p.ask) + "”"));
+        wrap.appendChild(ask);
+
+        return wrap;
+      }
+
+      PRINCIPLES.forEach(function (p) {
+        var card = el("div", "principle");
+        card.id = "principle-" + p.n;
+        card.style.setProperty("--accent", p.accent);
+        card.style.setProperty("--accent-soft", p.accent + "14"); // ~8% alpha
+
+        var numId = "principle-" + p.n + "-num";
+        var titleId = "principle-" + p.n + "-title";
+        var bodyId = "principle-" + p.n + "-body";
+
+        // header is a real <button> so it's keyboard- and screen-reader-operable
+        var head = el("button", "p-head");
+        head.type = "button";
+        head.setAttribute("aria-expanded", "false");
+        head.setAttribute("aria-controls", bodyId);
+        head.setAttribute("aria-labelledby", numId + " " + titleId);
+
+        var num = el("div", "p-num", String(p.n));
+        num.id = numId;
+        head.appendChild(num);
+        var ht = el("div", "p-head-text");
+        var title = el("div", "p-title", esc(p.title));
+        title.id = titleId;
+        ht.appendChild(title);
+        ht.appendChild(el("div", "p-summary", esc(p.summary)));
+        head.appendChild(ht);
+        head.appendChild(el("div", "p-chevron",
+          '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>'));
+        head.addEventListener("click", function () {
+          var open = card.classList.toggle("open");
+          head.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+        card.appendChild(head);
+
+        var body = el("div", "p-body");
+        body.id = bodyId;
+        body.setAttribute("role", "region");
+        body.setAttribute("aria-labelledby", titleId);
+        p.pairs.forEach(function (pair) {
+          var pairEl = el("div", "pair");
+          pairEl.appendChild(behaviourBlock(pair));
+          body.appendChild(pairEl);
+        });
+        body.appendChild(slipsBlock(p));
+
+        // copy-link affordance (link-first sharing of a single principle)
+        var actions = el("div", "p-actions");
+        var copyBtn = el("button", "copy-link",
+          '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="copy-label">Copy link</span>');
+        copyBtn.type = "button";
+        copyBtn.setAttribute("aria-label", "Copy link to this principle");
+        copyBtn.addEventListener("click", function () { copyPrincipleLink(card.id, copyBtn); });
+        actions.appendChild(copyBtn);
+        body.appendChild(actions);
+
+        card.appendChild(body);
+
+        host.appendChild(card);
+      });
+
+      // ── Capability chips ───────────────────────────────────
+      var capsList = document.getElementById("capsList");
+      CAPABILITIES.forEach(function (c) {
+        capsList.appendChild(el("span", "cap-chip", esc(c)));
+      });
+
+      // ── Expand / collapse ──────────────────────────────────
+      function setAllOpen(open) {
+        document.querySelectorAll(".principle").forEach(function (c) {
+          c.classList.toggle("open", open);
+          var head = c.querySelector(".p-head");
+          if (head) head.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      }
+      document.getElementById("expandAll").addEventListener("click", function () { setAllOpen(true); });
+      document.getElementById("collapseAll").addEventListener("click", function () { setAllOpen(false); });
+
+      // ── Deep-link: open the principle named in the URL hash ─
+      function openFromHash() {
+        var h = location.hash.replace(/^#/, "");
+        if (!h) return;
+        var target = document.getElementById(h);
+        if (target && target.classList.contains("principle")) {
+          target.classList.add("open");
+          var head = target.querySelector(".p-head");
+          if (head) head.setAttribute("aria-expanded", "true");
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+      window.addEventListener("hashchange", openFromHash);
+
+      // init
+      setBand("everyone");
+      openFromHash();
+    })();
+  </script>
+
+</body>
+</html>

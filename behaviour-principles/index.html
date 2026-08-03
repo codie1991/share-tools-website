@@ -74,7 +74,9 @@
     }
 
     /* ── LAYOUT ───────────────────────────────────────────── */
-    .wrap { max-width: 900px; margin: -56px auto 40px; padding: 0 24px; }
+    /* z-index lifts the control panel and cards above the positioned hero,
+       so the panel floats over the dark cover instead of being clipped by it. */
+    .wrap { max-width: 900px; margin: -56px auto 40px; padding: 0 24px; position: relative; z-index: 1; }
 
     /* ── CONTROL BAR ──────────────────────────────────────── */
     .controls {
@@ -224,7 +226,7 @@
       color: var(--text); margin-bottom: 4px;
       display: flex; align-items: center; gap: 8px;
     }
-    .extra-head .ico { font-size: 15px; }
+    .extra-head .ico { flex-shrink: 0; }
     .extra-note {
       font-size: 13px; color: var(--muted); line-height: 1.6;
       margin-bottom: 12px; font-style: italic;
@@ -289,8 +291,10 @@
       .wrap { padding: 0 16px; }
       .p-head { padding: 20px 18px; gap: 14px; }
       .p-body { padding: 0 18px 20px; }
+      /* Stack each drift→reset as one tight pair; the row border separates pairs. */
       .slip-row { grid-template-columns: 1fr; }
-      .slip-cell.drift { border-right: none; border-bottom: 1px solid var(--border); }
+      .slip-cell.drift { border-right: none; padding-bottom: 4px; }
+      .slip-cell.reset { padding-top: 4px; }
       .slip-row.header { display: none; }
     }
   </style>
@@ -438,7 +442,8 @@
 
       function slipsBlock(p) {
         var wrap = el("div", "extra");
-        wrap.appendChild(el("div", "extra-head", '<span class="ico">🧭</span> When this slips'));
+        wrap.appendChild(el("div", "extra-head",
+          '<svg class="ico" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> When this slips'));
         wrap.appendChild(el("p", "extra-note",
           "Not a list of failings — these are the ways all of us drift under pressure, each paired with a practical reset."));
         if (p.slipsNote) wrap.appendChild(el("p", "extra-note", esc(p.slipsNote)));

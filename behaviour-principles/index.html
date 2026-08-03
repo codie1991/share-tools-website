@@ -23,6 +23,25 @@
       --radius-lg: 20px;
       --shadow:    0 4px 16px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.04);
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+      /* Fixed high-contrast focus colour (7:1 on paper), independent of the
+         per-principle accent so focus rings never drop below 3:1. */
+      --focus:     #4338CA;
+    }
+
+    /* Visually-hidden but available to screen readers (live status region). */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    :focus-visible { outline: none; }
+    .back-link:focus-visible {
+      outline: 2px solid #A5B4FC; outline-offset: 3px; border-radius: 6px;
+    }
+    .band-tab:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .link-btn:focus-visible,
+    .copy-link:focus-visible {
+      outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px;
     }
 
     body {
@@ -97,6 +116,7 @@
       color: var(--text-2); background: var(--bg-soft);
       border: 1px solid var(--border); border-radius: 99px;
       padding: 8px 16px; cursor: pointer;
+      display: inline-flex; align-items: center; min-height: 44px;
       transition: all 0.15s;
     }
     .band-tab:hover { border-color: #CBD5E1; }
@@ -134,7 +154,12 @@
       display: flex; align-items: flex-start; gap: 18px;
       padding: 24px 26px; cursor: pointer; user-select: none;
       position: relative;
+      /* real <button>: reset UA chrome, keep it a full-width left-aligned row */
+      width: 100%; text-align: left; font-family: inherit; color: inherit;
+      background: var(--bg-card); border: none; appearance: none; -webkit-appearance: none;
     }
+    /* inset ring so the card's overflow:hidden doesn't clip it */
+    .p-head:focus-visible { outline: 2px solid var(--focus); outline-offset: -3px; }
     .p-head::before {
       content: ""; position: absolute; left: 0; top: 0; bottom: 0;
       width: 4px; background: var(--accent);
@@ -190,7 +215,7 @@
       color: var(--text); margin-bottom: 4px;
     }
     .b-cap {
-      font-size: 12px; color: var(--muted); margin-bottom: 12px;
+      font-size: 12px; color: #475569; margin-bottom: 12px;
       font-weight: 500;
     }
     .b-cap strong { color: var(--text-2); font-weight: 600; }
@@ -266,6 +291,18 @@
       color: var(--text); font-style: italic;
     }
 
+    /* per-principle copy-link (visible only when the card is expanded) */
+    .p-actions { margin-top: 18px; display: flex; justify-content: flex-end; }
+    .copy-link {
+      font-family: var(--font); font-size: 12.5px; font-weight: 500;
+      color: var(--muted); background: none; border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 8px; border-radius: 6px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .copy-link:hover { color: var(--text); background: var(--bg-soft); }
+    .copy-link svg { flex-shrink: 0; }
+
     /* ── CAPABILITY REFERENCE ─────────────────────────────── */
     .caps {
       background: var(--bg-card); border: 1px solid var(--border);
@@ -283,7 +320,14 @@
 
     footer {
       text-align: center; padding: 32px 24px; font-size: 13px;
-      color: #94A3B8; border-top: 1px solid var(--border); margin-top: 20px;
+      color: var(--muted); border-top: 1px solid var(--border); margin-top: 20px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
     }
 
     @media (max-width: 560px) {
@@ -355,11 +399,23 @@
       var tabsEl = document.getElementById("bandTabs");
       var blurbEl = document.getElementById("bandBlurb");
 
+      // group semantics: these buttons toggle content shown across all cards
+      tabsEl.setAttribute("role", "group");
+      tabsEl.setAttribute("aria-label", "Show behaviours for leadership level");
+
+      // polite live region so band + copy changes are announced to screen readers
+      var liveEl = document.createElement("div");
+      liveEl.className = "sr-only";
+      liveEl.setAttribute("aria-live", "polite");
+      document.body.appendChild(liveEl);
+
       BANDS.forEach(function (band) {
         var btn = document.createElement("button");
+        btn.type = "button";
         btn.className = "band-tab" + (band.key === currentBand ? " active" : "");
         btn.textContent = band.label;
         btn.dataset.band = band.key;
+        btn.setAttribute("aria-pressed", band.key === currentBand ? "true" : "false");
         btn.addEventListener("click", function () { setBand(band.key); });
         tabsEl.appendChild(btn);
       });
@@ -367,11 +423,16 @@
       function setBand(key) {
         currentBand = key;
         Array.prototype.forEach.call(tabsEl.children, function (b) {
-          b.classList.toggle("active", b.dataset.band === key);
+          var on = b.dataset.band === key;
+          b.classList.toggle("active", on);
+          b.setAttribute("aria-pressed", on ? "true" : "false");
         });
         var band = BANDS.find(function (b) { return b.key === key; });
         blurbEl.textContent = band.blurb;
         applyBand();
+        liveEl.textContent = key === "everyone"
+          ? "Showing core behaviours for everyone."
+          : "Showing behaviours for " + band.label + ".";
       }
 
       // which band groups are visible for the selected level.
@@ -404,6 +465,33 @@
       }
       function esc(s) {
         return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      }
+
+      function fallbackCopy(text) {
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.setAttribute("readonly", "");
+        ta.style.position = "absolute"; ta.style.left = "-9999px";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+
+      function copyPrincipleLink(id, btn) {
+        var url = location.origin + location.pathname + "#" + id;
+        var label = btn.querySelector(".copy-label");
+        function done() {
+          if (label) {
+            var prev = label.textContent;
+            label.textContent = "Copied";
+            setTimeout(function () { label.textContent = prev; }, 1600);
+          }
+          liveEl.textContent = "Link to this principle copied to clipboard.";
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(done, function () { fallbackCopy(url); done(); });
+        } else {
+          fallbackCopy(url); done();
+        }
       }
 
       function bulletList(items) {
@@ -471,29 +559,59 @@
 
       PRINCIPLES.forEach(function (p) {
         var card = el("div", "principle");
+        card.id = "principle-" + p.n;
         card.style.setProperty("--accent", p.accent);
         card.style.setProperty("--accent-soft", p.accent + "14"); // ~8% alpha
 
-        var head = el("div", "p-head");
-        head.appendChild(el("div", "p-num", String(p.n)));
+        var numId = "principle-" + p.n + "-num";
+        var titleId = "principle-" + p.n + "-title";
+        var bodyId = "principle-" + p.n + "-body";
+
+        // header is a real <button> so it's keyboard- and screen-reader-operable
+        var head = el("button", "p-head");
+        head.type = "button";
+        head.setAttribute("aria-expanded", "false");
+        head.setAttribute("aria-controls", bodyId);
+        head.setAttribute("aria-labelledby", numId + " " + titleId);
+
+        var num = el("div", "p-num", String(p.n));
+        num.id = numId;
+        head.appendChild(num);
         var ht = el("div", "p-head-text");
-        ht.appendChild(el("div", "p-title", esc(p.title)));
+        var title = el("div", "p-title", esc(p.title));
+        title.id = titleId;
+        ht.appendChild(title);
         ht.appendChild(el("div", "p-summary", esc(p.summary)));
         head.appendChild(ht);
         head.appendChild(el("div", "p-chevron",
-          '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>'));
+          '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>'));
         head.addEventListener("click", function () {
-          card.classList.toggle("open");
+          var open = card.classList.toggle("open");
+          head.setAttribute("aria-expanded", open ? "true" : "false");
         });
         card.appendChild(head);
 
         var body = el("div", "p-body");
+        body.id = bodyId;
+        body.setAttribute("role", "region");
+        body.setAttribute("aria-labelledby", titleId);
         p.pairs.forEach(function (pair) {
           var pairEl = el("div", "pair");
           pairEl.appendChild(behaviourBlock(pair));
           body.appendChild(pairEl);
         });
         body.appendChild(slipsBlock(p));
+
+        // copy-link affordance (link-first sharing of a single principle)
+        var actions = el("div", "p-actions");
+        var copyBtn = el("button", "copy-link",
+          '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg><span class="copy-label">Copy link</span>');
+        copyBtn.type = "button";
+        copyBtn.setAttribute("aria-label", "Copy link to this principle");
+        copyBtn.addEventListener("click", function () { copyPrincipleLink(card.id, copyBtn); });
+        actions.appendChild(copyBtn);
+        body.appendChild(actions);
+
         card.appendChild(body);
 
         host.appendChild(card);
@@ -506,15 +624,33 @@
       });
 
       // ── Expand / collapse ──────────────────────────────────
-      document.getElementById("expandAll").addEventListener("click", function () {
-        document.querySelectorAll(".principle").forEach(function (c) { c.classList.add("open"); });
-      });
-      document.getElementById("collapseAll").addEventListener("click", function () {
-        document.querySelectorAll(".principle").forEach(function (c) { c.classList.remove("open"); });
-      });
+      function setAllOpen(open) {
+        document.querySelectorAll(".principle").forEach(function (c) {
+          c.classList.toggle("open", open);
+          var head = c.querySelector(".p-head");
+          if (head) head.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      }
+      document.getElementById("expandAll").addEventListener("click", function () { setAllOpen(true); });
+      document.getElementById("collapseAll").addEventListener("click", function () { setAllOpen(false); });
+
+      // ── Deep-link: open the principle named in the URL hash ─
+      function openFromHash() {
+        var h = location.hash.replace(/^#/, "");
+        if (!h) return;
+        var target = document.getElementById(h);
+        if (target && target.classList.contains("principle")) {
+          target.classList.add("open");
+          var head = target.querySelector(".p-head");
+          if (head) head.setAttribute("aria-expanded", "true");
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+      window.addEventListener("hashchange", openFromHash);
 
       // init
       setBand("everyone");
+      openFromHash();
     })();
   </script>
 

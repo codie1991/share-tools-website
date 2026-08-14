@@ -29,23 +29,23 @@ const PRINCIPLES = [
     title: "We Ship Small, and We Bring Approval In Early",
     accent: "#4F46E5",
     summary:
-      "Safe to fail, fast to learn: the smaller and more reversible a change is, the safer it is to get wrong. In a regulated sector, though, the real constraint on how small you can go isn't your architecture, it's change control, test and security review, and (for mobile) app store review. Design for that constraint, don't pretend it isn't there.",
+      "Safe to fail, fast to learn: the smaller and more reversible a change is, the lower the risk and the sooner we learn from it. In a regulated sector, the pace of that learning is set by change control, test and security review, and (for mobile) app store review, not just by our own architecture. Designing around that from the start is how we keep shipping at pace, not despite it.",
     cores: [
       {
         statement: "I ship the smallest useful, reversible slice",
         capability: "Judgement and Decision-Making",
         bullets: [
           "Break work into changes small enough to reason about and roll back on their own, not just small enough to code in a day",
-          "Design the rollback path before you ship, not after something's gone wrong",
-          "Resist \"big bang\" by default; treat it as an exception you have to justify, not a fallback when slicing feels hard",
+          "Build the rollback path into the change itself, so recovery is fast and boring rather than improvised",
+          "Look for the smaller path first: treat a big-bang release as a deliberate choice that earns its place, not the default when slicing feels hard",
         ],
       },
       {
         statement: "I build the approval path into the plan, not onto the end of it",
         capability: "Seek Perspective and Build Alignment",
         bullets: [
-          "Treat test, security review and compliance sign-off as part of the design conversation, not a queue you throw finished work into, and loop them in before the work's finished, not once it's done",
-          "Backend, mobile, and test don't move at the same speed: size your slice around whichever approval path is actually slowest, not the fastest one",
+          "Treat test, security review and compliance sign-off as partners in the design, not a queue at the end. Loop them in while the approach is still open, and keep momentum by giving them a head start.",
+          "Backend, mobile, and test move at different speeds. Size the slice around whichever approval path is slowest, so the whole thing actually ships, not just your part.",
         ],
       },
     ],
@@ -54,16 +54,16 @@ const PRINCIPLES = [
       capability: "Judgement and Decision-Making",
       bands: {
         others: [
-          "Push back on \"big bang\" plans and help the team find the smaller path",
-          "Loop change control and test in during design, not at sign-off, so they're a partner rather than a surprise",
+          "Help the team find the smaller, shippable path before reaching for a big-bang plan",
+          "Bring change control and test into design early so they're a partner in moving fast, not a surprise at the end",
         ],
         leaders: [
-          "Coach leaders to resist scope and batch-size creep under delivery pressure",
+          "Coach leaders to protect small batch sizes under delivery pressure, since that's what keeps momentum predictable",
           "Make \"what does this need approved, and by when\" as normal a planning question as any technical one",
         ],
         business: [
-          "Back investment in rollout tooling, flags, and staged rollout, rather than leaving it to be improvised project by project",
-          "Where a launch genuinely has to be big-bang, expect early warning and a deliberate change-control and security plan, not a gate discovered late",
+          "Directors back investment in rollout tooling, flags, staged rollout, so pace doesn't depend on improvising it project by project",
+          "Where a launch genuinely has to be big-bang, Directors expect early warning and a deliberate change-control and security plan, not a gate discovered late",
         ],
       },
     },
@@ -74,63 +74,66 @@ const PRINCIPLES = [
       { drift: "Treating change control, test or security review as a gate to survive", reset: "Bring them into the design while it's still open, not for a rubber stamp" },
       { drift: "Waiting for the \"complete\" version before shipping anything", reset: "Ask what the smallest version is that actually teaches you something, and what it needs approved" },
     ],
-    ask: "What's the smallest version of this I could ship, and have I told the people who need to approve it early enough that I'm not surprising them?",
+    ask: "What's the smallest version of this I could ship? Have I told the people who need to approve it, early enough that I'm not surprising them?",
   },
 
   {
     n: 2,
-    title: "We Go Deep Before We Commit",
+    title: "We Go Deep on Purpose, Then Move Fast",
     accent: "#0369A1",
     summary:
-      "Understand deeply before you fix, decide, or optimise, and never get comfortable with a system behaving in a way nobody can explain: don't act on an assumption you haven't tested, whether that's about a bug's cause, a bottleneck, or a shortcut's real cost. Depth is a deliberate choice, not automatic: know when it's worth the time, and say so plainly when you're choosing not to dig in.",
+      "Depth is a judgement call, not a default. Know when a problem actually needs investigation, and make that call on purpose, not out of habit. Never get comfortable with a system behaving in a way nobody can explain, and don't act on an assumption you haven't tested, whether that's a bug's cause, a bottleneck, or a shortcut's real cost. Often the fastest way to find the unknown unknowns isn't more analysis. It's shipping the smallest thing that tests the assumption, and learning from what comes back.",
     cores: [
       {
-        statement: "I tackle the scariest unknowns head-on, and I refuse to shrug at the unexplained",
+        statement: "I judge how deep a problem needs, then commit to finding out",
         capability: "Depth and Simplicity",
         bullets: [
-          "Strong engineers tackle the scariest unknowns head-on instead of procrastinating: find the part of the problem you understand least, and go there first, not last",
-          "Find the actual cause before proposing the fix, and look for the pattern behind anything recurring; treat odd behaviour, even when it's harmless, as something to understand, not something to get used to",
-          "If the risk is unclear, run a deliberate pass to surface the unknown unknowns, rather than assuming there aren't any",
+          "Decide upfront whether this needs a five-minute check or a real investigation. Say which out loud, rather than defaulting to either.",
+          "Tackle the scariest unknowns head-on instead of procrastinating. Find the part of the problem you understand least, and go there first, not last.",
+          "Find the actual cause before proposing the fix. Look for the pattern behind anything that recurs. Treat odd behaviour, even when it's harmless, as something to understand, not get used to.",
+          "Where shipping something small would answer the question faster than more analysis, do that instead. Delivery is often how you find the unknown unknowns, not a distraction from it.",
         ],
       },
       {
-        statement: "I take on technical debt deliberately, and I say out loud what it costs",
+        statement: "I bring options and their tradeoffs, and I own the debt I choose to take on",
         capability: "Judgement and Decision-Making",
         bullets: [
-          "Prove correctness before chasing performance, and use telemetry or data to justify complexity, not a hunch that it might matter later",
-          "Take on technical debt deliberately when it buys real speed, never by accident or by default",
-          "Weigh where the debt sits: debt in an internal tool is a different call from debt in a compliance-critical path",
-          "Say out loud what it costs, where it lives, and when it's paid back, so someone other than you could pick up the tab knowingly",
+          "Prove correctness before chasing performance. Use telemetry or data to justify complexity, not a hunch that it might matter later.",
+          "Once you've gone deep enough to have a view, bring back more than one workable option with its tradeoffs, not just a single fix.",
+          "Take on technical debt deliberately when it buys real speed, never by accident or by default. Weigh where it sits: debt in an internal tool is a different call from debt in a compliance-critical path.",
+          "Say out loud what it costs, where it lives, and when it's paid back, so someone other than you could pick up the tab knowingly.",
         ],
       },
     ],
     lead: {
-      statement: "I make going deep the norm, not the hero move, and I own the trade-offs the team accepts",
+      statement: "I make the depth call a normal planning question, not a hero move, and I own the trade-offs the team accepts",
       capability: "Depth and Simplicity",
       bands: {
         others: [
-          "Ask \"do we understand why?\" before \"is it fixed?\"",
-          "Protect time to actually investigate rather than patch and move on",
-          "Make deliberate debt visible on the backlog with an explicit note on which systems it touches",
+          "Make \"how deep does this need to go\" a normal question in planning and reviews, not just \"is it fixed\"",
+          "Protect time to investigate when the answer's \"deep\", and protect pace when it isn't",
+          "Make deliberate debt visible on the backlog, with a note on which systems it touches",
         ],
         leaders: [
-          "Coach leaders to resist closing incidents on speed alone, and hold teams to explaining anomalies, not just resolving symptoms, especially where customer data or a compliance-critical system is involved",
-          "Enforce day to day that debt in those paths gets flagged and reviewed differently from debt in internal tooling",
+          "Coach leaders to resist closing incidents on speed alone, and to hold teams to explaining anomalies, not just resolving symptoms",
+          "Expect options with tradeoffs on compliance-critical calls, not a single recommendation",
+          "Enforce that debt in those paths gets flagged and reviewed differently from debt in internal tooling",
         ],
         business: [
-          "Treat compliance-critical debt as a genuine trade-off conversation, not a delay waved through under commercial pressure",
-          "Know what's been accepted and when it's due back, because it's been raised to you plainly",
+          "Directors treat compliance-critical debt as a genuine trade-off conversation, not a delay waved through under commercial pressure",
+          "They know what's been accepted and when it's due back, because it's been raised to them plainly",
         ],
       },
     },
     slipsNote: null,
     slips: [
       { drift: "Avoiding the hard, unfamiliar part of a problem while looking busy elsewhere", reset: "Name the part you understand least, and go there first, not last" },
+      { drift: "Investigating everything to the same depth regardless of risk or reversibility", reset: "Ask what's actually at stake, and size the dig to that, not to habit" },
       { drift: "Treating a recurring alert as background noise", reset: "Ask what's happened the last three times this fired" },
       { drift: "Optimising code that isn't actually a bottleneck", reset: "Profile first, and only touch what the data points at" },
       { drift: "Taking on debt quietly in a path that touches customer data or a compliance-critical system, with no record of it", reset: "Name it explicitly: what it costs, when it's paid back, and who's signed off knowing it's there" },
     ],
-    ask: "Am I heading for the part of this I understand least, or avoiding it, and do I actually know why this happens, or have I just gotten used to it?",
+    ask: "Is this one of the moments that actually needs depth, or am I defaulting to habit? Would shipping something small teach me faster than thinking about it longer?",
   },
 
   {
@@ -172,7 +175,8 @@ const PRINCIPLES = [
           "Hold teams to a standard for what \"done\" includes, including what an auditor or regulator would need to see",
         ],
         business: [
-          "Resource this standard rather than treating it as free: when backend, mobile, or test need time or tooling to meet it, that's a legitimate ask, not a discretionary extra squeezed out under delivery pressure",
+          "Directors resource this standard rather than treating it as free",
+          "When backend, mobile, or test need time or tooling to meet it, that's a legitimate ask, not a discretionary extra squeezed out under delivery pressure",
         ],
       },
     },
@@ -191,7 +195,7 @@ const PRINCIPLES = [
     title: "We Design Across the Seam",
     accent: "#B45309",
     summary:
-      "Backend, mobile, and test don't move at the same speed or answer to the same clock: backend deploys in minutes, mobile's release train runs over days or weeks with app store review in the middle, and test's review gates the path rather than sitting alongside it. The seams between these are where things actually break, and this team has never had a principle that names it.",
+      "Backend, mobile, and test don't move at the same speed or answer to the same clock: backend deploys in minutes, mobile's release train runs over days or weeks with app store review in the middle, and test's review gates the path rather than sitting alongside it. The seams between these are where things actually break.",
     cores: [
       {
         statement: "I plan and communicate dependencies across backend, mobile, and test before we hit them at integration",
@@ -218,13 +222,15 @@ const PRINCIPLES = [
       bands: {
         others: [
           "Make review turnaround a team norm across discipline boundaries, not an individual virtue",
-          "Pair backend and mobile engineers across a dependency instead of throwing a spec over the wall",
+          "Pair backend and mobile engineers across a dependency, instead of throwing a spec over the wall",
         ],
         leaders: [
-          "Coach leaders to raise cross-discipline blockers before they become a release slip, pull test in early rather than as a late blocker, and keep backend, mobile, and test plans visible to each other before commitments are made",
+          "Coach leaders to raise cross-discipline blockers before they become a release slip, and to pull test in early rather than as a late blocker",
+          "Keep backend, mobile, and test plans visible to each other before commitments are made",
         ],
         business: [
-          "Investment in integration platforms or tooling that would remove this friction structurally is a Director-level call; keep making the case for it, and manage the seam through visibility and joint planning in the meantime",
+          "Investment in integration platforms or tooling that would remove this friction structurally is a Director-level call",
+          "This function keeps making the case for it, and manages the seam through visibility and joint planning in the meantime",
         ],
       },
     },
@@ -235,23 +241,25 @@ const PRINCIPLES = [
       { drift: "Assuming everyone can move at backend's deploy cadence", reset: "Plan around the slowest link in the chain, usually mobile release and app store review" },
       { drift: "Letting a cross-discipline review queue because your own work feels more urgent", reset: "Do the five-minute review before you open your next ticket" },
     ],
-    ask: "Who else's cadence, release, or review does this touch, and have I told them before they found out the hard way?",
+    ask: "Who else's cadence, release, or review does this touch? Have I told them, before they found out the hard way?",
   },
 
   {
     n: 5,
-    title: "We Say It Straight, Especially About Risk",
+    title: "We Say It Straight, and We Bring a Way Forward",
     accent: "#BE185D",
     summary:
-      "Clear, honest communication about how the work's actually going, not just when it's finished or on fire, and especially about risk when the news is bad: none of that happens without people feeling safe to say true things out loud, including when something they tried didn't work. In a regulated sector, a late or softened signal costs customers real trust, and often real money too.",
+      "Clear, honest communication about how the work's actually going, not just when it's finished or on fire. That takes people feeling safe to say true things out loud, including when something they tried didn't work. In a regulated sector, a late or softened signal costs customers real trust, and often real money too.",
     cores: [
       {
         statement: "I keep Product, Design, and the business genuinely in the loop on how the work's actually going",
         capability: "Communicate Clearly",
         bullets: [
-          "Keep the people relying on you aware of where things stand before they have to ask: a short, regular update, even \"no news,\" builds more trust than a good surprise ever does",
-          "Talk to Product, Design, and other stakeholders about trade-offs and decisions while they're still open, not as a fait accompli once the call's made",
+          "Keep the people relying on you aware of where things stand, before they have to ask. A short, regular update, even \"no news,\" builds more trust than a good surprise ever does.",
+          "Talk to Product, Design, and other stakeholders about trade-offs and decisions while they're still open, not after the call's already made",
           "Say \"this is behind\" or \"this needs a trade-off\" as plainly and as early as you'd say good news, without waiting to be asked",
+          "Bring a recommendation alongside any open trade-off, not just the options. Say what you'd do and why, then let people push back on it.",
+          "Keep debating an open decision as long as it's genuinely moving. Once it's made, engage with it, and don't keep relitigating it.",
         ],
       },
       {
@@ -261,6 +269,7 @@ const PRINCIPLES = [
           "Flag a production risk, security concern, or likely incident immediately, before it's confirmed, not after",
           "Say the plain version first: what's affected, how badly, what you're doing about it",
           "Say \"I don't know yet\" honestly rather than guessing to sound in control",
+          "If you're raising the same concern a second time, bring an option or a decision with it, not just the repeat",
         ],
       },
     ],
@@ -270,17 +279,18 @@ const PRINCIPLES = [
       bands: {
         others: [
           "Make it normal to share routine progress and stakeholder talk openly, not just problems",
-          "Treat an honest mistake or failed experiment as something to learn from, not punish, so people stay safe to fail and fast to say so",
+          "Treat an honest mistake or failed experiment as something to learn from, not punish. That's what keeps people safe to fail and fast to say so.",
           "Thank people for raising things early, even when it turns out to be nothing",
+          "Coach people to pair a concern with a proposed path, and to know when a debate's done its job",
         ],
         leaders: [
-          "Model calm, direct communication with stakeholders and in incidents alike under real pressure",
+          "Model calm, direct communication with stakeholders and in incidents alike, under real pressure",
           "Coach leaders to give the plain version upward and outward, not the version that looks best",
           "Hold this team to honest, early reporting at every level, including when it reflects badly on a call this function made",
         ],
         business: [
-          "Expect and reward the plain version arriving early, even when it reflects badly on a call this function made, and treat a late escalation as the failure, not the bad news itself",
-          "That trust runs both ways: expect genuine visibility into significant work in flight, not just an alert once it's gone wrong, because everyday visibility is what makes the bad news credible when it lands",
+          "Directors expect and reward the plain version arriving early, even when it reflects badly on a call this function made. They treat a late escalation as the failure, not the bad news itself.",
+          "That trust runs both ways: they expect genuine visibility into significant work in flight, not just an alert once it's gone wrong. Everyday visibility is what makes the bad news credible when it lands.",
         ],
       },
     },
@@ -290,9 +300,11 @@ const PRINCIPLES = [
       { drift: "Waiting for certainty before raising a security or production concern", reset: "Raise it as a hypothesis, and let others help confirm or rule it out" },
       { drift: "Softening the severity to avoid alarm", reset: "State the actual customer impact first, then the caveats" },
       { drift: "Going quiet mid-incident because there's nothing new to report", reset: "Say \"still working it, no update yet\" rather than nothing" },
-      { drift: "Hiding or downplaying a failed experiment or a mistake because it feels like an admission", reset: "Say what didn't work as plainly as what did; a fast \"that didn't work\" is how the team learns quickest" },
+      { drift: "Hiding or downplaying a failed experiment or a mistake because it feels like an admission", reset: "Say what didn't work as plainly as what did. A fast \"that didn't work\" is how the team learns quickest." },
+      { drift: "Circling the same debate without ever landing a decision", reset: "Name what's actually being decided and by when, then stop relitigating once it's made" },
+      { drift: "Raising a concern without ever bringing an option", reset: "Bring one proposal, even an imperfect one, alongside the problem" },
     ],
-    ask: "If this turns out to matter, will I be glad I said it now, to the people who actually needed to hear it?",
+    ask: "If this turns out to matter, will I be glad I said it now, to the people who needed to hear it? Have I brought a way forward with it, not just the problem?",
   },
 
   {
@@ -300,7 +312,7 @@ const PRINCIPLES = [
     title: "We Own the System, Not Just the Ticket",
     accent: "#047857",
     summary:
-      "Ownership doesn't stop at your part of the code or the boundary of \"done\": it covers the whole path, from getting the project over the line to owning the system it becomes once it's live, including the 3am page.",
+      "Ownership doesn't stop at your part of the code or the boundary of \"done\": it covers the whole path, from getting the project over the line to owning the system it becomes once it's live.",
     cores: [
       {
         statement: "I own getting the work over the line, not just my part of building it",
@@ -312,7 +324,7 @@ const PRINCIPLES = [
         ],
       },
       {
-        statement: "I own what my work does to customers and the system, end to end",
+        statement: "I own the impact of my work on customers and the system, end to end",
         capability: "Accountability and Ownership",
         bullets: [
           "Understand what your change touches downstream, including what it does to customer data and trust",
@@ -326,8 +338,8 @@ const PRINCIPLES = [
       capability: "Accountability and Ownership",
       bands: {
         others: [
-          "Make it unambiguous who's driving each project end-to-end as well as who owns each service, so nothing stalls for lack of a single owner",
-          "Protect on-call load so ownership doesn't become burnout",
+          "Make it unambiguous who's driving each project end-to-end, and who owns each service, so nothing stalls for lack of a single owner",
+          "Protect on-call load, so ownership doesn't become burnout",
         ],
         leaders: [
           "Address ownership that's fallen into a gap between teams, or a stalled project, before it becomes an incident",
@@ -335,8 +347,8 @@ const PRINCIPLES = [
           "Keep ownership boundaries across backend, mobile, and test explicit, and raise it directly if resourcing forces a gap",
         ],
         business: [
-          "Back this function's staffing and resourcing asks when an ownership gap is raised",
-          "Treat customer data protection and trust as non-negotiable in how this team is staffed, whatever the delivery pressure",
+          "Directors back this function's staffing and resourcing asks when an ownership gap is raised",
+          "They treat customer data protection and trust as non-negotiable in how this team is staffed, whatever the delivery pressure",
         ],
       },
     },
@@ -348,6 +360,6 @@ const PRINCIPLES = [
       { drift: "Letting on-call load quietly grow until it's unsustainable", reset: "Name it and raise it before it becomes a resourcing crisis" },
       { drift: "Optimising your service's metrics at the system's expense", reset: "Check what the change does to the thing the customer actually experiences" },
     ],
-    ask: "If this project stalled before it landed, or this system went down at 3am, would it be obvious whose job it was to catch it, and would I be one of them?",
+    ask: "If this project stalled before it landed, or this system went down at 3am, would it be obvious whose job it was to catch it? Would I be one of them?",
   },
 ];

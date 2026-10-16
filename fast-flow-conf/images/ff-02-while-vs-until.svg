@@ -1,0 +1,33 @@
+<svg viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="420" rx="16" fill="#FAF7F2"/>
+  <text x="40" y="48" font-size="22" font-weight="700" fill="#E5604D">do ... while</text>
+  <text x="530" y="48" font-size="22" font-weight="700" fill="#213D4A">until</text>
+  <rect x="40" y="64" width="440" height="250" rx="12" fill="#1E2A30"/>
+  <rect x="530" y="64" width="440" height="250" rx="12" fill="#1E2A30"/>
+  <circle cx="62" cy="86" r="6" fill="#E5604D"/><circle cx="82" cy="86" r="6" fill="#E8B95A"/><circle cx="102" cy="86" r="6" fill="#6FAE8E"/>
+  <circle cx="552" cy="86" r="6" fill="#E5604D"/><circle cx="572" cy="86" r="6" fill="#E8B95A"/><circle cx="592" cy="86" r="6" fill="#6FAE8E"/>
+  <g font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="16" fill="#E9E4DA">
+    <text x="64" y="128" fill="#E8B95A">do</text>
+    <text x="88" y="156">agent.pickup(ticket)</text>
+    <text x="88" y="184">agent.decide_approach()</text>
+    <text x="88" y="212">agent.make_tradeoffs()</text>
+    <text x="88" y="240">agent.write_code()</text>
+    <text x="88" y="268">agent.write_tests()</text>
+    <text x="64" y="296" fill="#E8B95A">while</text>
+    <text x="124" y="296" fill="#E5604D">human.audit()</text>
+
+    <text x="554" y="128">agent.research_codebase()</text>
+    <text x="554" y="156" fill="#6FAE8E">human.decide_approach()</text>
+    <text x="554" y="184" fill="#6FAE8E">human.make_tradeoffs()</text>
+    <text x="554" y="212" fill="#6FAE8E">plan = human.write_with(agent)</text>
+    <text x="554" y="248" fill="#E8B95A">until</text>
+    <text x="614" y="248">agent.matches(plan)</text>
+    <text x="554" y="276" fill="#E8B95A">do</text>
+    <text x="578" y="298">agent.implement(plan)</text>
+  </g>
+  <text x="40" y="350" font-size="15" fill="#5F7F80">The interesting decisions already happened.</text>
+  <text x="40" y="372" font-size="15" font-weight="700" fill="#E5604D">You are the Auditor.</text>
+  <text x="530" y="350" font-size="15" fill="#5F7F80">Decisions come first. A machine checks the code matches.</text>
+  <text x="530" y="372" font-size="15" font-weight="700" fill="#213D4A">You are the Engineer.</text>
+  <text x="40" y="404" font-size="12" fill="#5F7F80" font-style="italic">Redrawn from Dylan Ratcliffe's slide. Green lines are the human's calls.</text>
+</svg>

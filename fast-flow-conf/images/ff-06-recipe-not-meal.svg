@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1000 440" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="440" rx="16" fill="#FAF7F2"/>
+  <text x="40" y="52" font-size="26" font-weight="700" fill="#213D4A">Vet the recipe, not every meal</text>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5F7F80"/></marker>
+    <marker id="r" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#E5604D"/></marker>
+  </defs>
+
+  <!-- Row 1: auditor -->
+  <text x="40" y="108" font-size="16" font-weight="700" fill="#E5604D">The Auditor</text>
+  <g font-size="14" fill="#FAF7F2" text-anchor="middle" font-weight="700">
+    <rect x="200" y="80" width="170" height="52" rx="10" fill="#8FA9AA"/><text x="285" y="112">Ticket / prompt</text>
+    <rect x="440" y="80" width="170" height="52" rx="10" fill="#5F7F80"/><text x="525" y="112">AI writes the meal</text>
+    <rect x="680" y="80" width="170" height="52" rx="10" fill="#E5604D"/><text x="765" y="112">Human audits PR</text>
+  </g>
+  <line x1="370" y1="106" x2="438" y2="106" stroke="#5F7F80" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="610" y1="106" x2="678" y2="106" stroke="#5F7F80" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M765 132 V172 H285 V136" fill="none" stroke="#E5604D" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#r)"/>
+  <text x="525" y="196" font-size="13" fill="#E5604D" text-anchor="middle">“Not quite.” Send it back, recook, repeat. Wasted time and tokens.</text>
+
+  <!-- Row 2: engineer -->
+  <text x="40" y="288" font-size="16" font-weight="700" fill="#213D4A">The Engineer</text>
+  <g font-size="14" fill="#FAF7F2" text-anchor="middle" font-weight="700">
+    <rect x="200" y="260" width="170" height="52" rx="10" fill="#8FA9AA"/><text x="285" y="292">Research and design</text>
+    <rect x="440" y="260" width="170" height="52" rx="10" fill="#213D4A"/><text x="525" y="292">Peer review the plan</text>
+    <rect x="680" y="260" width="130" height="52" rx="10" fill="#E8B95A"/><text x="745" y="292" fill="#213D4A">Agent executes</text>
+    <rect x="840" y="260" width="130" height="52" rx="10" fill="#5F7F80"/><text x="905" y="292">Machines check</text>
+  </g>
+  <line x1="370" y1="286" x2="438" y2="286" stroke="#5F7F80" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="610" y1="286" x2="678" y2="286" stroke="#5F7F80" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="810" y1="286" x2="848" y2="286" stroke="#5F7F80" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M525 312 V352 H285 V316" fill="none" stroke="#213D4A" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#a)"/>
+  <text x="405" y="378" font-size="13" fill="#213D4A" text-anchor="middle">Iterate on the recipe until it's sound</text>
+
+  <text x="40" y="424" font-size="14" fill="#5F7F80" font-style="italic">Human attention moves to where decisions are cheap to change.</text>
+</svg>

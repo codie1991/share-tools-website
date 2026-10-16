@@ -1,0 +1,10 @@
+<svg viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="300" rx="16" fill="#FAF7F2"/>
+  <text x="50" y="62" font-size="15" font-weight="700" fill="#5F7F80" letter-spacing="1">LESSON 6</text>
+  <text x="50" y="118" font-size="34" font-weight="700" fill="#213D4A">When anyone can make anything, the big</text>
+  <text x="50" y="164" font-size="34" font-weight="700" fill="#213D4A">differentiator is</text>
+  <text x="332" y="164" font-size="34" font-weight="400" fill="#8FA9AA">what you choose to make</text>
+  <line x1="328" y1="152" x2="745" y2="152" stroke="#E5604D" stroke-width="4"/>
+  <text x="50" y="210" font-size="34" font-weight="700" fill="#E5604D">how you choose to make it</text>
+  <text x="50" y="262" font-size="13" fill="#5F7F80" font-style="italic">Redrawn from Dylan Ratcliffe's slide</text>
+</svg>

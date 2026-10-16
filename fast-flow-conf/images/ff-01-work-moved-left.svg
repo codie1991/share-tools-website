@@ -1,0 +1,29 @@
+<svg viewBox="0 0 1000 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="340" rx="16" fill="#FAF7F2"/>
+  <text x="40" y="58" font-size="30" font-weight="700" fill="#213D4A">The work moved left</text>
+  <g font-size="13" fill="#5F7F80">
+    <rect x="610" y="40" width="14" height="14" rx="3" fill="#E5604D"/><text x="630" y="52">Product</text>
+    <rect x="705" y="40" width="14" height="14" rx="3" fill="#213D4A"/><text x="725" y="52">Engineering</text>
+    <rect x="825" y="40" width="14" height="14" rx="3" fill="#E8B95A"/><text x="845" y="52">Agent</text>
+  </g>
+  <g font-size="13" fill="#5F7F80" text-anchor="middle">
+    <text x="215" y="100">Idea</text><text x="335" y="100">Research</text><text x="455" y="100">Shape</text>
+    <text x="575" y="100">Plan</text><text x="695" y="100">Build</text><text x="815" y="100">Ship</text>
+  </g>
+  <text x="40" y="150" font-size="17" font-weight="700" fill="#213D4A">Before</text>
+  <rect x="155" y="120" width="300" height="46" rx="6" fill="#E5604D"/>
+  <rect x="455" y="120" width="420" height="46" rx="6" fill="#213D4A"/>
+  <g fill="#213D4A" font-size="14" text-anchor="middle">
+    <text x="215" y="190">●</text><text x="335" y="190">●</text><text x="455" y="190">●●</text>
+    <text x="575" y="190">●●●</text><text x="695" y="190">●●●●●</text><text x="815" y="190">●●●</text>
+  </g>
+  <text x="40" y="250" font-size="17" font-weight="700" fill="#213D4A">Now</text>
+  <rect x="155" y="220" width="120" height="46" rx="6" fill="#E5604D"/>
+  <rect x="275" y="220" width="360" height="46" rx="6" fill="#213D4A"/>
+  <rect x="635" y="220" width="240" height="46" rx="6" fill="#E8B95A"/>
+  <g fill="#213D4A" font-size="14" text-anchor="middle">
+    <text x="215" y="290">●●</text><text x="335" y="290">●●●●</text><text x="455" y="290">●●●●</text>
+    <text x="575" y="290">●●</text><text x="695" y="290">●</text><text x="815" y="290">●</text>
+  </g>
+  <text x="40" y="322" font-size="14" fill="#5F7F80" font-style="italic">Dots are people on the work. Engineers now sit upstream, where the decisions are. (Redrawn from Dylan Ratcliffe's slide)</text>
+</svg>

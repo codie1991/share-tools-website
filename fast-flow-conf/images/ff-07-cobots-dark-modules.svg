@@ -1,0 +1,30 @@
+<svg viewBox="0 0 1000 440" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="440" rx="16" fill="#FAF7F2"/>
+  <text x="40" y="52" font-size="26" font-weight="700" fill="#213D4A">Cobots and dark modules: not everything gets the same treatment</text>
+
+  <!-- axes -->
+  <line x1="120" y1="90" x2="120" y2="370" stroke="#5F7F80" stroke-width="2"/>
+  <line x1="120" y1="370" x2="960" y2="370" stroke="#5F7F80" stroke-width="2"/>
+  <text x="540" y="406" font-size="14" fill="#5F7F80" text-anchor="middle">Easy to template and repeat  →</text>
+  <text x="50" y="230" font-size="14" fill="#5F7F80" text-anchor="middle" transform="rotate(-90 50 230)">Cost of getting it wrong  →</text>
+
+  <!-- quadrants -->
+  <rect x="130" y="95" width="400" height="130" rx="12" fill="#E5604D"/>
+  <text x="330" y="140" font-size="20" font-weight="700" fill="#FAF7F2" text-anchor="middle">Cobot</text>
+  <text x="330" y="166" font-size="14" fill="#FAF7F2" text-anchor="middle">Human and AI side by side</text>
+  <text x="330" y="188" font-size="13" fill="#FAF7F2" text-anchor="middle">Bespoke, high criticality (the surgeon's steady hand)</text>
+
+  <rect x="545" y="235" width="405" height="125" rx="12" fill="#213D4A"/>
+  <text x="747" y="280" font-size="20" font-weight="700" fill="#FAF7F2" text-anchor="middle">Dark module</text>
+  <text x="747" y="306" font-size="14" fill="#FAF7F2" text-anchor="middle">Lights off: plan it, hand it over</text>
+  <text x="747" y="328" font-size="13" fill="#FAF7F2" text-anchor="middle">Repeatable, commodity, well bounded</text>
+
+  <rect x="130" y="235" width="400" height="125" rx="12" fill="#E8F0F0" stroke="#8FA9AA" stroke-dasharray="6 5"/>
+  <text x="330" y="290" font-size="14" fill="#5F7F80" text-anchor="middle">Judgement call</text>
+  <text x="330" y="312" font-size="13" fill="#5F7F80" text-anchor="middle">Depends on how much we trust the plan</text>
+  <rect x="545" y="95" width="405" height="130" rx="12" fill="#E8F0F0" stroke="#8FA9AA" stroke-dasharray="6 5"/>
+  <text x="747" y="150" font-size="14" fill="#5F7F80" text-anchor="middle">Judgement call</text>
+  <text x="747" y="172" font-size="13" fill="#5F7F80" text-anchor="middle">Repeatable but high stakes: lean on tests and contracts</text>
+
+  <text x="40" y="430" font-size="13" fill="#5F7F80" font-style="italic">Either way, we care about the contract and the boundaries, not the internals. Idea from Sam Newman's talk.</text>
+</svg>

@@ -1,0 +1,25 @@
+<svg viewBox="0 0 1000 340" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="340" rx="16" fill="#FAF7F2"/>
+  <text x="40" y="52" font-size="26" font-weight="700" fill="#213D4A">Keep it close or hand it off</text>
+  <rect x="60" y="100" width="880" height="26" rx="13" fill="#213D4A"/>
+  <rect x="60" y="100" width="560" height="26" rx="13" fill="#E8B95A"/>
+  <rect x="60" y="100" width="300" height="26" rx="13" fill="#E5604D"/>
+  <g font-size="15" font-weight="700" fill="#213D4A" text-anchor="middle">
+    <text x="130" y="160">Our engineers</text>
+    <text x="330" y="160">Local</text>
+    <text x="530" y="160">Near shore</text>
+    <text x="730" y="160">Off shore</text>
+    <text x="890" y="160">Buy or AI</text>
+  </g>
+  <g font-size="13" fill="#5F7F80" text-anchor="middle">
+    <text x="130" y="182">Market differentiators</text>
+    <text x="890" y="182">Commodity, supporting</text>
+  </g>
+  <rect x="60" y="214" width="420" height="72" rx="12" fill="#E5604D"/>
+  <text x="270" y="244" font-size="16" font-weight="700" fill="#FAF7F2" text-anchor="middle">Invest effort here</text>
+  <text x="270" y="268" font-size="13" fill="#FAF7F2" text-anchor="middle">The things that make us, us</text>
+  <rect x="520" y="214" width="420" height="72" rx="12" fill="#213D4A"/>
+  <text x="730" y="244" font-size="16" font-weight="700" fill="#FAF7F2" text-anchor="middle">Don't spend effort here</text>
+  <text x="730" y="268" font-size="13" fill="#FAF7F2" text-anchor="middle">Why we bought Salesforce, not built it</text>
+  <text x="40" y="320" font-size="13" fill="#5F7F80" font-style="italic">Tools for choosing: Domain Driven Design, Cynefin, Wardley Maps. Idea from Michael Plöd's talk.</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="380" rx="16" fill="#FAF7F2"/>
+  <text x="40" y="52" font-size="26" font-weight="700" fill="#213D4A">We keep moving up an abstraction</text>
+  <g>
+    <rect x="40" y="260" width="200" height="70" rx="10" fill="#8FA9AA"/>
+    <text x="140" y="291" font-size="17" font-weight="700" fill="#FAF7F2" text-anchor="middle">Machine code</text>
+    <text x="140" y="313" font-size="13" fill="#FAF7F2" text-anchor="middle">registers and bits</text>
+
+    <rect x="260" y="205" width="200" height="125" rx="10" fill="#5F7F80"/>
+    <text x="360" y="266" font-size="17" font-weight="700" fill="#FAF7F2" text-anchor="middle">Programming languages</text>
+    <text x="360" y="290" font-size="13" fill="#FAF7F2" text-anchor="middle">syntax and libraries</text>
+
+    <rect x="480" y="150" width="200" height="180" rx="10" fill="#213D4A"/>
+    <text x="580" y="240" font-size="17" font-weight="700" fill="#FAF7F2" text-anchor="middle">AI writes the code</text>
+    <text x="580" y="264" font-size="13" fill="#FAF7F2" text-anchor="middle">typing is delegated</text>
+
+    <rect x="700" y="95" width="260" height="235" rx="10" fill="#E5604D"/>
+    <text x="830" y="205" font-size="19" font-weight="700" fill="#FAF7F2" text-anchor="middle">Systems thinking</text>
+    <text x="830" y="232" font-size="13" fill="#FAF7F2" text-anchor="middle">decisions, tradeoffs, boundaries</text>
+    <text x="830" y="256" font-size="13" fill="#FAF7F2" text-anchor="middle">This is the job now</text>
+  </g>
+  <text x="40" y="358" font-size="14" fill="#5F7F80" font-style="italic">Each step lets us stop caring about a layer of detail and spend that attention higher up.</text>
+</svg>
